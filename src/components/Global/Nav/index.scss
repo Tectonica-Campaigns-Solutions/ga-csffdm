@@ -1,3 +1,6 @@
+header {
+  height: 120px;
+}
 .navbar {
   top: 0;
   min-height: 90px;
@@ -5,7 +8,6 @@
   z-index: 999;
   background-color: transparent;
   padding: 0 30px;
-  padding-top: 0 !important;
   position: absolute !important;
 
   .navbar-brand {
