@@ -5,7 +5,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const templates = {
-      post: path.resolve('./src/templates/post.jsx'),
+      //post: path.resolve('./src/templates/post.jsx'),
     };
 
     resolve(
@@ -57,6 +57,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         // Create pages
+        /*
         const posts = result.data.posts.edges;
         for (const post of posts) {
           createPage({
@@ -67,7 +68,7 @@ exports.createPages = ({ graphql, actions }) => {
               id: post.node.id,
             },
           });
-        }
+        }*/
       })
     );
   });

@@ -1,5 +1,5 @@
 .search-engine {
-  background-color: var(--egp-dark-green);
+  background-color: var(--secondary-color);
   width: 100vw;
   position: fixed;
   display: flex;
@@ -19,7 +19,7 @@
     font-weight: 800;
     font-size: 35px;
     line-height: 100%;
-    color: var(--egp-white);
+    color: var(--white);
     margin-bottom: 5px;
   }
 
@@ -93,7 +93,7 @@
     &-item {
       &:hover {
         h6 {
-          color: var(--egp-gray);
+          color: var(--gray);
           ;
         }
       }
@@ -132,7 +132,7 @@
   }
 
   &__message {
-    color: var(--egp-white);
+    color: var(--white);
     text-align: center;
     margin-bottom: 0;
   }

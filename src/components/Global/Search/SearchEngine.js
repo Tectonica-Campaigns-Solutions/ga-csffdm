@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { buildClient } from '@datocms/cma-client-browser';
 import { useSiteSearch } from 'react-datocms';
-import Link from '../Link';
+import Link from '../Link/Link';
 import Spinner from '../Spinner/Spinner';
 import { useEffect } from 'react';
 

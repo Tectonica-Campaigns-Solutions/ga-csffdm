@@ -125,7 +125,7 @@
     }
 
     .nav-item a {
-      font-size: 20px !important;
+      font-size: 25px !important;
       color: var(--dark) !important;
     }
   }
@@ -148,11 +148,16 @@
           color: var(--dark-green);
           transition: all 0.3s ease;
           text-decoration: none;
+        }
 
-          &:hover {
-            color: var(--gray) !important;
+        &:hover {
+          border-bottom: 2px solid var(--primary-color-dark);
+          margin-top: 2px;
+          a {
+            color: var(--primary-color-dark) !important;
           }
         }
+        
       }
     }
 
@@ -265,15 +270,18 @@
     min-height: auto;
     padding: 5px 0;
 
-    a.navbar-brand img {
-      padding-left: 15px;
-      width: 70%;
+    a.navbar-brand {
+      max-width: 60%;
+      img {
+        padding-left: 15px;
+        width: 100%;
+      }
     }
 
     &.sticky-nav {
       .navbar-brand>img {
         padding-left: 15px;
-        width: 70%;
+        width: 60%;
       }
     }
 
