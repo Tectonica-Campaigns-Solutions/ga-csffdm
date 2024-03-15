@@ -1,5 +1,5 @@
 .search-engine {
-  background-color: var(--secondary-color);
+  background-color: var(--cream);
   width: 100vw;
   position: fixed;
   display: flex;
@@ -31,40 +31,58 @@
   }
 
   &__close-icon {
-    position: fixed;
-    top: 34px;
-    right: 42px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    span {
+      color: var(--dark);
+      font-family: var(--primary-font);
+      font-size: 25px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+  }
+
+  header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
   }
 
   .content {
-    width: 544px;
+    margin-top: 8rem;
+    width: 875px;
 
     @media (max-width: 992px) {
       width: 80%;
     }
   }
 
-  &__form {
-    width: inherit;
-
-    @media (max-width: 992px) {
-      width: 100%;
-    }
-  }
-
   form {
+    align-items: center;
+    border-bottom: 2px solid var(--dark);
+    display: flex;
+    gap: 1rem;
     width: 100%;
   }
 
   input[type=search] {
     width: 100%;
-    border-radius: 4px;
     padding-top: 8px;
     padding-bottom: 8px;
     padding-left: 12px;
     padding-right: 12px;
     border: 0;
+    background: transparent;
+    height: 50px;
 
     @media (max-width: 992px) {
       width: 100%;
@@ -74,6 +92,28 @@
       position: absolute;
       right: 0;
     }
+
+    &::placeholder {
+      color: var(--dark);
+      font-family: var(--primary-font);
+      font-size: 39px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 115%;
+    }
+  }
+
+  .btn-submit {
+    background: none;
+    background-image: url(../../Icons/form-search-icon.svg);
+    background-position: 100%;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    border: none;
+    display: inline-block;
+    height: 24px;
+    position: relative;
+    width: 24px;
   }
 
   &__results {
@@ -86,6 +126,7 @@
     margin-top: 8px;
 
     &-list {
+      list-style: none;
       padding-left: 0;
       margin: 0;
     }
@@ -99,7 +140,7 @@
       }
 
       a {
-        color: #27273F;
+        color: var(--dark);
 
       }
 
@@ -132,13 +173,9 @@
   }
 
   &__message {
-    color: var(--white);
+    color: var(--dark);
     text-align: center;
     margin-bottom: 0;
-  }
-
-  .margin-bottom-hack {
-    opacity: 0;
   }
 
   .spinner {

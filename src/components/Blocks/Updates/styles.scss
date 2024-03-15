@@ -1,0 +1,48 @@
+.post-card {
+  background-color: var(--cream);
+
+  a {
+    text-decoration: none;
+
+    .content {
+      padding: 25px 30px 30px;
+
+      .date {
+        color: var(--dark);
+        font-family: var(--secondary-font);
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 450;
+        line-height: 125%;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 10px;
+        display: block;
+      }
+
+      h3 {
+        color: var(--orange);
+        font-family: var(--primary-font);
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 10px;
+      }
+
+      .post-introduction {
+        color: var(--dark);
+        font-family: var(--secondary-font);
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 450;
+        line-height: 130%;
+        letter-spacing: 0.06px;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}

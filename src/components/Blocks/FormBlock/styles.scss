@@ -1,11 +1,12 @@
 .form-block-wrapper {
+  position: relative;
+
+  &.blue {
+    background-color: var(--dark-blue);
+  }
+
   .form-block {
-    padding: 33px 60px 100px 60px;
-    background: var(--primary-color);
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    margin-bottom: 2rem;
+    padding: 49px 0;
     min-height: 304px;
 
     h2 {
@@ -13,12 +14,11 @@
       font-family: var(--primary-font);
       font-size: 39px;
       font-style: normal;
-      font-weight: 600;
-      line-height: 110%;
+      font-weight: 700;
+      line-height: 115%;
       margin: 0;
       padding: 0;
-      position: relative;
-      z-index: 1;
+      margin-bottom: 29px;
     }
 
     .description {
@@ -61,6 +61,13 @@
     form .focused {
       background-color: var(--primary-color);
     }
+  }
+
+  .fixed-image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    mix-blend-mode: multiply;
   }
 }
 

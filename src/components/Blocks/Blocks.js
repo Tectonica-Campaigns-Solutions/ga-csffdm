@@ -5,16 +5,27 @@ import Logos from './Logos/Logos';
 import SimpleText from './SimpleText/SimpleText';
 import Video from './Video/Video';
 import Table from './Table/Table';
-import ListHighlightEvent from './HighlightEvent/ListHighlightEvent';
-import HighlightTools from './HighlightTools/HighlightTools';
 import FormBlock from './FormBlock/FormBlock';
 import Share from './Share/Share';
+import CalendarBlock from './Calendar/CalendarBlock';
+import ResourcesBlock from './Resources/ResourcesBlock';
+import UpdatesBlock from './Updates/UpdatesBlock';
 
 export default function Blocks({ blocks, usePrimaryHeading = false }) {
   return (
     <>
       {blocks.map((block, index) => {
         switch (block.__typename) {
+          case 'DatoCmsCalendarBlock':
+            return <CalendarBlock key={block.id} block={block} />;
+          case 'DatoCmsResourcesBlock':
+            return <ResourcesBlock key={block.id} block={block} />;
+          case 'DatoCmsUpdatesBlock':
+            return <UpdatesBlock key={block.id} block={block} />;
+          case 'DatoCmsFormBlock':
+            return <FormBlock key={block.id} block={block} />;
+
+          // OLD
           case 'DatoCmsNarrativeBlock':
             return <NarrativeBlock block={block} key={block.id} usePrimaryHeading={usePrimaryHeading} anchor={index} />;
           case 'DatoCmsAcordion':
@@ -27,12 +38,6 @@ export default function Blocks({ blocks, usePrimaryHeading = false }) {
             return <Table key={block.id} content={block} />;
           case 'DatoCmsVideoBlock':
             return <Video key={block.id} content={block} withContainer />;
-          case 'DatoCmsHighlightEvent':
-            return <ListHighlightEvent key={block.id} block={block} />;
-          case 'DatoCmsHighlightTool':
-            return <HighlightTools key={block.id} block={block} />;
-          case 'DatoCmsTextHubspotForm':
-            return <FormBlock key={block.id} block={block} />;
           case 'DatoCmsShare':
             return <Share key={block.id} block={block} />;
 

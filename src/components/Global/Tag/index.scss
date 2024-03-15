@@ -1,14 +1,14 @@
 .tag {
   display: inline-block;
   padding: 2.5px 7px;
-  background: var(--secondary-bg-color);
+  background: var(--dark-blue);
   width: fit-content;
-  color: var(--primary-color);
+  color: var(--white);
   font-family: var(--secondary-font);
-  font-size: 16px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 700;
-  line-height: 135%;
+  line-height: 125%;
   text-transform: uppercase;
   border-radius: 2px;
 }

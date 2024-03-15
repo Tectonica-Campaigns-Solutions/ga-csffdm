@@ -1,53 +1,13 @@
-.highlight-event-section {
-  padding-bottom: 115px;
-
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 50px;
-
-    h3 {
-      color: var(--black);
-      font-family: var(--primary-font);
-      font-size: 31px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 120%;
-      margin: 0;
-      padding: 0;
-      position: relative;
-      padding-bottom: 10px;
-
-      &::before {
-        content: '';
-        width: 75px;
-        height: 5px;
-        background-color: var(--primary-color-light);
-        display: block;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-
-      }
-    }
-  }
-
-  .mobile-ctas {
-    display: none;
-  }
-}
-
 .event-card {
   border-radius: 10px;
-  background: var(--white);
+  background: var(--cream);
   margin-bottom: 22px;
-  padding: 48px 42px;
+  padding: 48px 41px;
   text-decoration: none;
   color: initial;
 
   display: grid;
-  gap: 63px;
+  gap: 41px;
   grid-template-columns: .6fr 2fr 1fr;
 
   .metadata {
@@ -56,12 +16,13 @@
     gap: 20px;
 
     .date {
-      color: var(--primary-color);
+      color: var(--black);
       font-family: var(--secondary-font);
       font-size: 20px;
       font-style: normal;
-      font-weight: 700;
+      font-weight: 450;
       line-height: 130%;
+      letter-spacing: 0.06px;
     }
 
     .venue {
@@ -70,39 +31,46 @@
       gap: 20px;
 
       span {
-        color: var(--primary-color);
+        color: var(--black);
         font-family: var(--secondary-font);
         font-size: 20px;
         font-style: normal;
-        font-weight: 400;
-        line-height: 150%;
+        font-weight: 450;
+        line-height: 130%;
+        letter-spacing: 0.06px;
       }
     }
   }
 
   .basic-info {
     h4 {
-      color: var(--primary-color);
+      color: var(--black);
       font-family: var(--primary-font);
-      font-size: 25px;
+      font-size: 31px;
       font-style: normal;
       font-weight: 600;
-      line-height: 120%;
+      line-height: 115%;
       margin: 0;
       padding: 0;
       margin-bottom: 15px;
     }
 
     .introduction {
-      color: var(--primary-color);
+      color: var(--black);
       font-family: var(--secondary-font);
-      font-size: 16px;
+      font-size: 20px;
       font-style: normal;
-      font-weight: 400;
-      line-height: 150%;
+      font-weight: 450;
+      line-height: 130%;
+      letter-spacing: 0.06px;
       margin: 0;
       padding: 0;
       margin-bottom: 25px;
+    }
+
+    .custom-btn {
+      border-color: var(--black);
+      color: var(--black);
     }
   }
 
@@ -129,40 +97,9 @@
       color: var(--white) !important;
     }
   }
-
-  &.highlighted {
-    background-color: var(--primary-color);
-
-    .metadata .date,
-    .metadata .venue span,
-    .basic-info h4,
-    .basic-info .introduction {
-      color: var(--white);
-    }
-  }
 }
 
 @media screen and (max-width: 992px) {
-  .highlight-event-section {
-    padding-bottom: 60px;
-
-    .header {
-      margin-bottom: 30px;
-
-      h3 {
-        font-size: 23px;
-      }
-    }
-
-    .desktop-ctas {
-      display: none;
-    }
-
-    .mobile-ctas {
-      display: block;
-    }
-  }
-
   .event-card {
     padding: 26px 19px;
     display: flex;

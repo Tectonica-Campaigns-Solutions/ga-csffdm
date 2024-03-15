@@ -7,20 +7,16 @@ import HomeHero from '../components/Global/HomeHero/HomeHero';
 import WrapperLayout from '../components/Layout/WrapperLayout/WrapperLayout';
 
 const IndexPage = ({ data: { page, favicon } }) => {
+  const { seo, heroTitle, subtitle, heroImage, mobileHeroImage, ctas = [], blocks = [] } = page;
+
   return (
     <Layout>
-      {page?.seo && <SeoDatoCMS seo={page?.seo} favicon={favicon} homepage />}
+      {seo && <SeoDatoCMS seo={seo} favicon={favicon} homepage />}
 
       <WrapperLayout variant="white">
-        <HomeHero
-          title={page?.title}
-          subtitle={page?.subtitle}
-          image={page?.heroImage}
-          mobileImage={page?.mobileHeroImage}
-          form={page?.form}
-        />
+        <HomeHero title={heroTitle} subtitle={subtitle} image={heroImage} mobileImage={mobileHeroImage} ctas={ctas} />
 
-        {page?.blocks && <Blocks blocks={page.blocks} />}
+        {blocks && <Blocks blocks={blocks} />}
       </WrapperLayout>
     </Layout>
   );
@@ -43,14 +39,31 @@ export const HomeQuery = graphql`
       }
       id
       title
+      heroTitle
       subtitle
       heroImage {
         gatsbyImageData(width: 1500, height: 800)
       }
+      ctas {
+        ...BlockCta
+      }
       mobileHeroImage {
         gatsbyImageData
       }
-
+      blocks {
+        ... on DatoCmsCalendarBlock {
+          ...BlockCalendar
+        }
+        ... on DatoCmsResourcesBlock {
+          ...BlockResources
+        }
+        ... on DatoCmsUpdatesBlock {
+          ...BlockUpdates
+        }
+        ... on DatoCmsFormBlock {
+          ...BlockForm
+        }
+      }
     }
   }
 `;

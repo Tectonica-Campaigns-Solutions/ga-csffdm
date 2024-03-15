@@ -1,8 +1,9 @@
 import React from 'react';
+import CtaList from '../Cta/CtaList';
 
 import './index.scss';
 
-function HomeHero({ title, subtitle, image, form = null, mobileImage = null }) {
+function HomeHero({ title, subtitle, image, mobileImage = null, ctas = [] }) {
   const bgImageUrl = image?.gatsbyImageData?.images?.fallback?.src;
 
   const css = `
@@ -21,8 +22,10 @@ function HomeHero({ title, subtitle, image, form = null, mobileImage = null }) {
       <div className="hero-home" style={{ backgroundImage: `url(${bgImageUrl})` }}>
         <div className="container">
           <div className="content">
-            {title && <h1>{title}</h1>}
+            {title && <h1 dangerouslySetInnerHTML={{ __html: title }} />}
             {subtitle && <div className="introduction" dangerouslySetInnerHTML={{ __html: subtitle }} />}
+
+            {ctas && <CtaList ctas={ctas} />}
           </div>
         </div>
 
