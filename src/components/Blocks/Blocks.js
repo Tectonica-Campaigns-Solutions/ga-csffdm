@@ -16,6 +16,8 @@ export default function Blocks({ blocks, usePrimaryHeading = false }) {
     <>
       {blocks.map((block, index) => {
         switch (block.__typename) {
+          case 'DatoCmsNarrativeBlock':
+            return <NarrativeBlock block={block} key={block.id} usePrimaryHeading={usePrimaryHeading} anchor={index} />;
           case 'DatoCmsCalendarBlock':
             return <CalendarBlock key={block.id} block={block} />;
           case 'DatoCmsResourcesBlock':

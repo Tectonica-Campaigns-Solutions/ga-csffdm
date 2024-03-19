@@ -51,6 +51,9 @@ export const HomeQuery = graphql`
         gatsbyImageData
       }
       blocks {
+        ... on DatoCmsNarrativeBlock {
+          ...BlockNarrativeBlock
+        }
         ... on DatoCmsCalendarBlock {
           ...BlockCalendar
         }

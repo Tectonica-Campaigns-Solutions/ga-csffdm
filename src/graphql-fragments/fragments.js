@@ -39,6 +39,10 @@ export const DatoCMS = graphql`
     __typename
     id: originalId
     title
+    textContent
+    ctas {
+      ...BlockCta
+    }
   }
 
   fragment Tags on DatoCmsTag {
@@ -52,6 +56,7 @@ export const DatoCMS = graphql`
     id: originalId
     title
     isButton
+    style
   }
 
   fragment BlockCalendar on DatoCmsCalendarBlock {

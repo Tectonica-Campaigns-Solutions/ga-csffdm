@@ -32,7 +32,7 @@ export default function NarrativeBlock({ block, anchor = null }) {
     >
       <div className={`container`}>
         <div className={`row ${alignment === 'left' ? 'flex-row-reverse' : ''} align-items-center`}>
-          <div className={`col-lg-7 main-content`}>
+          <div className={`col-lg-8 main-content`}>
             {logo && <img className="logo" src={logo.url} alt={logo.alt ?? 'Logo icon'} />}
 
             <h2>
@@ -47,7 +47,7 @@ export default function NarrativeBlock({ block, anchor = null }) {
               />
             )}
 
-            {isArray(ctas) && <CtaList ctas={ctas} customVariant="custom-btn-primary" />}
+            {isArray(ctas) && <CtaList ctas={ctas} />}
           </div>
 
           {/* Render image  */}

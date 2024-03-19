@@ -16,7 +16,7 @@ export default function Cta({
   if (off) {
     return (
       <span
-        className={`custom-btn ${isCtaPrimaryButton ? 'custom-btn-primary' : ''} ${cta?.buttonStyle} ${
+        className={`custom-btn ${isCtaPrimaryButton ? 'custom-btn-primary' : ''} ${
           customVariant ? customVariant : ''
         }`}
       >
@@ -27,7 +27,7 @@ export default function Cta({
 
   return (
     <Link
-      className={`custom-btn ${isCtaPrimaryButton ? 'custom-btn-primary' : ''} ${cta?.buttonStyle} ${
+      className={`custom-btn ${isCtaPrimaryButton ? `custom-btn-${cta?.style}` : ''} ${cta?.style} ${
         customVariant ? customVariant : ''
       }`}
       to={cta || url}
