@@ -1,5 +1,7 @@
 .component-narrative-block {
-  padding-top: 80px;
+  padding: 130px 0;
+  position: relative;
+  overflow: hidden;
 
   h2 {
     margin: 0;
@@ -34,6 +36,12 @@
       font-weight: 400;
       line-height: 150%;
     }
+  }
+
+  .img-wrapper-nb {
+    position: absolute;
+    z-index: 1;
+    right: -10%;
   }
 
   +.component-narrative-block {

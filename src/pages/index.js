@@ -63,6 +63,9 @@ export const HomeQuery = graphql`
         ... on DatoCmsUpdatesBlock {
           ...BlockUpdates
         }
+        ... on DatoCmsWorkBlock {
+          ...BlockWork
+        }
         ... on DatoCmsFormBlock {
           ...BlockForm
         }

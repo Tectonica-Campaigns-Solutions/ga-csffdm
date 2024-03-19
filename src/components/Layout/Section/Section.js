@@ -3,9 +3,9 @@ import Cta from '../../Global/Cta/Cta';
 
 import './styles.scss';
 
-const Section = ({ headline, introduction, cta, children, bgImage }) => {
+const Section = ({ headline, introduction, cta, children, bgImage, extraClassNames = '' }) => {
   return (
-    <section className="app-section">
+    <section className={`app-section ${extraClassNames ? extraClassNames : ''}`}>
       <div className="container">
         <div className="header">
           {headline && <h3>{headline}</h3>}

@@ -1,6 +1,7 @@
 .app-section {
   padding: 70px 0;
   position: relative;
+  overflow: hidden;
 
   .header {
     display: flex;
@@ -50,5 +51,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
+    height: auto;
+    max-height: 100%;
   }
 }

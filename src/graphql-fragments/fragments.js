@@ -43,6 +43,13 @@ export const DatoCMS = graphql`
     ctas {
       ...BlockCta
     }
+    image {
+      width
+      height
+      alt
+      url
+      gatsbyImageData
+    }
   }
 
   fragment Tags on DatoCmsTag {
@@ -137,6 +144,37 @@ export const DatoCMS = graphql`
           height
           alt
           gatsbyImageData
+        }
+      }
+    }
+  }
+
+  fragment BlockWork on DatoCmsWorkBlock {
+    __typename
+    id: originalId
+    headline
+    introduction
+    backgroundImage {
+      width
+      height
+      alt
+      url
+      gatsbyImageData
+    }
+    items {
+      ... on DatoCmsWork {
+        id
+        title
+        introduction
+        slug
+        model {
+          apiKey
+        }
+        icon {
+          width
+          height
+          alt
+          url
         }
       }
     }
