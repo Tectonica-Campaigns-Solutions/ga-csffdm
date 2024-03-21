@@ -3,12 +3,12 @@ import Cta from '../../Global/Cta/Cta';
 
 import './styles.scss';
 
-const Section = ({ headline, introduction, cta, children, bgImage, extraClassNames = '' }) => {
+const Section = ({ headline, introduction, cta, children, bgImage, extraClassNames = '', hClass = 'h3' }) => {
   return (
     <section className={`app-section ${extraClassNames ? extraClassNames : ''}`}>
       <div className="container">
         <div className="header">
-          {headline && <h3>{headline}</h3>}
+          {headline && <h3 className={`${hClass}`}>{headline}</h3>}
 
           {cta && (
             <div className="desktop-ctas">

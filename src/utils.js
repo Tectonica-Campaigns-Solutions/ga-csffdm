@@ -60,7 +60,7 @@ export const formatDate = (rawDate) => {
   }
 
   // Get the month name
-  const months = ['jan', 'feb', 'mar', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const monthName = months[date.getMonth()];
 
   // Get the day and year
@@ -68,7 +68,7 @@ export const formatDate = (rawDate) => {
   const year = date.getFullYear();
 
   // Construct the formatted date string
-  const formattedDate = `${day} ${monthName} ${year}`;
+  const formattedDate = `${monthName} ${day}, ${year}`;
 
   return formattedDate;
 };

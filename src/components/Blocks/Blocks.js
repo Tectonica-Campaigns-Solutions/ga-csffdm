@@ -31,8 +31,6 @@ export default function Blocks({ blocks, usePrimaryHeading = false }) {
             return <WorkBlock key={block.id} block={block} />;
 
           // OLD
-          case 'DatoCmsNarrativeBlock':
-            return <NarrativeBlock block={block} key={block.id} usePrimaryHeading={usePrimaryHeading} anchor={index} />;
           case 'DatoCmsAcordion':
             return <Accordion key={block.id} items={block.items} renderChild={(item) => <div>{item.text}</div>} />;
           case 'DatoCmsLogo':

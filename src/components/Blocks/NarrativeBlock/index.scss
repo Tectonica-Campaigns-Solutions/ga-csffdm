@@ -1,7 +1,7 @@
 .component-narrative-block {
   padding: 130px 0;
   position: relative;
-  overflow: hidden;
+  /*overflow: hidden;*/
 
   h2 {
     margin: 0;
@@ -42,6 +42,32 @@
     position: absolute;
     z-index: 1;
     right: -10%;
+
+    .stats {
+      position: absolute;
+      top: 18%;
+      left: 20%;
+      
+      .stat {
+        text-align: right;
+        margin-bottom: 5rem;
+
+        .statTitle { 
+          color: var(--white);
+        }
+
+        .statValue {
+          color: var(--primary-color-lighter);
+          font-size: 5rem;
+          font-weight: 700;
+          line-height: 1;
+        }
+
+        &:nth-child(2) {
+          margin-right: 4rem;
+        }
+      }
+    }
   }
 
   +.component-narrative-block {

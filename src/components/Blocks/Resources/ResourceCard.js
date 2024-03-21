@@ -9,15 +9,18 @@ import arrowIcon from '../../Icons/resource-arrow.svg';
 import './styles.scss';
 
 const ResourceCard = ({ resource }) => {
-  const { title, introduction, tags = [] } = resource;
+  const { title, slug, introduction, tags = [] } = resource;
 
   return (
     <article className="resource-card">
-      <div className="basic-information">
-        <h2>{title}</h2>
-      </div>
-
-      <ReactSVG src={arrowIcon} />
+      <Link to={slug}>
+        <div className="basic-information">
+          <h4>{title}</h4>
+        </div>
+        {isArray(tags) ? <TagList tags={tags} /> : <div className="tags-list" />}
+        {introduction && <div className="resource-introduction" dangerouslySetInnerHTML={{ __html: introduction }} />}
+        <ReactSVG src={arrowIcon} className='btn-img' />
+      </Link>
     </article>
   );
 };

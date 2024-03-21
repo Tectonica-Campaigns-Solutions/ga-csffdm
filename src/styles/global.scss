@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: all 1s ease-out;
 }
 
 h1,
@@ -15,4 +16,12 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
+}
+
+.h4 {
+  font-size: 2.438rem;
+}
+
+a {
+  text-decoration: none;
 }

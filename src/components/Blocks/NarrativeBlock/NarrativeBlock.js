@@ -13,6 +13,7 @@ export default function NarrativeBlock({ block, anchor = null }) {
     title,
     textContent,
     ctas,
+    stats,
     image,
     imageMobile,
     backgroundImage,
@@ -58,6 +59,24 @@ export default function NarrativeBlock({ block, anchor = null }) {
               ) : image ? (
                 <div>
                   <ImageWrapper image={image} imageMobile={imageMobile} objectFit="contain" />
+                  {stats && (
+                    <div className="stats">
+                      {stats.map((stat, index) => (
+                        <div key={index} className="stat">
+                          {stat.icon && (
+                            <img
+                              src={stat.icon.url}
+                              alt={stat.title ?? 'Stat icon'}
+                              width={stat.icon.width}
+                              height={stat.icon.height}
+                            />
+                          )}
+                            {stat.value && <div className='statValue'>{stat.value}</div>}
+                            {stat.title && <div className='statTitle'>{stat.title}</div>}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ) : null}
             </div>

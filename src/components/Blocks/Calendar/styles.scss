@@ -1,5 +1,8 @@
+.eventsSection {
+  padding: 10rem 0 4rem;
+}
+
 .event-card {
-  border-radius: 10px;
   background: var(--cream);
   margin-bottom: 22px;
   padding: 48px 41px;
@@ -22,10 +25,10 @@
       font-style: normal;
       font-weight: 450;
       line-height: 130%;
-      letter-spacing: 0.06px;
     }
 
     .venue {
+      color: var(--black);
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -76,7 +79,6 @@
 
   .image {
     * {
-      border-radius: 10px;
       height: 100%;
     }
 
@@ -87,14 +89,13 @@
   }
 
   &:hover {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color-lighter);
+    box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
 
-    .metadata .date,
-    .metadata .venue,
-    .metadata .venue span,
-    .basic-info h4,
-    .basic-info .introduction {
-      color: var(--white) !important;
+    .custom-btn {
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-color: transparent;
     }
   }
 }

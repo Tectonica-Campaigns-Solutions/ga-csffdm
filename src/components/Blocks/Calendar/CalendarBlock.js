@@ -8,7 +8,7 @@ const CalendarBlock = ({ block }) => {
   const { headline, introduction, cta = [], items = [] } = block;
 
   return (
-    <Section headline={headline} introduction={introduction} cta={cta}>
+    <Section headline={headline} introduction={introduction} cta={cta} extraClassNames="eventsSection" hClass="h4">
       {items.map((item) => (
         <EventCard event={item} key={item.id} />
       ))}

@@ -43,6 +43,9 @@ export const DatoCMS = graphql`
     ctas {
       ...BlockCta
     }
+    stats {
+      ...BlockStats
+    }
     image {
       width
       height
@@ -65,6 +68,18 @@ export const DatoCMS = graphql`
     isButton
     style
   }
+
+  fragment BlockStats on DatoCmsStatsBlock {
+    __typename
+    id: originalId
+    title
+    value
+    icon {
+      width
+      height
+      url
+    }
+  }  
 
   fragment BlockCalendar on DatoCmsCalendarBlock {
     __typename
@@ -162,23 +177,23 @@ export const DatoCMS = graphql`
       gatsbyImageData
     }
     items {
-      ... on DatoCmsWork {
-        id
-        title
-        introduction
-        slug
-        model {
-          apiKey
-        }
-        icon {
-          width
-          height
-          alt
-          url
-        }
-      }
+      ...BlockWorkItems
     }
   }
+
+  fragment BlockWorkItems on DatoCmsWork {
+    __typename
+    title
+    introduction
+    slug
+    icon {
+      width
+      height
+      alt
+      url
+    }
+  }  
+
 
   fragment BlockForm on DatoCmsFormBlock {
     __typename
