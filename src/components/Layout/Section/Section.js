@@ -4,6 +4,7 @@ import Cta from '../../Global/Cta/Cta';
 import './styles.scss';
 
 const Section = ({ headline, introduction, cta, children, bgImage, extraClassNames = '', hClass = 'h3' }) => {
+  console.log('CTA', cta);
   return (
     <section className={`app-section ${extraClassNames ? extraClassNames : ''}`}>
       <div className="container">
@@ -12,7 +13,7 @@ const Section = ({ headline, introduction, cta, children, bgImage, extraClassNam
 
           {cta && (
             <div className="desktop-ctas">
-              <Cta ctas={cta} />
+              <Cta cta={cta} />
             </div>
           )}
         </div>

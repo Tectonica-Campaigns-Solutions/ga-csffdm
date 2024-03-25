@@ -114,6 +114,8 @@ export const DatoCMS = graphql`
     id: originalId
     headline
     introduction
+    fixedCardIntro
+    fixedCardTitle
     cta {
       ...BlockCta
     }

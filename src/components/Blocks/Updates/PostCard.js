@@ -15,6 +15,7 @@ const PostCard = ({ post }) => {
         {mainImage && (
           <div className="image">
             <ImageWrapper image={mainImage} />
+            {isArray(tags) ? <TagList tags={tags} /> : <div className="tags-list" />}
           </div>
         )}
 

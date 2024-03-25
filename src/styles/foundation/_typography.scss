@@ -20,6 +20,7 @@
 /*{"last_published":"2024-03-14 12:03:52 UTC"}*/
 
 @import url("https://p.typekit.net/p.css?s=1&k=lhw7bmr&ht=tk&f=47864.47865.47868.47869&a=27045086&app=typekit&e=css");
+@import url("https://use.typekit.net/lhw7bmr.css");
 
 @font-face {
 font-family:"mundial";
@@ -46,12 +47,14 @@ font-display:auto;font-style:normal;font-weight:700;font-stretch:normal;
 }
 
 .tk-mundial { font-family: "mundial",sans-serif; }
+.tk-neue { font-family: "neue-haas-grotesk-display",sans-serif; }
 
 :root {
   --primary-font: 'mundial';
   --secondary-font: 'mundial';
+  --neue-font: 'neue-haas-grotesk-display';
 }
 
 body {
-  font-family: var(--secondary-font);
+  font-family: var(--primary-font);
 }

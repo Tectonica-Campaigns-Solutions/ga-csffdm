@@ -1,6 +1,7 @@
 .footer-container {
   padding: 52px 0;
   background-color: var(--secondary-bg-color);
+  font-family: var(--neue-font);
 
   a {
     color: var(--dark);
@@ -55,7 +56,7 @@
 
   .content {
     color: var(--third-color);
-    font-family: var(--secondary-font);
+    font-family: var(--neue-font);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -88,7 +89,7 @@
 
     a {
       color: var(--dark);
-      font-family: var(--secondary-font);
+      font-family: var(--neue-font);
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
@@ -106,7 +107,7 @@
     text-align: right;
     span {
       color: var(--third-color);
-      font-family: var(--secondary-font);
+      font-family: var(--neue-font);
       font-size: 16px;
       font-style: normal;
       font-weight: 400;

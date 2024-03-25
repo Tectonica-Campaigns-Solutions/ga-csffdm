@@ -8,18 +8,20 @@ import arrowIcon from '../../Icons/resource-arrow.svg';
 
 import './styles.scss';
 
-const ResourceCard = ({ resource }) => {
-  const { title, slug, introduction, tags = [] } = resource;
+const ResourceCard = ({ resource, className = '' }) => {
+  const { title, slug, date, introduction, tags = [] } = resource;
 
   return (
-    <article className="resource-card">
+    <article className={`resource-card ${className}`}>
       <Link to={slug}>
+        {isArray(tags) ? <TagList tags={tags} /> : <div className="tags-list" />}
+        {date && <span className="date">{formatDate(date)}</span>}
         <div className="basic-information">
           <h4>{title}</h4>
         </div>
-        {isArray(tags) ? <TagList tags={tags} /> : <div className="tags-list" />}
-        {introduction && <div className="resource-introduction" dangerouslySetInnerHTML={{ __html: introduction }} />}
+        {introduction && <div className="resource-introduction tk-neue" dangerouslySetInnerHTML={{ __html: introduction }} />}
         <ReactSVG src={arrowIcon} className='btn-img' />
+        <div className="custom-btn custom-btn-primary">Read and download</div>
       </Link>
     </article>
   );

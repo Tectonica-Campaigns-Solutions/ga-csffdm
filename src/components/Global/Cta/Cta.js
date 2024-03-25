@@ -27,7 +27,7 @@ export default function Cta({
 
   return (
     <Link
-      className={`custom-btn ${isCtaPrimaryButton ? `custom-btn-${cta?.style}` : ''} ${cta?.style} ${
+      className={`custom-btn ${isCtaPrimaryButton ? `custom-btn-${cta?.style}` : ''} custom-btn-${cta?.style} ${
         customVariant ? customVariant : ''
       }`}
       to={cta || url}
