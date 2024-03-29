@@ -1,12 +1,10 @@
 export const pathToModel = (model = null, slug = '') => {
   if (model === 'basicPage') {
     return `/${slug}`;
-  } else if (model === 'event') {
-    return `/agenda/${slug}`;
-  } else if (model === 'tool') {
-    return `/toolkit/${slug}`;
-  } else if (model === 'group') {
-    return `/groep/${slug}`;
+  } else if (model === 'work') {
+    return `/work/${slug}`;
+  } else if (model === 'post') {
+    return `/post/${slug}`;
   } else {
     return `/${slug}`;
   }
@@ -60,7 +58,20 @@ export const formatDate = (rawDate) => {
   }
 
   // Get the month name
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
   const monthName = months[date.getMonth()];
 
   // Get the day and year

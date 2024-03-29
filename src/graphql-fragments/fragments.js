@@ -8,8 +8,49 @@ export const DatoCMS = graphql`
     externalUrl
     isButton
     content {
+      ... on DatoCmsResource {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsEvent {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsWork {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsEvent {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsPost {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsAreasOfWork {
+        slug
+        model {
+          apiKey
+        }
+      }
       ... on DatoCmsBasicPage {
-        id
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsNews {
         slug
         model {
           apiKey
@@ -23,8 +64,49 @@ export const DatoCMS = graphql`
         position
         externalUrl
         content {
+          ... on DatoCmsResource {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsEvent {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsWork {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsEvent {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsPost {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsAreasOfWork {
+            slug
+            model {
+              apiKey
+            }
+          }
           ... on DatoCmsBasicPage {
-            id
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsNews {
             slug
             model {
               apiKey
@@ -67,6 +149,61 @@ export const DatoCMS = graphql`
     title
     isButton
     style
+    link {
+      ... on DatoCmsHome {
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsResource {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsEvent {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsWork {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsEvent {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsPost {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsAreasOfWork {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsBasicPage {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsNews {
+        slug
+        model {
+          apiKey
+        }
+      }
+    }
   }
 
   fragment BlockStats on DatoCmsStatsBlock {
@@ -79,7 +216,7 @@ export const DatoCMS = graphql`
       height
       url
     }
-  }  
+  }
 
   fragment BlockCalendar on DatoCmsCalendarBlock {
     __typename
@@ -194,8 +331,25 @@ export const DatoCMS = graphql`
       alt
       url
     }
-  }  
+  }
 
+  fragment BlockProcess on DatoCmsProcessBlock {
+    __typename
+    id: originalId
+    headline
+    introduction
+    cta {
+      ...BlockCta
+    }
+    items {
+      id
+      title
+      introduction
+      cta {
+        ...BlockCta
+      }
+    }
+  }
 
   fragment BlockForm on DatoCmsFormBlock {
     __typename

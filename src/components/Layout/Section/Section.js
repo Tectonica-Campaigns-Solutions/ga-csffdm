@@ -3,7 +3,16 @@ import Cta from '../../Global/Cta/Cta';
 
 import './styles.scss';
 
-const Section = ({ headline, introduction, cta, children, bgImage, extraClassNames = '', hClass = 'h3' }) => {
+const Section = ({
+  headline,
+  introduction,
+  cta,
+  children,
+  bgImage,
+  extraClassNames = '',
+  hClass = 'h3',
+  headerChildren = null,
+}) => {
   console.log('CTA', cta);
   return (
     <section className={`app-section ${extraClassNames ? extraClassNames : ''}`}>
@@ -18,7 +27,13 @@ const Section = ({ headline, introduction, cta, children, bgImage, extraClassNam
           )}
         </div>
 
-        {introduction && <div className="introduction" dangerouslySetInnerHTML={{ __html: introduction }} />}
+        {introduction && (
+          <div className="intro-wrapper">
+            <div className="introduction" dangerouslySetInnerHTML={{ __html: introduction }} />
+
+            {headerChildren && <div>{headerChildren}</div>}
+          </div>
+        )}
 
         <div className="content">{children}</div>
       </div>

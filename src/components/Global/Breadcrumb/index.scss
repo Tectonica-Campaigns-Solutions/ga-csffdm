@@ -1,5 +1,6 @@
 .breadcrumb {
-  margin-bottom: 115px;
+  margin: 0;
+  margin-bottom: 33px;
 
   ul {
     margin: 0;
@@ -10,15 +11,18 @@
     gap: 8px;
 
     li {
-      font-size: 16px;
+      color: var(--dark);
+      font-family: var(--neue-font);
+      font-size: 20px;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 450;
+      line-height: 130%;
+      letter-spacing: 0.06px;
 
       a {
-        font-family: "Inter";
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 150%;
-        text-decoration: none;
+        color: var(--dark);
+        margin-right: 6px;
 
         &:hover {
           text-decoration: underline;
@@ -26,18 +30,8 @@
       }
 
       &.active {
-        // color: var(--black);
+        color: var(--orange);
       }
-    }
-  }
-
-  &.text-white {
-    * {
-      color: var(--white);
-    }
-
-    ul li a.active {
-      color: var(--white);
     }
   }
 }

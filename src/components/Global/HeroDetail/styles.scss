@@ -1,0 +1,24 @@
+.hero-detail {
+  padding: 61px 0 68px 0;
+  background-color: var(--light-orange);
+
+  h1 {
+    color: var(--dark-blue);
+    font-family: var(--primary-font);
+    font-size: 61px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 110%;
+    margin-bottom: 20px;
+  }
+
+  p {
+    color: var(-black);
+    font-family: var(--primary-font);
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    margin: 0;
+  }
+}

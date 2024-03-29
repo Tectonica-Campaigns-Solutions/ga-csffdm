@@ -116,14 +116,9 @@ export default function Nav({ navData, location, hideLinks = false, setSearchEng
           <ul className={`navbar-nav mr-auto`}>
             {groupedLinks?.withoutIcon?.map((link) =>
               link.treeChildren.length === 0 ? (
-                <LinkItem key={link.id} link={link?.content?.slug} label={link?.title} isButton={link?.isButton} />
+                <LinkItem key={link.id} link={link} label={link?.title} isButton={link?.isButton} />
               ) : (
-                <DropdownItem
-                  key={link.id}
-                  link={link?.content?.slug}
-                  label={link?.title}
-                  children={link?.treeChildren}
-                />
+                <DropdownItem key={link.id} link={link} label={link?.title} children={link?.treeChildren} />
               )
             )}
 
@@ -134,7 +129,7 @@ export default function Nav({ navData, location, hideLinks = false, setSearchEng
               </Link>
 
               {groupedLinks?.withIcon?.map((link) => (
-                <Link key={link.id} to={link?.content.slug}>
+                <Link key={link.id} to={link}>
                   <img src={link.icon.url} alt="Link icon" />
                 </Link>
               ))}

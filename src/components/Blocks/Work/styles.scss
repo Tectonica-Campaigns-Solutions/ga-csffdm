@@ -6,8 +6,20 @@
     flex-wrap: nowrap;
   }
 
-  .introduction {
+  .intro-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
     margin-bottom: 3rem;
+
+    .introduction {
+      margin: 0;
+    }
+  }
+
+  .carousel .slick-list::after {
+    background-color: var(--cream);
   }
 }
 
@@ -43,7 +55,7 @@
       line-height: 140%;
     }
 
-    .workIcon { 
+    .workIcon {
       max-height: 75px;
       width: auto;
     }
@@ -51,7 +63,7 @@
 
   &:hover {
     background: var(--secondary-color);
-    
+
     .content {
 
       h3 {
@@ -70,4 +82,3 @@
     }
   }
 }
-

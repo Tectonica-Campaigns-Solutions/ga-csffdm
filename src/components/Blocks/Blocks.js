@@ -11,6 +11,7 @@ import CalendarBlock from './Calendar/CalendarBlock';
 import ResourcesBlock from './Resources/ResourcesBlock';
 import UpdatesBlock from './Updates/UpdatesBlock';
 import WorkBlock from './Work/WorkBlock';
+import ProcessBlock from './Process/ProcessBlock';
 
 export default function Blocks({ blocks, usePrimaryHeading = false }) {
   return (
@@ -29,6 +30,8 @@ export default function Blocks({ blocks, usePrimaryHeading = false }) {
             return <FormBlock key={block.id} block={block} />;
           case 'DatoCmsWorkBlock':
             return <WorkBlock key={block.id} block={block} />;
+          case 'DatoCmsProcessBlock':
+            return <ProcessBlock key={block.id} block={block} />;
 
           // OLD
           case 'DatoCmsAcordion':

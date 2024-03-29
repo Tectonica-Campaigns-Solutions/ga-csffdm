@@ -1,21 +1,17 @@
 import React from 'react';
+import Breadcrumb from '../Breadcrumb/Breadcrumb';
+
 import './index.scss';
 
-function HeroBasic({ title, image = null, backgroundColor = null, responsiveVariant, overlay = true }) {
-  const heroBgImage = image?.url ? `url(${image.url})` : undefined;
-
+function HeroBasic({ title, image = null, currentPage }) {
   return (
-    <div
-      className={`hero-basic ${backgroundColor ? backgroundColor : ''} ${heroBgImage ? 'with-bg-image' : ''} ${
-        responsiveVariant ? responsiveVariant : ''
-      }`}
-      style={{ backgroundImage: heroBgImage }}
-    >
+    <div className={`hero-basic`}>
       <div className="container">
+        <Breadcrumb currentPage={currentPage} />
         <h1>{title}</h1>
       </div>
 
-      {heroBgImage && overlay && <div className="overlay" />}
+      {image && <img className="fixed-img" src={image?.url} />}
     </div>
   );
 }
