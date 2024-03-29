@@ -8,7 +8,7 @@ exports.createPages = ({ graphql, actions }) => {
       areasOfWork: path.resolve('./src/templates/AreasOfWork.js'),
       work: path.resolve('./src/templates/Work.js'),
       newsDistributor: path.resolve('./src/templates/NewsDistributor.js'),
-      post: path.resolve('./src/templates/AreasOfWork.js'),
+      post: path.resolve('./src/templates/Post.js'),
     };
 
     resolve(

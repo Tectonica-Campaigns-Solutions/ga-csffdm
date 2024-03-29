@@ -11,31 +11,41 @@ const UpdatesBlock = ({ block }) => {
 
   const updatesPosts = useStaticQuery(graphql`
     query allUpdatesPosts {
-      allDatoCmsPost (limit: 3) {
-          nodes {
-            id
+      allDatoCmsPost(limit: 3) {
+        nodes {
+          id
+          title
+          slug
+          date
+          introduction
+          tags {
             title
-            slug
-            date
-            introduction
-            tags {
-              title
-            }
-            mainImage {
-              width
-              height
-              alt
-              gatsbyImageData
-            }
           }
+          mainImage {
+            width
+            height
+            alt
+            gatsbyImageData
+          }
+          model {
+            apiKey
+          }
+        }
       }
     }
-  `);  
+  `);
 
   const itemsSorted = [...updatesPosts.allDatoCmsPost.nodes];
 
   return (
-    <Section headline={headline} introduction={introduction} cta={cta} bgImage={bgImageUrl} extraClassNames='updatesSection' hClass='h4'>
+    <Section
+      headline={headline}
+      introduction={introduction}
+      cta={cta}
+      bgImage={bgImageUrl}
+      extraClassNames="updatesSection"
+      hClass="h4"
+    >
       <div className="row">
         {itemsSorted.map((item) => (
           <div className="col-md-4" key={item.id}>

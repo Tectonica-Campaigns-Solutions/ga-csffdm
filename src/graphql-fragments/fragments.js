@@ -299,6 +299,9 @@ export const DatoCMS = graphql`
           alt
           gatsbyImageData
         }
+        model {
+          apiKey
+        }
       }
     }
   }
@@ -330,6 +333,9 @@ export const DatoCMS = graphql`
       height
       alt
       url
+    }
+    model {
+      apiKey
     }
   }
 

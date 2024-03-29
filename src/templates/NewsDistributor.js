@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import SeoDatoCMS from '../components/Layout/SeoDatocms';
-import { isArray } from '../utils';
 import Blocks from '../components/Blocks/Blocks';
 import PostCard from '../components/Blocks/Updates/PostCard';
 import HeroPost from '../components/Global/HeroPost/HeroPost';
 import Dropdown from '../components/Global/Inputs/Dropdown/Dropdown';
+import ListPaginated from '../components/Global/Pagination/ListPaginated';
 
 import './basic.scss';
 
@@ -15,7 +15,6 @@ function NewsDistributor({ pageContext, data: { page, news = [], favicon } }) {
 
   const rawPosts = news.edges.map((e) => e.node);
 
-  const [posts, setPosts] = useState(rawPosts);
   const [filteredPosts, setFilteredPosts] = useState(rawPosts);
   const [filters, setFilters] = useState(() =>
     Array.from(new Set(news.edges.flatMap((e) => e.node.tags.map((t) => t.title))))
@@ -38,12 +37,14 @@ function NewsDistributor({ pageContext, data: { page, news = [], favicon } }) {
             <Dropdown options={filters.map((f) => ({ value: f, label: f }))} onSelect={handleOnFilterPosts} />
           </div>
 
-          {isArray(filteredPosts) &&
-            filteredPosts.map((post) => (
+          <ListPaginated
+            list={filteredPosts}
+            renderItem={(post) => (
               <div className="col-md-4" key={post.id}>
                 <PostCard post={post} />
               </div>
-            ))}
+            )}
+          />
         </div>
       </div>
 
