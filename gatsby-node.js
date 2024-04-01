@@ -9,6 +9,7 @@ exports.createPages = ({ graphql, actions }) => {
       work: path.resolve('./src/templates/Work.js'),
       newsDistributor: path.resolve('./src/templates/NewsDistributor.js'),
       post: path.resolve('./src/templates/Post.js'),
+      page: path.resolve('./src/templates/page.js'),
     };
 
     resolve(
@@ -35,6 +36,15 @@ exports.createPages = ({ graphql, actions }) => {
             slug
           }
           posts: allDatoCmsPost {
+            edges {
+              node {
+                id
+                slug
+                title
+              }
+            }
+          }
+          pages: allDatoCmsBasicPage {
             edges {
               node {
                 id
@@ -95,6 +105,19 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         }
+
+        const pages = result.data.pages.edges;
+        for (const page of pages) {
+          createPage({
+            path: page.node.slug,
+            component: templates.page,
+            context: {
+              slug: page.node.slug,
+              id: page.node.id,
+            },
+          });
+        }
+
       })
     );
   });

@@ -370,4 +370,70 @@ export const DatoCMS = graphql`
       gatsbyImageData
     }
   }
+
+  fragment BlockAccordion on DatoCmsAcordion {
+    __typename
+    id: originalId
+    items {
+      title
+      text
+    }
+  }
+
+  fragment BlockText on DatoCmsSimpleText {
+    id: originalId
+    __typename
+    text
+  }
+
+  fragment BlockVideo on DatoCmsVideoBlock {
+    __typename
+    id: originalId
+    video {
+      url
+      thumbnailUrl
+    }
+  }
+
+  fragment BlockTable on DatoCmsTable {
+    __typename
+    id: originalId
+    table
+  }
+
+  fragment BlockShare on DatoCmsShare {
+    __typename
+    id: originalId
+    title
+    socialLinks {
+      ... on DatoCmsSocialLink {
+        id
+        title
+        url
+        socialNetwork
+      }
+    }
+    ctas {
+      ... on DatoCmsCta {
+        id: originalId
+        title
+        isButton
+        link {
+          ... on DatoCmsGlobalLink {
+            id
+            content {
+              ... on DatoCmsBasicPage {
+                id
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
 `;

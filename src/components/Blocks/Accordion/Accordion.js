@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import accordionOpen from '../../Icons/accordion_open.svg';
-import accordionClose from '../../Icons/accordion_close.svg';
+import accordionOpen from '../../Icons/accordion_close.svg';
+import accordionClose from '../../Icons/accordion_open.svg';
 
 import './index.scss';
 

@@ -4,6 +4,7 @@ import SeoDatoCMS from '../components/Layout/SeoDatocms';
 import Layout from '../components/Layout/Layout';
 import HeroDetail from '../components/Global/HeroDetail/HeroDetail';
 import StructuredTextDefault from '../components/Blocks/StructuredTextDefault/StructuredTextDefault';
+import ShareButtons from '../components/Global/ShareButtons/ShareButtons';
 
 import './basic.scss';
 
@@ -15,7 +16,10 @@ const Work = ({ pageContext, data: { work, favicon } }) => {
       <SeoDatoCMS seo={seo} favicon={favicon} />
       <HeroDetail currentPage={title} title={title} description={introduction} image={image} />
 
-      <div className="container page-content">{content?.value && <StructuredTextDefault content={content} />}</div>
+      <div className="container page-content">
+        <ShareButtons />
+        {content?.value && <StructuredTextDefault content={content} />}
+      </div>
     </Layout>
   );
 };

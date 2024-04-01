@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Link from '../Link/Link';
 import telegram from '../../Icons/wp-share.svg';
 import facebook from '../../Icons/facebook-share.svg';
-import twitter from '../../Icons/twitter-share.svg';
+import twitter from '../../Icons/x-share.svg';
+import linkedin from '../../Icons/linkedin-share.svg';
+import mail from '../../Icons/mail-share.svg';
 
 import './index.scss';
 
@@ -33,9 +35,12 @@ function ShareButtons() {
 
   return (
     <div className={`share-buttons-fixed ${isFixed}`}>
-      <div className="telegram">
-        <Link target={'_blank'} to={`https://t.me/share/url?url=${shareUrl}`}>
-          <img src={telegram} alt="Telegram icon" />
+
+      <span>Share</span>
+
+      <div className="twitter">
+        <Link target={'_blank'} to={`http://twitter.com/share?url=${shareUrl}`}>
+          <img src={twitter} alt="Twitter icon" />
         </Link>
       </div>
 
@@ -45,13 +50,24 @@ function ShareButtons() {
         </Link>
       </div>
 
-      <div className="twitter">
-        <Link target={'_blank'} to={`http://twitter.com/share?url=${shareUrl}`}>
-          <img src={twitter} alt="Twitter icon" />
+      <div className="mail">
+        <Link target={'_blank'} to={`"mailto:?body=Hello! Check this ${shareUrl}`}>
+          <img src={mail} alt="Mail icon" />
         </Link>
       </div>
 
-      <span>SHARE</span>
+      <div className="linkedin">
+        <Link target={'_blank'} to={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}>
+          <img src={linkedin} alt="LinkedIn icon" />
+        </Link>
+      </div>
+
+      <div className="whatsapp">
+        <Link target={'_blank'} to={`https://wa.me/?text=${shareUrl}`}>
+          <img src={telegram} alt="Whatsapp icon" />
+        </Link>
+      </div>
+
     </div>
   );
 }

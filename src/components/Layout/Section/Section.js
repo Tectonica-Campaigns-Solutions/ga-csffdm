@@ -13,7 +13,7 @@ const Section = ({
   hClass = 'h3',
   headerChildren = null,
 }) => {
-  console.log('CTA', cta);
+  
   return (
     <section className={`app-section ${extraClassNames ? extraClassNames : ''}`}>
       <div className="container">

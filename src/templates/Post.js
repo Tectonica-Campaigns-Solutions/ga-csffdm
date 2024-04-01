@@ -7,6 +7,7 @@ import Breadcrumb from '../components/Global/Breadcrumb/Breadcrumb';
 import ImageWrapper from '../components/Global/Image/ImageWrapper';
 import { isArray } from '../utils';
 import TagList from '../components/Global/Tag/TagList';
+import ShareButtons from '../components/Global/ShareButtons/ShareButtons';
 
 import './basic.scss';
 
@@ -19,6 +20,7 @@ const Post = ({ pageContext, data: { post, favicon } }) => {
 
       <div className="container post-layout">
         <Breadcrumb currentPage={title} />
+        <ShareButtons />
 
         <div className="post-info">
           {date && <span className="date">{date}</span>}
