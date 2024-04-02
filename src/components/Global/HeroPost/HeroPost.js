@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatDate} from '../../../utils';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import ImageWrapper from '../Image/ImageWrapper';
 import TagList from '../Tag/TagList';
@@ -18,13 +19,13 @@ const HeroPost = ({ currentPage, post }) => {
             <Breadcrumb currentPage={currentPage} />
           </div>
 
-          <div className="col-lg-7">
+          <div className="col-lg-6">
             <ImageWrapper image={mainImage} />
           </div>
-          <div className="col-lg-5">
+          <div className="col-lg-6">
             <div className="post-info">
               <TagList tags={tags} />
-              <span className="date">{date}</span>
+              <span className="date">{formatDate(date)}</span>
               <Link to={post} className="title">
                 {title}
               </Link>

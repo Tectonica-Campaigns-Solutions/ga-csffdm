@@ -26,6 +26,16 @@
 
   &.blue {
     background-color: var(--dark-blue);
+
+    .form-block {
+      label {
+        color: var(--white);
+
+        &.form-check-label {
+          color: var(--white);
+        }
+      }
+    }
   }
 
   &.light_blue {
@@ -65,6 +75,7 @@
     }
 
     .form-container-content {
+      max-width: 70%;
       position: relative;
       z-index: 1;
     }

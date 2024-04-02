@@ -1,17 +1,19 @@
 .custom-dropdown {
   position: relative;
   display: inline-block;
+  height: 52px;
 }
 
 .dropdown-toggle {
   width: 250px;
   padding: 8px 16px;
   cursor: pointer;
-  border: 1px solid #1D1B20;
+  border-radius: 5px;
+  border: 1px solid rgba(33, 36, 39, 0.20);
+
   background-color: transparent;
   outline: none;
   height: 100%;
-  border-radius: 4px;
 
   font-size: 16px;
   font-style: normal;
