@@ -1,4 +1,5 @@
 const path = require(`path`);
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -12,6 +13,8 @@ exports.createPages = ({ graphql, actions }) => {
       page: path.resolve('./src/templates/page.js'),
       governance: path.resolve('./src/templates/Governance.js'),
       organization: path.resolve('./src/templates/Organization.js'),
+      conference: path.resolve('./src/templates/Conference.js'),
+      conferenceTheme: path.resolve('./src/templates/ConferenceTheme.js'),
     };
 
     resolve(
@@ -66,6 +69,25 @@ exports.createPages = ({ graphql, actions }) => {
                 id
                 slug
                 title
+              }
+            }
+          }
+
+          conferences: allDatoCmsConference {
+            edges {
+              node {
+                id
+                slug
+                title
+                themes {
+                  ... on DatoCmsConferenceTheme {
+                    id
+                    slug
+                    model {
+                      apiKey
+                    }
+                  }
+                }
               }
             }
           }
@@ -157,7 +179,41 @@ exports.createPages = ({ graphql, actions }) => {
           });
         }
 
+        const conferences = result.data.conferences.edges;
+        for (const conference of conferences) {
+          createPage({
+            path: '/conference/' + conference.node.slug,
+            component: templates.conference,
+            context: {
+              slug: conference.node.slug,
+              id: conference.node.id,
+            },
+          });
+
+          // Create sub-pages
+          for (const theme of conference.node.themes) {
+            createPage({
+              path: '/conference/' + conference.node.slug + '/' + theme.slug,
+              component: templates.conferenceTheme,
+              context: {
+                slug: theme.slug,
+                id: theme.id,
+                parentId: conference.node.id,
+              },
+            });
+          }
+        }
       })
     );
+  });
+};
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    plugins: [
+      new FilterWarningsPlugin({
+        exclude: /mini-css-extract-plugin[^]*Conflicting order. Following module has been added:/,
+      }),
+    ],
   });
 };

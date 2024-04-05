@@ -1,0 +1,55 @@
+.conference-sidebar {
+  .theme {
+    margin-bottom: 28px;
+
+    &:not(&:last-child) {
+      border-bottom: 1px solid rgba(55, 85, 127, 0.50);
+    }
+
+    h5 {
+      color: #92A5BE;
+      font-family: var(-primary-font);
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 22px;
+      text-transform: uppercase;
+      margin: 0;
+      margin-bottom: 20px;
+    }
+
+    .topics {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        color: var(--dark-blue);
+        font-family: var(-primary-font);
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 120%;
+
+        &:not(&:last-child) {
+          margin-bottom: 20px;
+        }
+      }
+
+      .sub-topics {
+        list-style: none;
+        padding-left: 20px;
+        margin-top: 24px;
+
+        li {
+          color: var(--dark-blue);
+          font-family: var(--neue-font);
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 450;
+          line-height: 115%;
+        }
+      }
+    }
+  }
+}
