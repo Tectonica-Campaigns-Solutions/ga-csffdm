@@ -138,3 +138,38 @@
     }
   }
 }
+
+.organization-layout {
+  .hero-detail {
+    h1 {
+      &.organization-title {
+        color: var(--dark);
+      }
+    }
+    .image-wrapper {
+      background-color: #FCFCFC;
+      position: relative;
+      & *:not(img) {
+        height: auto;
+        width: auto;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        position: absolute;
+        display: block;
+      }
+      img {
+        height: auto;
+        width: auto;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        position: absolute;
+      }
+    }
+  }
+}

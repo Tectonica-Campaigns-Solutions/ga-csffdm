@@ -56,6 +56,12 @@ export const DatoCMS = graphql`
           apiKey
         }
       }
+      ... on DatoCmsGovernance {
+        slug
+        model {
+          apiKey
+        }
+      }
     }
     treeChildren {
       ... on DatoCmsMenuItem {
@@ -107,6 +113,12 @@ export const DatoCMS = graphql`
             }
           }
           ... on DatoCmsNews {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsGovernance {
             slug
             model {
               apiKey

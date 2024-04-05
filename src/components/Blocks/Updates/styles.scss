@@ -12,7 +12,7 @@
     .content {
       padding: 25px 30px 60px;
 
-      .date {
+      .date, .location {
         color: var(--dark);
         font-family: var(--neue-font);
         font-size: 16px;
@@ -65,9 +65,31 @@
       h3 {
         color: var(--primary-color-lighter);
       }
-      .date, .post-introduction {
+      .date, .post-introduction, .location {
         color: var(--white);
       }
     }
   }
+}
+
+.item-organization {
+
+  .post-card {
+    .image {
+      background-color: #FCFCFC;
+      height: 287px;
+      position: relative;
+    }
+    .image-wrapper {
+      img {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    }
+  }
+
 }

@@ -10,6 +10,8 @@ exports.createPages = ({ graphql, actions }) => {
       newsDistributor: path.resolve('./src/templates/NewsDistributor.js'),
       post: path.resolve('./src/templates/Post.js'),
       page: path.resolve('./src/templates/page.js'),
+      governance: path.resolve('./src/templates/Governance.js'),
+      organization: path.resolve('./src/templates/Organization.js'),
     };
 
     resolve(
@@ -53,6 +55,20 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
+          governance: datoCmsGovernance {
+            id
+            title
+            slug
+          }
+          organizations: allDatoCmsOrganization {
+            edges {
+              node {
+                id
+                slug
+                title
+              }
+            }
+          }
         }
       `).then((result) => {
         if (result.errors) {
@@ -60,6 +76,29 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         // Create pages
+        const governance = result.data.governance;
+        if (governance) {
+          createPage({
+            path: governance.slug,
+            component: templates.governance,
+            context: {
+              slug: governance.slug,
+            },
+          });
+        }
+
+        const organizations = result.data.organizations.edges;
+        for (const org of organizations) {
+          createPage({
+            path: '/organization/' + org.node.slug,
+            component: templates.organization,
+            context: {
+              slug: org.node.slug,
+              id: org.node.id,
+            },
+          });
+        }
+
         const areasOfWork = result.data.areasOfWork;
         if (areasOfWork) {
           createPage({

@@ -7,7 +7,7 @@ import Link from '../../Global/Link/Link';
 import './styles.scss';
 
 const PostCard = ({ post }) => {
-  const { title, introduction, date, tags = [], mainImage } = post;
+  const { title, introduction, date, tags = [], mainImage, logo, location } = post;
 
   return (
     <article className="post-card">
@@ -18,9 +18,15 @@ const PostCard = ({ post }) => {
             {isArray(tags) ? <TagList tags={tags} /> : <div className="tags-list" />}
           </div>
         )}
+        {logo && (
+          <div className="image">
+            <ImageWrapper image={logo} />
+          </div>
+        )}
 
         <div className="content">
           {date && <span className="date">{formatDate(date)}</span>}
+          {location && <span className="location">{location}</span>}
           {title && <h3>{title}</h3>}
           {introduction && <div className="post-introduction" dangerouslySetInnerHTML={{ __html: introduction }} />}
         </div>
