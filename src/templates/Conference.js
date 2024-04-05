@@ -10,7 +10,7 @@ const Conference = ({ pageContext, data: { conference, prevConferences, favicon 
   const mappedPrevConferences = prevConferences.nodes;
   const { title, description, heroImage, themes = [], seo } = conference;
 
-  const mainTheme = Array.isArray(themes[0].topics) ? themes[0].topics[0] : null;
+  const mainTheme = Array.isArray(themes[0]?.topics) ? themes[0].topics[0] : null;
 
   return (
     <Layout>
