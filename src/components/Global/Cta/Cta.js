@@ -30,7 +30,7 @@ export default function Cta({
       className={`custom-btn ${isCtaPrimaryButton ? `custom-btn-${cta?.style}` : ''} custom-btn-${cta?.style} ${
         customVariant ? customVariant : ''
       }`}
-      to={cta || url}
+      to={url ? url : cta}
       target={url ? '_blank' : ''}
     >
       {externalTitle || cta?.title}

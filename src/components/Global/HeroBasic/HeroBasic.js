@@ -6,7 +6,7 @@ import './index.scss';
 
 function HeroBasic({ title, introduction = null,  image = null, currentPage, type = null }) {
   return (
-    <div className={`hero-detail`}>
+    <div className={`hero-basic`}>
       <div className="container">
         <Breadcrumb currentPage={currentPage} />
         
