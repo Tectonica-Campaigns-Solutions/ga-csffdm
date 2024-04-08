@@ -8,7 +8,7 @@ import StructuredTextDefault from '../components/Blocks/StructuredTextDefault/St
 
 const Conference = ({ pageContext, data: { conference, prevConferences, favicon } }) => {
   const mappedPrevConferences = prevConferences.nodes;
-  const { title, description, heroImage, themes = [], seo } = conference;
+  const { title, slug, description, heroImage, themes = [], seo } = conference;
 
   const mainTheme = Array.isArray(themes[0]?.topics) ? themes[0].topics[0] : null;
 
@@ -22,7 +22,7 @@ const Conference = ({ pageContext, data: { conference, prevConferences, favicon 
         previousConferences={mappedPrevConferences}
       />
 
-      <ConferenceWrapper themes={themes}>
+      <ConferenceWrapper themes={themes} parentSlug={slug}>
         {mainTheme && (
           <>
             <h2>{mainTheme.title}</h2>
@@ -53,6 +53,7 @@ export const ConferenceQuery = graphql`
     conference: datoCmsConference(id: { eq: $id }) {
       id
       title
+      slug
       description
       heroImage {
         alt
@@ -61,10 +62,15 @@ export const ConferenceQuery = graphql`
       themes {
         ... on DatoCmsConferenceTheme {
           title
+          slug
+          model {
+            apiKey
+          }
           topics {
             ... on DatoCmsConferenceTopic {
               id
               title
+              slug
               content {
                 __typename
                 value
@@ -74,10 +80,14 @@ export const ConferenceQuery = graphql`
                 ... on DatoCmsConferenceTopic {
                   id
                   title
+                  slug
                   content {
                     __typename
                     value
                     blocks
+                  }
+                  model {
+                    apiKey
                   }
                 }
               }

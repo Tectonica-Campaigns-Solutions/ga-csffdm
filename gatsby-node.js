@@ -86,6 +86,20 @@ exports.createPages = ({ graphql, actions }) => {
                     model {
                       apiKey
                     }
+                    topics {
+                      ... on DatoCmsConferenceTopic {
+                        id
+                        title
+                        slug
+                        subTopics {
+                          ... on DatoCmsConferenceTopic {
+                            id
+                            title
+                            slug
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -192,15 +206,28 @@ exports.createPages = ({ graphql, actions }) => {
 
           // Create sub-pages
           for (const theme of conference.node.themes) {
-            createPage({
-              path: '/conference/' + conference.node.slug + '/' + theme.slug,
-              component: templates.conferenceTheme,
-              context: {
-                slug: theme.slug,
-                id: theme.id,
-                parentId: conference.node.id,
-              },
-            });
+            // createPage({
+            //   path: '/conference/' + conference.node.slug + '/' + theme.slug,
+            //   component: templates.conferenceTheme,
+            //   context: {
+            //     slug: theme.slug,
+            //     id: theme.id,
+            //     parentId: conference.node.id,
+            //   },
+            // });
+
+            // Create subtopics
+            for (const topic of theme.topics) {
+              createPage({
+                path: '/conference/' + conference.node.slug + '/' + theme.slug + '/' + topic.slug,
+                component: templates.conferenceTheme,
+                context: {
+                  slug: topic.slug,
+                  id: topic.id,
+                  parentId: conference.node.id,
+                },
+              });
+            }
           }
         }
       })

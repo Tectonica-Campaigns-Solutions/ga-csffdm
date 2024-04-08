@@ -6,20 +6,34 @@ import ConferenceHero from '../components/Layout/Conference/ConferenceHero/Confe
 import ConferenceWrapper from '../components/Layout/Conference/ConferenceWrapper/ConferenceWrapper';
 import StructuredTextDefault from '../components/Blocks/StructuredTextDefault/StructuredTextDefault';
 
-const ConferenceTheme = ({ pageContext, data: { theme, parentConference, prevConferences, favicon } }) => {
-  const { title, content, seo } = theme;
-  const { title: parentTitle, heroImage } = parentConference;
-
+const ConferenceTheme = ({ pageContext, data: { parentConference, prevConferences, favicon } }) => {
   const mappedPrevConferences = prevConferences.nodes;
+  const { title: parentTitle, slug, heroImage, themes = [] } = parentConference;
+
+  function findTopicBySlug(allThemes, slug) {
+    for (let i = 0; i < allThemes.length; i++) {
+      const exist = allThemes[i].topics.find((topic) => topic.slug === slug);
+      if (exist) {
+        return exist;
+      }
+    }
+    return null;
+  }
+
+  const selectedTopic = findTopicBySlug(themes, pageContext.slug);
 
   return (
     <Layout>
-      <SeoDatoCMS seo={seo} favicon={favicon} />
+      {/* <SeoDatoCMS seo={seo} favicon={favicon} /> */}
       <ConferenceHero title={parentTitle} image={heroImage} isInnerPage previousConferences={mappedPrevConferences} />
 
-      <ConferenceWrapper>
-        THEME: {title}
-        <StructuredTextDefault content={content} />
+      <ConferenceWrapper themes={themes} parentSlug={slug}>
+        {selectedTopic && (
+          <div>
+            <h2>{selectedTopic.title}</h2>
+            {selectedTopic.content && <StructuredTextDefault content={selectedTopic.content} />}
+          </div>
+        )}
       </ConferenceWrapper>
     </Layout>
   );
@@ -28,7 +42,7 @@ const ConferenceTheme = ({ pageContext, data: { theme, parentConference, prevCon
 export default ConferenceTheme;
 
 export const ConferenceThemeQuery = graphql`
-  query ConferenceThemeById($id: String, $parentId: String) {
+  query ConferenceThemeById($parentId: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -37,9 +51,46 @@ export const ConferenceThemeQuery = graphql`
     parentConference: datoCmsConference(id: { eq: $parentId }) {
       id
       title
+      slug
       heroImage {
         alt
         url
+      }
+      themes {
+        ... on DatoCmsConferenceTheme {
+          title
+          slug
+          model {
+            apiKey
+          }
+          topics {
+            ... on DatoCmsConferenceTopic {
+              id
+              title
+              slug
+              content {
+                __typename
+                value
+                blocks
+              }
+              subTopics {
+                ... on DatoCmsConferenceTopic {
+                  id
+                  title
+                  slug
+                  content {
+                    __typename
+                    value
+                    blocks
+                  }
+                  model {
+                    apiKey
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
     prevConferences: allDatoCmsConference(filter: { id: { ne: $parentId } }) {
@@ -47,13 +98,6 @@ export const ConferenceThemeQuery = graphql`
         id
         title
         slug
-      }
-    }
-    theme: datoCmsConferenceTheme(id: { eq: $id }) {
-      id
-      title
-      seo: seoMetaTags {
-        ...GatsbyDatoCmsSeoMetaTags
       }
     }
   }
