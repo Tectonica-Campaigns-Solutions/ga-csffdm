@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react'
 import './styles.scss';
+import axios from 'axios';
 
 function Form({ form }) {
 
@@ -21,7 +22,9 @@ function Form({ form }) {
         });
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
         const data = {
             name: name,
             email: email,
@@ -30,13 +33,22 @@ function Form({ form }) {
         }
 
         console.log(data);
+        //insertDataToSheet(data);
         setIsLoading(true);
         // Send data to server
+
+        try {
+            await axios.post('/api/submit-data', data);
+            alert('Los datos se enviaron correctamente.');
+          } catch (error) {
+            console.error('Error al enviar los datos:', error);
+            alert('Ocurrió un error al enviar los datos.');
+          }
     };
 
     const onSubmit = (event) => {
         event.preventDefault();
-        handleSubmit();
+        handleSubmit(event);
     };
 
     return (

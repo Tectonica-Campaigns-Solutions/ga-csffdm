@@ -24,5 +24,12 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-plugin-netlify',
+      options: {
+        functionsSrc: `${__dirname}/src/api`,
+        functionsOutput: `${__dirname}/functions`,
+      },
+    },
   ],
 };

@@ -1,5 +1,6 @@
 node_modules/
 .cache/
+/src/utils/csffdm-61e1a823f4e2.json
 public
 .package-lock.json
 .env*
