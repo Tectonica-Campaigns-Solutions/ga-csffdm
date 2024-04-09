@@ -80,7 +80,27 @@ export const ConferenceThemeQuery = graphql`
               content {
                 __typename
                 value
-                blocks
+                blocks {
+                  __typename
+                  ... on DatoCmsPdfButton {
+                    id: originalId
+                    label
+                    file {
+                      url
+                    }
+                  }
+                  ... on DatoCmsGenericCardGrid {
+                    id: originalId
+                    items {
+                      ... on DatoCmsGenericCard {
+                        id
+                        title
+                        introduction
+                        linkTo
+                      }
+                    }
+                  }
+                }
               }
               subTopics {
                 ... on DatoCmsConferenceTopic {
@@ -90,7 +110,27 @@ export const ConferenceThemeQuery = graphql`
                   content {
                     __typename
                     value
-                    blocks
+                    blocks {
+                      __typename
+                      ... on DatoCmsPdfButton {
+                        id: originalId
+                        label
+                        file {
+                          url
+                        }
+                      }
+                      ... on DatoCmsGenericCardGrid {
+                        id: originalId
+                        items {
+                          ... on DatoCmsGenericCard {
+                            id
+                            title
+                            introduction
+                            linkTo
+                          }
+                        }
+                      }
+                    }
                   }
                   model {
                     apiKey

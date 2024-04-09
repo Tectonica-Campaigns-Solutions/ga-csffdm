@@ -1,0 +1,46 @@
+.generic-card-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr 1fr;
+
+  .generic-card {
+    padding: 25px 30px;
+    background: var(--cream);
+    border-top: 3px solid var(--dark-blue);
+    min-height: 270px;
+
+    h3 {
+      color: var(--orange);
+      font-family: var(--primary-font);
+      font-size: 25px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 120%;
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    .intro {
+      color: var(--dark);
+      font-family: var(--primary-font);
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 450;
+      line-height: 130%;
+      letter-spacing: 0.06px;
+    }
+
+    &:hover {
+      background-color: var(--dark-blue);
+      border-top-color: var(-yellow);
+
+      h3 {
+        color: var(--yellow);
+      }
+
+      .intro {
+        color: var(--cream);
+      }
+    }
+  }
+}
