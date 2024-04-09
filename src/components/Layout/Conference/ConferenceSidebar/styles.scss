@@ -53,6 +53,11 @@
             font-style: normal;
             font-weight: 450;
             line-height: 115%;
+
+            &.active {
+              color: var(--orange);
+              font-weight: 700;
+            }
           }
         }
 
@@ -69,6 +74,13 @@
             path {
               fill: var(--orange);
             }
+          }
+        }
+
+        &.active {
+          span {
+            color: var(--orange);
+            font-weight: 700;
           }
         }
       }

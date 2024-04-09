@@ -195,8 +195,9 @@ exports.createPages = ({ graphql, actions }) => {
 
         const conferences = result.data.conferences.edges;
         for (const conference of conferences) {
+          const slug = '/conference/' + conference.node.slug;
           createPage({
-            path: '/conference/' + conference.node.slug,
+            path: slug,
             component: templates.conference,
             context: {
               slug: conference.node.slug,
@@ -206,27 +207,34 @@ exports.createPages = ({ graphql, actions }) => {
 
           // Create sub-pages
           for (const theme of conference.node.themes) {
-            // createPage({
-            //   path: '/conference/' + conference.node.slug + '/' + theme.slug,
-            //   component: templates.conferenceTheme,
-            //   context: {
-            //     slug: theme.slug,
-            //     id: theme.id,
-            //     parentId: conference.node.id,
-            //   },
-            // });
-
-            // Create subtopics
+            // Create topics
             for (const topic of theme.topics) {
+              const topicSlug = '/conference/' + conference.node.slug + '/' + theme.slug + '/' + topic.slug;
               createPage({
-                path: '/conference/' + conference.node.slug + '/' + theme.slug + '/' + topic.slug,
+                path: topicSlug,
                 component: templates.conferenceTheme,
                 context: {
+                  fullSlug: topicSlug,
                   slug: topic.slug,
                   id: topic.id,
                   parentId: conference.node.id,
                 },
               });
+
+              // Create subtopics
+              for (const subtopic of topic.subTopics) {
+                const subtopicSlug = '/conference/' + conference.node.slug + '/' + theme.slug + '/' + subtopic.slug;
+                createPage({
+                  path: subtopicSlug,
+                  component: templates.conferenceTheme,
+                  context: {
+                    fullSlug: subtopicSlug,
+                    slug: subtopic.slug,
+                    id: subtopic.id,
+                    parentId: conference.node.id,
+                  },
+                });
+              }
             }
           }
         }

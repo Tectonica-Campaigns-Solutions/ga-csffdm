@@ -1,45 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { navigate } from 'gatsby';
-// import { navigate } from '@reach/router';
-import { isArray, prepareQueryParam } from '../../../../utils';
+import { isArray } from '../../../../utils';
 
 import './styles.scss';
 
-const ConferenceSidebar = ({ items = [], parentSlug }) => {
-  const [openItems, setOpenItems] = useState([]);
-
-  const handleOnToggleOpen = (themeSlug, topicSlug, withSubtopics) => {
-    if (!withSubtopics) {
-      navigate('/conference/' + parentSlug + '/' + themeSlug + '/' + topicSlug);
-      return;
-    }
-
-    const isOpen = openItems.includes(topicSlug);
-    const updatedOpenItems = isOpen ? openItems.filter((id) => id !== topicSlug) : [...openItems, topicSlug];
-
-    setOpenItems(updatedOpenItems);
+const ConferenceSidebar = ({ items = [], themeFirstActive = false, slug = '', parentSlug }) => {
+  const handleOnToggleOpen = (themeSlug, topicSlug) => {
+    navigate('/conference/' + parentSlug + '/' + themeSlug + '/' + topicSlug);
   };
 
-  const handleNavigateSubtopic = (themeSlug, topic) => {
-    const cleanName = prepareQueryParam(topic);
-    navigate(`/conference/${parentSlug}/${themeSlug}?id=${cleanName}`);
+  const handleNavigateSubtopic = (themeSlug, topicSlug) => {
+    navigate(`/conference/${parentSlug}/${themeSlug}/${topicSlug}`);
   };
+
+  const splittedSlug = slug.split('/').filter(Boolean);
+  const [, , , subtopic] = splittedSlug;
 
   return (
     <div className="conference-sidebar">
-      {items.map((item) => {
+      {items.map((item, mainIndex) => {
         return (
           <div className="theme">
             <h5>{item.title}</h5>
 
             <ul className="topics">
-              {item.topics.map((topic) => {
+              {item.topics.map((topic, index) => {
                 const hasSubtopics = isArray(topic.subTopics);
-                const isOpen = openItems.find((i) => i === topic.slug);
+
+                const isActive =
+                  (themeFirstActive && mainIndex == 0 && index === 0) ||
+                  topic.slug === subtopic ||
+                  topic.subTopics.find((t) => t.slug === subtopic);
 
                 return (
-                  <li className={`${isOpen ? 'open' : ''}`}>
-                    <span onClick={() => handleOnToggleOpen(item.slug, topic.slug, hasSubtopics)}>
+                  <li className={`${isActive ? 'open' : ''} ${isActive ? 'active' : ''}`}>
+                    <span onClick={() => handleOnToggleOpen(item.slug, topic.slug)}>
                       {topic.title}
 
                       {hasSubtopics && (
@@ -51,9 +46,18 @@ const ConferenceSidebar = ({ items = [], parentSlug }) => {
 
                     {hasSubtopics && (
                       <ul className="sub-topics">
-                        {topic.subTopics.map((subTopic) => (
-                          <li onClick={() => handleNavigateSubtopic(item.slug, subTopic.title)}>{subTopic.title}</li>
-                        ))}
+                        {topic.subTopics.map((subTopic) => {
+                          const isChildActive = subTopic.slug === subtopic;
+
+                          return (
+                            <li
+                              className={`${isChildActive ? 'active' : ''}`}
+                              onClick={() => handleNavigateSubtopic(item.slug, subTopic.slug)}
+                            >
+                              {subTopic.title}
+                            </li>
+                          );
+                        })}
                       </ul>
                     )}
                   </li>

@@ -22,7 +22,7 @@ const Conference = ({ pageContext, data: { conference, prevConferences, favicon 
         previousConferences={mappedPrevConferences}
       />
 
-      <ConferenceWrapper themes={themes} parentSlug={slug}>
+      <ConferenceWrapper themes={themes} themeFirstActive parentSlug={slug}>
         {mainTheme && (
           <>
             <h2>{mainTheme.title}</h2>

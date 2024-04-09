@@ -11,27 +11,36 @@ const ConferenceTheme = ({ pageContext, data: { parentConference, prevConference
   const { title: parentTitle, slug, heroImage, themes = [] } = parentConference;
 
   function findTopicBySlug(allThemes, slug) {
-    for (let i = 0; i < allThemes.length; i++) {
-      const exist = allThemes[i].topics.find((topic) => topic.slug === slug);
-      if (exist) {
-        return exist;
+    for (const currentTheme of allThemes) {
+      const mainTopic = currentTheme.topics.find((topic) => topic.slug === slug);
+
+      if (mainTopic) {
+        return mainTopic;
+      } else {
+        for (const currentTopic of currentTheme.topics) {
+          const subTopic = currentTopic.subTopics.find((subTopic) => subTopic.slug === slug);
+          if (subTopic) {
+            return subTopic;
+          }
+        }
       }
     }
     return null;
   }
 
   const selectedTopic = findTopicBySlug(themes, pageContext.slug);
+  const { title, content, seo } = selectedTopic || {};
 
   return (
     <Layout>
-      {/* <SeoDatoCMS seo={seo} favicon={favicon} /> */}
+      <SeoDatoCMS seo={seo} favicon={favicon} />
       <ConferenceHero title={parentTitle} image={heroImage} isInnerPage previousConferences={mappedPrevConferences} />
 
-      <ConferenceWrapper themes={themes} parentSlug={slug}>
+      <ConferenceWrapper themes={themes} slug={pageContext.fullSlug} parentSlug={slug}>
         {selectedTopic && (
           <div>
-            <h2>{selectedTopic.title}</h2>
-            {selectedTopic.content && <StructuredTextDefault content={selectedTopic.content} />}
+            <h2>{title}</h2>
+            {content && <StructuredTextDefault content={content} />}
           </div>
         )}
       </ConferenceWrapper>
@@ -86,7 +95,13 @@ export const ConferenceThemeQuery = graphql`
                   model {
                     apiKey
                   }
+                  seo: seoMetaTags {
+                    ...GatsbyDatoCmsSeoMetaTags
+                  }
                 }
+              }
+              seo: seoMetaTags {
+                ...GatsbyDatoCmsSeoMetaTags
               }
             }
           }
