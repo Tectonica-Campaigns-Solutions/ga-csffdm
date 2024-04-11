@@ -12,6 +12,7 @@
   }
   .basic-information {
     font-size: 1.563rem;
+    color: var(--white);
     h2 {
       color: var(--white);
       font-family: var(--primary-font);
@@ -26,6 +27,7 @@
     }
   }
   .resource-introduction {
+    color: var(--white);
     display: none;
     overflow: hidden;
     font-family: var(--neue-font); 
@@ -45,6 +47,7 @@
     font-family: var(--neue-font);
     margin: 0.75rem 0;
     display: block;
+    color: var(--white)
   }
 
   .custom-btn-primary { 

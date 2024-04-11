@@ -62,6 +62,12 @@ export const DatoCMS = graphql`
           apiKey
         }
       }
+      ... on DatoCmsResourcesModel {
+        slug
+        model {
+          apiKey
+        }
+      }
     }
     treeChildren {
       ... on DatoCmsMenuItem {
@@ -382,6 +388,14 @@ export const DatoCMS = graphql`
       url
       gatsbyImageData
     }
+  }
+
+  fragment BlockLinksCard on DatoCmsLinksCard {
+    __typename
+    id: originalId
+    introduction
+    title
+    links
   }
 
   fragment BlockAccordion on DatoCmsAcordion {

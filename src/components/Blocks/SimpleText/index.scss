@@ -109,19 +109,19 @@
 
     blockquote {
       float: left;
-      border-left: 8px solid var(--primary-color);
+      border-left: 8px solid var(--dark-blue);
       padding-left: 20px;
       margin-right: 25px;
       margin-bottom: 1rem;
-
-      * {
-        color: var(--dark);
-        font-family: var(--neue-font);
-        font-size: 20px;
+      max-width: 35%;
+      
+      p {
+        color: var(--dark-blue);
+        font-family: var(--primary-font);
+        font-size: 1.563rem;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 700;
         line-height: 120%;
-        letter-spacing: 0.39px;
         margin: 0;
       }
     }

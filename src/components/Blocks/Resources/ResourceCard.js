@@ -11,6 +11,7 @@ import './styles.scss';
 const ResourceCard = ({ resource, className = '' }) => {
   const { title, slug, date, introduction, tags = [] } = resource;
 
+  console.log('ResourceCard', slug);
   return (
     <article className={`resource-card ${className}`}>
       <Link to={slug}>

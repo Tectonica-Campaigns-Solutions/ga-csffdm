@@ -12,6 +12,7 @@ import ResourcesBlock from './Resources/ResourcesBlock';
 import UpdatesBlock from './Updates/UpdatesBlock';
 import WorkBlock from './Work/WorkBlock';
 import ProcessBlock from './Process/ProcessBlock';
+import LinksCard from './LinksCard/LinksCard';
 
 export default function Blocks({ blocks, usePrimaryHeading = false }) {
   return (
@@ -44,6 +45,8 @@ export default function Blocks({ blocks, usePrimaryHeading = false }) {
             return <Video key={block.id} content={block} withContainer />;
           case 'DatoCmsShare':
             return <Share key={block.id} block={block} />;
+          case 'DatoCmsLinksCard':
+            return <LinksCard key={block.id} block={block} />;
 
           default:
             return null;

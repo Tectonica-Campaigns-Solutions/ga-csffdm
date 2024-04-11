@@ -10,6 +10,7 @@ import ShareButtons from '../components/Global/ShareButtons/ShareButtons';
 const Page = ({ pageContext, data: { page, favicon } }) => {
   const { seo, title, introduction, image, blocks = [] } = page;
 
+  console.log(blocks);
   const renderMainContent = () => (
     <>
       <Blocks blocks={blocks} />
@@ -45,6 +46,7 @@ export const PageQuery = graphql`
       }
     }
     page: datoCmsBasicPage(id: { eq: $id }) {
+      id
       title
       introduction
       image {
@@ -69,12 +71,19 @@ export const PageQuery = graphql`
         }
         ... on DatoCmsTable {
           ...BlockTable
-        }        
+        }
         ... on DatoCmsShare {
           ...BlockShare
         }
         ... on DatoCmsFormBlock {
           ...BlockForm
+        }
+        ... on DatoCmsLinksCard {
+          __typename
+          id: originalId
+          introduction
+          title
+          links
         }
       }
     }

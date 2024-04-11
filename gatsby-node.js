@@ -15,6 +15,8 @@ exports.createPages = ({ graphql, actions }) => {
       organization: path.resolve('./src/templates/Organization.js'),
       conference: path.resolve('./src/templates/Conference.js'),
       conferenceTheme: path.resolve('./src/templates/ConferenceTheme.js'),
+      resources: path.resolve('./src/templates/Resources.js'),
+      resource: path.resolve('./src/templates/Resource.js'),
     };
 
     resolve(
@@ -102,6 +104,24 @@ exports.createPages = ({ graphql, actions }) => {
                     }
                   }
                 }
+              }
+            }
+          }
+
+          resources: datoCmsResourcesModel {
+            id
+            title
+            slug
+          }
+
+          resourceItems: allDatoCmsResource {
+            edges {
+              node {
+                id
+                title
+                slug
+                introduction
+                date
               }
             }
           }
@@ -238,6 +258,30 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
+
+        const resources = result.data.resources;
+        if (resources) {
+          createPage({
+            path: resources.slug,
+            component: templates.resources,
+            context: {
+              slug: resources.slug,
+            },
+          });
+        }
+
+        const resourcesItems = result.data.resourceItems.edges;
+        for (const resource of resourcesItems) {
+          createPage({
+            path: '/campaign-resources-and-tools/' + resource.node.slug,
+            component: templates.resource,
+            context: {
+              slug: resource.node.slug,
+              id: resource.node.id,
+            },
+          });
+        }
+
       })
     );
   });
