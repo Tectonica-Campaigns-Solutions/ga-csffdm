@@ -83,29 +83,31 @@
 @media screen and (max-width: 992px) {
   .wrapper-hero {
     .hero-home {
-      height: 300px;
+      height: auto;
+      padding-top: 180px;
+      padding-bottom: 24px;
 
       .content {
-        top: 130px;
-        padding: 20px 24px;
-        padding-bottom: 5rem;
-        background-size: 120px;
+        padding: 0;
         max-width: 100%;
 
         h1 {
-          font-size: 37px;
-          line-height: 115%;
-          margin-bottom: 10px;
+          font-size: 39px;
+          line-height: 100%;
+          margin-bottom: 15px;
         }
 
         .introduction {
-          margin-bottom: 35px;
+          margin-bottom: 15px;
 
           * {
-            color: var(--black);
-            font-size: 19px;
-            line-height: 120%;
+            font-size: 20px;
+            line-height: 135%;
           }
+        }
+
+        .ctas {
+          gap: 15px;
         }
       }
     }

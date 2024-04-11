@@ -12,7 +12,8 @@
     .content {
       padding: 25px 30px 60px;
 
-      .date, .location {
+      .date,
+      .location {
         color: var(--dark);
         font-family: var(--neue-font);
         font-size: 16px;
@@ -60,12 +61,15 @@
   &:hover {
     background-color: var(--dark-blue);
     color: var(--white);
-    
+
     a .content {
       h3 {
         color: var(--primary-color-lighter);
       }
-      .date, .post-introduction, .location {
+
+      .date,
+      .post-introduction,
+      .location {
         color: var(--white);
       }
     }
@@ -80,6 +84,7 @@
       height: 287px;
       position: relative;
     }
+
     .image-wrapper {
       img {
         position: absolute;
@@ -92,4 +97,36 @@
     }
   }
 
+}
+
+@media screen and (max-width:992px) {
+  .updatesSection {
+    padding-bottom: 5rem;
+  }
+
+  .post-card {
+    margin-bottom: 15px;
+
+    a {
+      .content {
+        padding: 15px 20px;
+
+        .date,
+        .location {
+          font-size: 13px;
+        }
+
+        h3 {
+          font-size: 20px;
+        }
+
+        .post-introduction {
+          font-size: 16px;
+          letter-spacing: 0.048px;
+          line-height: 125%;
+          padding-bottom: 40px;
+        }
+      }
+    }
+  }
 }

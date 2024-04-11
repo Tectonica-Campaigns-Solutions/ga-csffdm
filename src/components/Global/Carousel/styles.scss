@@ -37,3 +37,16 @@
     cursor: pointer;
   }
 }
+
+@media screen and (max-width:992px) {
+  .carousel-actions {
+    padding-top: 20px;
+    justify-content: flex-end;
+    gap: 17px;
+
+    svg {
+      width: 60px;
+      height: 60px;
+    }
+  }
+}

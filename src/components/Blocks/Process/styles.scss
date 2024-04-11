@@ -5,3 +5,13 @@
     margin-top: 79px;
   }
 }
+
+@media screen and (max-width:992px) {
+  .process-section {
+    margin-top: 0;
+
+    .cta-extra {
+      margin-top: 45px;
+    }
+  }
+}

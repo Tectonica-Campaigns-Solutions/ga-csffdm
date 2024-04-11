@@ -13,7 +13,6 @@ const Section = ({
   hClass = 'h3',
   headerChildren = null,
 }) => {
-  
   return (
     <section className={`app-section ${extraClassNames ? extraClassNames : ''}`}>
       <div className="container">
@@ -31,7 +30,7 @@ const Section = ({
           <div className="intro-wrapper">
             <div className="introduction" dangerouslySetInnerHTML={{ __html: introduction }} />
 
-            {headerChildren && <div>{headerChildren}</div>}
+            {headerChildren && <div className="header-children">{headerChildren}</div>}
           </div>
         )}
 

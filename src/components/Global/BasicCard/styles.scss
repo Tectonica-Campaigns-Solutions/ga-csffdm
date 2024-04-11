@@ -51,3 +51,22 @@
     }
   }
 }
+
+@media screen and (max-width:992px) {
+  .basic-card {
+    height: 447px;
+    padding: 40px 31px;
+
+    &>a {
+      gap: 0;
+    }
+
+    h3 {
+      font-size: 31px;
+    }
+
+    .bc-introduction {
+      font-size: 20px;
+    }
+  }
+}

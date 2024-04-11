@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import CarouselActions from './CarouselActions';
 
@@ -8,6 +8,20 @@ import './styles.scss';
 
 const Carousel = ({ customRef, items = [], renderItem, showDefaultActions = false, ...rest }) => {
   const sliderRef = useRef();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 992);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const responsiveSettings = [
     { breakpoint: 1250, settings: { slidesToShow: 3 } },
@@ -23,14 +37,14 @@ const Carousel = ({ customRef, items = [], renderItem, showDefaultActions = fals
       },
     },
     {
-      breakpoint: 767,
+      breakpoint: 992,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
         infinite: true,
         arrows: false,
-        dots: true,
-        centerMode: true,
+        dots: false,
+        centerMode: false,
       },
     },
   ];
@@ -49,10 +63,22 @@ const Carousel = ({ customRef, items = [], renderItem, showDefaultActions = fals
         {items.map((item, index) => renderItem(item, index))}
       </Slider>
 
-      {!customRef && showDefaultActions && (
+      {((!customRef && showDefaultActions) || isMobile) && (
         <CarouselActions
-          onPrevSlide={() => sliderRef.current?.slickPrev()}
-          onNextSlide={() => sliderRef.current?.slickNext()}
+          onPrevSlide={() => {
+            if (customRef) {
+              customRef.current?.slickPrev();
+            } else {
+              sliderRef.current?.slickPrev();
+            }
+          }}
+          onNextSlide={() => {
+            if (customRef) {
+              customRef.current?.slickNext();
+            } else {
+              sliderRef.current?.slickNext();
+            }
+          }}
         />
       )}
     </>

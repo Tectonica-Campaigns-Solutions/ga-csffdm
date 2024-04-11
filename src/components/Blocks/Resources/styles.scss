@@ -10,9 +10,11 @@
   a {
     color: var(--white);
   }
+
   .basic-information {
     font-size: 1.563rem;
     color: var(--white);
+
     h2 {
       color: var(--white);
       font-family: var(--primary-font);
@@ -21,16 +23,18 @@
       font-weight: 700;
       line-height: 115%;
     }
+
     h4 {
       font-size: 1.563rem;
       font-weight: 700;
     }
   }
+
   .resource-introduction {
     color: var(--white);
     display: none;
     overflow: hidden;
-    font-family: var(--neue-font); 
+    font-family: var(--neue-font);
     font-size: 1.3rem;
     font-style: normal;
     line-height: 1.2;
@@ -50,7 +54,7 @@
     color: var(--white)
   }
 
-  .custom-btn-primary { 
+  .custom-btn-primary {
     position: absolute;
     bottom: 2.188rem;
     display: none;
@@ -58,21 +62,26 @@
 
   &:hover {
     background-color: var(--dark-blue);
+
     .basic-information {
       display: none;
     }
+
     .resource-introduction {
       display: block;
       margin-top: 0;
     }
+
     .tag {
       background: var(--secondary-bg-color);
       color: var(--dark-blue);
     }
+
     .btn-img {
       display: none;
     }
-    .custom-btn-primary { 
+
+    .custom-btn-primary {
       display: block;
     }
   }
@@ -80,11 +89,41 @@
   &.fixedCard {
     background-color: var(--dark-blue);
     color: var(--white);
+
     .basic-information {
-      h4 { 
-        color: var(--white); 
+      h4 {
+        color: var(--white);
         font-size: 2.438rem;
       }
+    }
+  }
+}
+
+@media screen and (max-width:992px) {
+  .resource-card {
+    height: 452px;
+    padding: 30px 25px;
+    margin-bottom: 15px;
+
+    .basic-information {
+
+      h2,
+      h4 {
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+      }
+    }
+
+    .resource-introduction {
+      font-size: 1rem;
+    }
+
+    .custom-btn-primary {
+      left: 0;
+      width: 95%;
+      margin: 0 2.5%;
     }
   }
 }

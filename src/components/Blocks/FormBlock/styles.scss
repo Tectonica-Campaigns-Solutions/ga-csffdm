@@ -2,7 +2,7 @@
 
   .form-block-wrapper {
     margin: 4rem 0;
-    
+
     .form-block {
       padding: 2rem 1rem;
     }
@@ -82,14 +82,15 @@
 
     form {
 
-      input.form-control, select.form-select {
+      input.form-control,
+      select.form-select {
         border-radius: 5px;
         border: 1px solid rgba(33, 36, 39, 0.20);
         background: var(--white);
         height: 56px;
         padding: 0 1rem;
         width: 100%;
-        font-family: var(--neue-font) ;
+        font-family: var(--neue-font);
 
         &::placeholder {
           color: var(--dark-blue);
@@ -143,15 +144,21 @@
   .form-block-wrapper {
     background: var(--primary-color);
 
+    .fixed-image {
+      display: none;
+    }
+
     .form-block {
       padding: 26px 0 100px 0;
       border-radius: 0;
       margin: 0;
 
       h2 {
-        font-size: 29px;
-        line-height: 120%;
-        margin-bottom: 25px;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 115%;
+        margin-bottom: 20px;
       }
 
       .description {

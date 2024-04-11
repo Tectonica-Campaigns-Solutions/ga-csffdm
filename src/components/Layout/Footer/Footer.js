@@ -64,24 +64,23 @@ function Footer({ isLanding = false, customLogo = null }) {
 
           {/* Social links */}
           <div className="extra-links">
-              {socialLinks.map((link) => (
-                <a
+            {socialLinks.map((link) => (
+              <a
                 className={`social-btn ${link.socialNetwork}-btn`}
                 href={`${link.url}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                ></a>
-              ))}
-            </div>
-
+              ></a>
+            ))}
+          </div>
         </div>
 
         {/* Second row */}
-        <div className="row">
-          <div className="col-lg-3 col-6">
+        <div className="row contact-section">
+          <div className="col-lg-3 col-12">
             <div className="content" dangerouslySetInnerHTML={{ __html: contactInfo }} />
           </div>
-          <div className="col-5 ms-auto">
+          <div className="col-lg-5 col-12 ms-auto">
             <div className="extra-links">
               {bottomLinks.map((link) => (
                 <Link key={link.id} to={link}>
@@ -94,16 +93,14 @@ function Footer({ isLanding = false, customLogo = null }) {
         </div>
 
         {/* Third row */}
-        <div className="row">
+        <div className="row copyright-section">
           <div className="col-12 text-center">
-            Built by <a
-                href="https://www.tectonica.co"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Tectonica</a>
+            Built by{' '}
+            <a href="https://www.tectonica.co" target="_blank" rel="noopener noreferrer">
+              Tectonica
+            </a>
           </div>
         </div>
-
       </div>
     </div>
   );

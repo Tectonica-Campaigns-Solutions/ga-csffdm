@@ -82,3 +82,38 @@
     }
   }
 }
+
+@media screen and (max-width:992px) {
+  .work-section {
+    padding: 55px 0;
+
+    .intro-wrapper {
+      margin-bottom: 15px;
+    }
+
+    .row {
+      flex-wrap: wrap;
+    }
+  }
+
+  .work-card {
+    padding: 40px 31px;
+
+    .content {
+      gap: 20px;
+
+      h3 {
+        font-size: 31px;
+      }
+
+      .work-introduction {
+        font-size: 20px;
+      }
+
+      .workIcon {
+        width: 65px;
+        height: 64px;
+      }
+    }
+  }
+}

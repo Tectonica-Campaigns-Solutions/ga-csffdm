@@ -1,7 +1,6 @@
 .component-narrative-block {
   padding: 130px 0;
   position: relative;
-  /*overflow: hidden;*/
 
   h2 {
     margin: 0;
@@ -47,12 +46,12 @@
       position: absolute;
       top: 18%;
       left: 20%;
-      
+
       .stat {
         text-align: right;
         margin-bottom: 5rem;
 
-        .statTitle { 
+        .statTitle {
           color: var(--white);
         }
 
@@ -77,33 +76,52 @@
 
 @media screen and (max-width:992px) {
   .component-narrative-block {
-    padding-top: 60px;
-    margin-bottom: 57px;
+    padding: 0;
+    padding-top: 40px;
+    margin-bottom: 50px;
 
     h2 {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
 
       span {
-        font-size: 37px;
+        font-size: 31px;
         line-height: 115%;
       }
     }
 
     .text-content {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
 
       * {
-        font-size: 19px;
-        line-height: 130%;
+        font-size: 20px;
+        line-height: 135%;
       }
     }
 
     .img-wrapper-nb {
-      order: 1;
+      order: 2;
+      position: relative;
+
+      .stats {
+        left: 25%;
+
+        .stat {
+          margin-bottom: 3rem;
+
+          .statValue {
+            font-size: 50px;
+          }
+
+          .statTitle {
+            font-size: 18px;
+            line-height: 100%;
+          }
+        }
+      }
     }
 
     .main-content {
-      order: 2;
+      order: 1;
     }
   }
 }
