@@ -16,12 +16,6 @@ const Share = ({ block }) => {
       {Array.isArray(socialLinks) && socialLinks.length > 0 && <SocialLinkList socialLinks={socialLinks} />}
       {Array.isArray(ctas) && ctas.length > 0 && <CtaList ctas={ctas} />}
 
-      {whatsappGroup && (
-        <a className="wp-button" href={`${whatsappGroup}`} target="_blank" rel="noopener noreferrer">
-          <span>Join Us to Our WhatsApp Community</span>
-          <ReactSVG src={wpIcon} alt="Wp icon" />
-        </a>
-      )}
     </div>
   );
 };

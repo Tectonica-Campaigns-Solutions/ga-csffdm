@@ -17,6 +17,7 @@ exports.createPages = ({ graphql, actions }) => {
       conferenceTheme: path.resolve('./src/templates/ConferenceTheme.js'),
       resources: path.resolve('./src/templates/Resources.js'),
       resource: path.resolve('./src/templates/Resource.js'),
+      form: path.resolve('./src/templates/Form.js'),
     };
 
     resolve(
@@ -120,8 +121,16 @@ exports.createPages = ({ graphql, actions }) => {
                 id
                 title
                 slug
-                introduction
-                date
+              }
+            }
+          }
+
+          forms: allDatoCmsForm {
+            edges {
+              node {
+                id
+                title
+                slug
               }
             }
           }
@@ -278,6 +287,18 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: resource.node.slug,
               id: resource.node.id,
+            },
+          });
+        }
+
+        const forms = result.data.forms.edges;
+        for (const form of forms) {
+          createPage({
+            path: '/take-action/' + form.node.slug,
+            component: templates.form,
+            context: {
+              slug: form.node.slug,
+              id: form.node.id,
             },
           });
         }
