@@ -75,11 +75,11 @@ export const DatoCMS = graphql`
         }
       }
       ... on DatoCmsConference {
-            slug
-            model {
-              apiKey
-            }
-          }
+        slug
+        model {
+          apiKey
+        }
+      }
     }
     treeChildren {
       ... on DatoCmsMenuItem {
@@ -165,7 +165,33 @@ export const DatoCMS = graphql`
     title
     textContent
     ctas {
-      ...BlockCta
+      ... on DatoCmsCta {
+        id: originalId
+        title
+        isButton
+        style
+        link {
+          ... on DatoCmsGlobalLink {
+            id
+            content {
+              ... on DatoCmsBasicPage {
+                id
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsForm {
+                id
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+      }
     }
     stats {
       ...BlockStats
@@ -192,57 +218,81 @@ export const DatoCMS = graphql`
     isButton
     style
     link {
-      ... on DatoCmsHome {
-        model {
-          apiKey
-        }
-      }
-      ... on DatoCmsResource {
-        slug
-        model {
-          apiKey
-        }
-      }
-      ... on DatoCmsEvent {
-        slug
-        model {
-          apiKey
-        }
-      }
-      ... on DatoCmsWork {
-        slug
-        model {
-          apiKey
-        }
-      }
-      ... on DatoCmsEvent {
-        slug
-        model {
-          apiKey
-        }
-      }
-      ... on DatoCmsPost {
-        slug
-        model {
-          apiKey
-        }
-      }
-      ... on DatoCmsAreasOfWork {
-        slug
-        model {
-          apiKey
-        }
-      }
-      ... on DatoCmsBasicPage {
-        slug
-        model {
-          apiKey
-        }
-      }
-      ... on DatoCmsNews {
-        slug
-        model {
-          apiKey
+      ... on DatoCmsGlobalLink {
+        label
+        externalUrl
+        content {
+          ... on DatoCmsHome {
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsResource {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsEvent {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsWork {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsEvent {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsPost {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsAreasOfWork {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsBasicPage {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsNews {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsGovernance {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsForm {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsConference {
+            slug
+            model {
+              apiKey
+            }
+          }
         }
       }
     }
@@ -296,7 +346,26 @@ export const DatoCMS = graphql`
     fixedCardIntro
     fixedCardTitle
     cta {
-      ...BlockCta
+      ... on DatoCmsCta {
+        id: originalId
+        title
+        isButton
+        style
+        link {
+          ... on DatoCmsGlobalLink {
+            id
+            content {
+              ... on DatoCmsResourcesModel {
+                id
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+      }
     }
     items {
       ... on DatoCmsResource {
@@ -316,7 +385,26 @@ export const DatoCMS = graphql`
     id: originalId
     headline
     cta {
-      ...BlockCta
+      ... on DatoCmsCta {
+        id: originalId
+        title
+        isButton
+        style
+        link {
+          ... on DatoCmsGlobalLink {
+            id
+            content {
+              ... on DatoCmsNews {
+                id
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+      }
     }
     backgroundImage {
       width
@@ -387,7 +475,26 @@ export const DatoCMS = graphql`
     headline
     introduction
     cta {
-      ...BlockCta
+      ... on DatoCmsCta {
+        id: originalId
+        title
+        isButton
+        style
+        link {
+          ... on DatoCmsGlobalLink {
+            id
+            content {
+              ... on DatoCmsBasicPage {
+                id
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+      }
     }
     items {
       id
@@ -486,5 +593,4 @@ export const DatoCMS = graphql`
       }
     }
   }
-  
 `;
