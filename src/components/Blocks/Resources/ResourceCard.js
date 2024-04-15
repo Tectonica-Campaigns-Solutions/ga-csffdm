@@ -11,10 +11,9 @@ import './styles.scss';
 const ResourceCard = ({ resource, className = '' }) => {
   const { title, slug, date, introduction, tags = [] } = resource;
 
-  console.log('ResourceCard', slug);
   return (
     <article className={`resource-card ${className}`}>
-      <Link to={slug}>
+      <Link to={resource}>
         {isArray(tags) ? <TagList tags={tags} /> : <div className="tags-list" />}
         {date && <span className="date">{formatDate(date)}</span>}
         <div className="basic-information">

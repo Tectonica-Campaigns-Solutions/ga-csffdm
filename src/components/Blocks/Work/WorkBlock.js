@@ -26,6 +26,9 @@ const WorkBlock = ({ block }) => {
             height
             url
           }
+          model {
+            apiKey
+          }
         }
       }
     }

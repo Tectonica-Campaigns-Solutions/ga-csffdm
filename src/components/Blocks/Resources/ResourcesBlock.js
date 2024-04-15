@@ -6,7 +6,7 @@ import ResourceCard from './ResourceCard';
 import './styles.scss';
 
 const ResourcesBlock = ({ block }) => {
-  const { headline, introduction, cta = [], fixedCardTitle, fixedCardLink, fixedCardIntro, items = [] } = block;
+  const { headline, introduction, cta = [], fixedCardTitle, fixedCardLink, fixedCardIntro } = block;
 
   const resourcesPosts = useStaticQuery(graphql`
     query allResources {
@@ -19,6 +19,9 @@ const ResourcesBlock = ({ block }) => {
           date
           tags {
             title
+          }
+          model {
+            apiKey
           }
         }
       }
