@@ -13,7 +13,6 @@ import FormBlock from '../components/Blocks/FormBlock/FormBlock';
 
 import './basic.scss';
 
-
 const Resource = ({ pageContext, data: { resource, favicon } }) => {
   const { title, introduction, mainImage, content, seo, tags, blocks = [] } = resource;
 
@@ -32,14 +31,21 @@ const Resource = ({ pageContext, data: { resource, favicon } }) => {
 
           {content?.value && <StructuredTextDefault content={content} />}
           {blocks && <Blocks blocks={blocks} />}
-          {isArray(tags) && 
-          <div className='mt-5 mb-4'>
-            <TagList tags={tags} />
-          </div>
-          }
+          {isArray(tags) && (
+            <div className="mt-5 mb-4">
+              <TagList tags={tags} />
+            </div>
+          )}
         </div>
       </div>
-      <FormBlock block={{ title:'Subscribe to the latest updates', backgroundColor:'blue', backgroundImage:'', footerForm:true }} />
+      <FormBlock
+        block={{
+          title: 'Subscribe to the latest updates',
+          backgroundColor: 'blue',
+          backgroundImage: '',
+          footerForm: true,
+        }}
+      />
     </Layout>
   );
 };
@@ -62,9 +68,9 @@ export const ResourceQuery = graphql`
         alt
         gatsbyImageData
       }
-      content {
-        value
-      }
+      ## content {
+      ## value
+      ##}
       tags {
         ...Tags
       }

@@ -20,6 +20,9 @@ const WorkBlock = ({ block }) => {
           slug
           introduction
           id
+          model {
+            apiKey
+          }
           icon {
             alt
             width

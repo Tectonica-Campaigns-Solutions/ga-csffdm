@@ -20,6 +20,9 @@ const ResourcesBlock = ({ block }) => {
           tags {
             title
           }
+          model {
+            apiKey
+          }
         }
       }
     }

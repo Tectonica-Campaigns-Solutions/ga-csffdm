@@ -222,6 +222,18 @@ export const DatoCMS = graphql`
         label
         externalUrl
         content {
+          ... on DatoCmsConferenceTheme {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsConferenceSubtopic {
+            slug
+            model {
+              apiKey
+            }
+          }
           ... on DatoCmsHome {
             model {
               apiKey

@@ -43,9 +43,9 @@ export const WorkQuery = graphql`
         alt
         gatsbyImageData
       }
-      content {
-        value
-      }
+      ##content {
+      ## value
+      ##}
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
@@ -64,16 +64,16 @@ export const WorkQuery = graphql`
         }
         ... on DatoCmsTable {
           ...BlockTable
-        }        
+        }
         ... on DatoCmsShare {
           ...BlockShare
         }
         ... on DatoCmsFormBlock {
           ...BlockForm
         }
-        ... on DatoCmsCalendarBlock {
-          ...BlockCalendar
-        }
+        ## ... on DatoCmsCalendarBlock {
+        ## ...BlockCalendar
+        ##}
       }
     }
   }

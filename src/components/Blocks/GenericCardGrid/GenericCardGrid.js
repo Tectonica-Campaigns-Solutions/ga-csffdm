@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'gatsby';
+
 import './styles.scss';
 
 const GenericCardGrid = ({ items = [] }) => {
@@ -12,6 +13,8 @@ const GenericCardGrid = ({ items = [] }) => {
   }, []);
 
   const [, conference, conferenceSlug, subTopic] = currentUrl.trim().split('/');
+
+  console.log({ items });
 
   return (
     <div className="generic-card-grid">

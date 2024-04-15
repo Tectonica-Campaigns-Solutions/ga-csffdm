@@ -10,7 +10,7 @@ const Conference = ({ pageContext, data: { conference, prevConferences, favicon 
   const mappedPrevConferences = prevConferences.nodes;
   const { title, slug, description, heroImage, themes = [], seo } = conference;
 
-  const mainTheme = Array.isArray(themes[0]?.topics) ? themes[0].topics[0] : null;
+  const mainTheme = Array.isArray(themes[0]?.subtopics) ? themes[0].subtopics[0] : null;
 
   return (
     <Layout>
@@ -66,8 +66,8 @@ export const ConferenceQuery = graphql`
           model {
             apiKey
           }
-          topics {
-            ... on DatoCmsConferenceTopic {
+          subtopics {
+            ... on DatoCmsConferenceSubtopic {
               id
               title
               slug
@@ -90,14 +90,16 @@ export const ConferenceQuery = graphql`
                         id
                         title
                         introduction
-                        linkTo
+                        cta {
+                          ...BlockCta
+                        }
                       }
                     }
                   }
                 }
               }
-              subTopics {
-                ... on DatoCmsConferenceTopic {
+              subItems {
+                ... on DatoCmsConferenceSubtopic {
                   id
                   title
                   slug
@@ -120,7 +122,9 @@ export const ConferenceQuery = graphql`
                             id
                             title
                             introduction
-                            linkTo
+                            cta {
+                              ...BlockCta
+                            }
                           }
                         }
                       }

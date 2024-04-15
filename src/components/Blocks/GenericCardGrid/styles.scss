@@ -44,3 +44,24 @@
     }
   }
 }
+
+@media screen and (max-width:992px) {
+  .generic-card-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+
+    .generic-card {
+      padding: 25px;
+      min-height: auto;
+
+      h3 {
+        font-size: 20px;
+      }
+
+      .intro {
+        font-size: 16px;
+        letter-spacing: 0.048px;
+      }
+    }
+  }
+}
