@@ -64,7 +64,7 @@ function Form({ formType }) {
     // Send data to server
     try {
       const zapierHook =
-      formType == 'subscribe'
+      formType === 'subscribe'
           ? 'https://hooks.zapier.com/hooks/catch/6569013/3n6mcm9/'
           : 'https://hooks.zapier.com/hooks/catch/6569013/3nty9te/';
       const sendToZapier = await fetch(zapierHook, {
@@ -73,7 +73,7 @@ function Form({ formType }) {
       });
 
       const responseZapier = await sendToZapier.json();
-      if (responseZapier.status == 'success') {
+      if (responseZapier.status === 'success') {
         setIsLoading(false);
         removeAlerts();
         appendAlert('Your data has been sent. Thank you!', 'success');
