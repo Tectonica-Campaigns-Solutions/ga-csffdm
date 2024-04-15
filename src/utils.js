@@ -11,6 +11,8 @@ export const pathToModel = (model = null, slug = '') => {
     return `/campaign-resources-and-tools/${slug}`;
   } else if (model === 'form') {
     return `/take-action/${slug}`;
+  } else if (model === 'conference') {
+    return `/conference/${slug}`;
   } else {
     return `/${slug}`;
   }
