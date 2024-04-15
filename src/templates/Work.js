@@ -71,9 +71,9 @@ export const WorkQuery = graphql`
         ... on DatoCmsFormBlock {
           ...BlockForm
         }
-        ## ... on DatoCmsCalendarBlock {
-        ## ...BlockCalendar
-        ##}
+        ... on DatoCmsCalendarBlock {
+          ...BlockCalendar
+        }
       }
     }
   }

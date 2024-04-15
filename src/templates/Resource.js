@@ -68,9 +68,9 @@ export const ResourceQuery = graphql`
         alt
         gatsbyImageData
       }
-      ## content {
-      ## value
-      ##}
+      content {
+        value
+      }
       tags {
         ...Tags
       }

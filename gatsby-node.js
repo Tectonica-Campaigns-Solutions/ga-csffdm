@@ -269,40 +269,40 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
 
-        // const resources = result.data.resources;
-        // if (resources) {
-        //   createPage({
-        //     path: resources.slug,
-        //     component: templates.resources,
-        //     context: {
-        //       slug: resources.slug,
-        //     },
-        //   });
-        // }
+        const resources = result.data.resources;
+        if (resources) {
+          createPage({
+            path: resources.slug,
+            component: templates.resources,
+            context: {
+              slug: resources.slug,
+            },
+          });
+        }
 
-        // const resourcesItems = result.data.resourceItems.edges;
-        // for (const resource of resourcesItems) {
-        //   createPage({
-        //     path: '/campaign-resources-and-tools/' + resource.node.slug,
-        //     component: templates.resource,
-        //     context: {
-        //       slug: resource.node.slug,
-        //       id: resource.node.id,
-        //     },
-        //   });
-        // }
+        const resourcesItems = result.data.resourceItems.edges;
+        for (const resource of resourcesItems) {
+          createPage({
+            path: '/campaign-resources-and-tools/' + resource.node.slug,
+            component: templates.resource,
+            context: {
+              slug: resource.node.slug,
+              id: resource.node.id,
+            },
+          });
+        }
 
-        // const forms = result.data.forms.edges;
-        // for (const form of forms) {
-        //   createPage({
-        //     path: '/take-action/' + form.node.slug,
-        //     component: templates.form,
-        //     context: {
-        //       slug: form.node.slug,
-        //       id: form.node.id,
-        //     },
-        //   });
-        // }
+        const forms = result.data.forms.edges;
+        for (const form of forms) {
+          createPage({
+            path: '/take-action/' + form.node.slug,
+            component: templates.form,
+            context: {
+              slug: form.node.slug,
+              id: form.node.id,
+            },
+          });
+        }
       })
     );
   });
