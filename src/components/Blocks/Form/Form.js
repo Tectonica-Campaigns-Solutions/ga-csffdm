@@ -96,13 +96,13 @@ function Form({ formType }) {
       
         <form onSubmit={onSubmit}>
           <div className="row">
-            <div className="col">
+            <div className="col-md-3">
               <input name="name" className="form-control" type="text" placeholder="Name" onChange={onChange} />
             </div>
-            <div className="col">
+            <div className="col-md-3">
               <input name="email" className="form-control" type="email" placeholder="Email" onChange={onChange} />
             </div>
-            <div className="col">
+            <div className="col-md-3">
               <CountryDropdown selectedCountry={country} handleCountryChange={onChange} />
             </div>
             <div className="col-md-2">

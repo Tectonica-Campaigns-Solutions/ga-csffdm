@@ -315,7 +315,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
       new FilterWarningsPlugin({
         exclude: /mini-css-extract-plugin[^]*Conflicting order. Following module has been added:/,
       }),
-      new webpack.NormalModuleReplacementPlugin(
+      /*new webpack.NormalModuleReplacementPlugin(
         /@gatsbyjs\/reach-router\/dist\/index\.js/,
         resource => {
           resource.request = path.resolve(
@@ -323,7 +323,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
             'node_modules/@gatsbyjs/reach-router/dist/index.js'
           ).replace(/\\/g, '/');
         }
-      ),
+      ),*/
     ],
   });
 };

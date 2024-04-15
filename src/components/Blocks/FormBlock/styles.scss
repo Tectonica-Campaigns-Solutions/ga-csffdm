@@ -75,7 +75,7 @@
     }
 
     .form-container-content {
-      max-width: 70%;
+      /*max-width: 70%;*/
       position: relative;
       z-index: 1;
     }
@@ -172,6 +172,15 @@
       .left-img {
         display: none;
       }
+
+      .form-container-content {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      input.form-control, select.form-select {
+        margin-bottom: 15px;
+      }
     }
   }
 }
@@ -184,6 +193,8 @@
       .form-hubspot form .legal-consent-container .hs-richtext {
         top: 8.5rem;
       }
+
     }
   }
+ 
 }

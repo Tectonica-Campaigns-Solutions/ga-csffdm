@@ -28,3 +28,11 @@
     padding-left: 3px;
   }
 }
+
+@media screen and (max-width: 992px) { 
+
+  .share-buttons-fixed {
+    display: none;
+  }
+
+}

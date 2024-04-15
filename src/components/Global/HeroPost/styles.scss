@@ -37,3 +37,25 @@
     }
   }
 }
+
+@media screen and (max-width:992px) {
+  .hero-post {
+    h1 {
+      font-size: 39px;
+      line-height: 115%;
+    }
+    .post-info {
+      .title {
+        font-size: 39px;
+      }
+
+      p {
+        font-size: 20px;
+      }
+    }
+
+    .post-info {
+      margin-top: 20px;
+    }
+  }
+}

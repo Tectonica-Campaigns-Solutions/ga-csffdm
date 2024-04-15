@@ -22,3 +22,22 @@
     margin: 0;
   }
 }
+
+@media screen and (max-width: 992px) {
+
+  .hero-detail {
+
+    padding: 54px 0 35px;
+  
+    h1 {
+      font-size: 2.438rem;
+    }
+
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+    }
+
+  }
+
+}
