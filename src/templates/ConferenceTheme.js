@@ -36,6 +36,9 @@ export const ConferenceThemeQuery = graphql`
       }
     }
     topic: datoCmsConferenceSubtopic(id: { eq: $id }) {
+      seo: seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
       title
       slug
       content {
