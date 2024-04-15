@@ -1,8 +1,8 @@
 {
-  "name": "library-of-components",
+  "name": "csfddm",
   "version": "1.0.0",
   "private": true,
-  "description": "Library of components",
+  "description": "CSFFDM",
   "author": "Tectonica",
   "keywords": [
     "gatsby"
