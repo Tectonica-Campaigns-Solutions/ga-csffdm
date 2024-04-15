@@ -20,9 +20,9 @@ const SocialLink = ({ name, url }) => {
   const socialImg = SocialMap[name];
 
   return (
-    <Link to={url} target="_blank">
+    <a href={url} target="_blank">
       <ReactSVG height={70} src={socialImg} alt={name} />
-    </Link>
+    </a>
   );
 };
 

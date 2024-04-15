@@ -512,6 +512,7 @@ export const DatoCMS = graphql`
     title
     backgroundColor
     footerForm
+    formType
     backgroundImage {
       width
       height

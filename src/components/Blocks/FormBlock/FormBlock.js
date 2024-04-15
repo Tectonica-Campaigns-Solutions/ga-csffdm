@@ -3,7 +3,7 @@ import Form from '../Form/Form';
 import './styles.scss';
 
 function FormBlock({ block }) {
-  const { title, backgroundColor, backgroundImage, footerForm } = block;
+  const { title, backgroundColor, backgroundImage, footerForm, formType } = block;
   const bgImageUrl = backgroundImage?.gatsbyImageData?.images?.fallback?.src;
 
   return (
@@ -13,7 +13,7 @@ function FormBlock({ block }) {
           <div className={`${footerForm ? "form-container-content" : ''}`} >
             <div className={`row`}>
               {title && <h2>{title}</h2>}
-              <Form form="inner-join" />   
+              <Form formType={formType} />   
             </div>
           </div>
         </div>

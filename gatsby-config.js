@@ -8,7 +8,7 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: `CSFFDM`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://csoforffd.org`,
   },
   plugins: [
     'gatsby-plugin-sass',
@@ -32,4 +32,8 @@ module.exports = {
       },
     },
   ],
+  /*proxy: {
+    prefix: "/.netlify/functions",
+    url: "http://localhost:8000",
+  },*/
 };

@@ -1,5 +1,6 @@
 const path = require(`path`);
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
+const webpack = require('webpack');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -314,6 +315,15 @@ exports.onCreateWebpackConfig = ({ actions }) => {
       new FilterWarningsPlugin({
         exclude: /mini-css-extract-plugin[^]*Conflicting order. Following module has been added:/,
       }),
+      new webpack.NormalModuleReplacementPlugin(
+        /@gatsbyjs\/reach-router\/dist\/index\.js/,
+        resource => {
+          resource.request = path.resolve(
+            __dirname,
+            'node_modules/@gatsbyjs/reach-router/dist/index.js'
+          ).replace(/\\/g, '/');
+        }
+      ),
     ],
   });
 };

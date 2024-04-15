@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
-import axios from 'axios';
 import SeoDatoCMS from '../components/Layout/SeoDatocms';
 import Layout from '../components/Layout/Layout';
 import Breadcrumb from '../components/Global/Breadcrumb/Breadcrumb';
 import SocialLinkList from '../components/Global/SocialLink/SocialLinkList';
+import CountryDropdown from '../components/Blocks/Form/CountryDropdown';
 import '../components/Blocks/FormBlock/styles.scss';
 import '../components/Blocks/Form/styles.scss';
 
@@ -15,12 +15,16 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [formState, setFormState] = useState({
     name: '',
+    lastname: '',
     email: '',
+    organization: '',
+    role: '',
     country: '',
+    message: '',
     consent: '',
   });
 
-  const { name, email, country, consent } = formState;
+  const { name, lastname, email, organization, role, country, message, consent } = formState;
 
   const onChange = (event) => {
     setFormState({
@@ -34,22 +38,59 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
 
     const data = {
       name: name,
+      lastname: lastname,
       email: email,
+      organization: organization,
+      role: role,
       country: country,
+      message: message,
       consent: consent,
     };
 
-    console.log(data);
-    //insertDataToSheet(data);
     setIsLoading(true);
-    // Send data to server
 
+    const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+    const appendAlert = (message, type) => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        //'   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>',
+      ].join('');
+
+      alertPlaceholder.append(wrapper);
+    };
+    const removeAlerts = () => {
+      while (alertPlaceholder.firstChild) {
+        alertPlaceholder.removeChild(alertPlaceholder.lastChild);
+      }
+    };
+
+    appendAlert('Submitting data...', 'primary');
+
+    // Send data to server
     try {
-      await axios.post('/api/submit-data', data);
-      alert('Los datos se enviaron correctamente.');
+      const zapierHook =
+        lastname == ''
+          ? 'https://hooks.zapier.com/hooks/catch/6569013/3n6mcm9/'
+          : 'https://hooks.zapier.com/hooks/catch/6569013/3nty9te/';
+      const sendToZapier = await fetch(zapierHook, {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+
+      const responseZapier = await sendToZapier.json();
+      if (responseZapier.status == 'success') {
+        setIsLoading(false);
+        removeAlerts();
+        appendAlert('Your data has been sent. Thank you!', 'success');
+      }
     } catch (error) {
       console.error('Error al enviar los datos:', error);
-      alert('Ocurrió un error al enviar los datos.');
+      setIsLoading(false);
+      removeAlerts();
+      appendAlert('Your data could not be sent. Please, try again.', 'danger');
     }
   };
 
@@ -74,12 +115,13 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
             {introduction && <p>{introduction}</p>}
           </div>
           <div className="col-lg-6 offset-lg-1">
+            <div id="liveAlertPlaceholder"></div>
             <div className={`form-block-wrapper`}>
               <div className="form-block">
                 <div className="form-container-content">
                   <div className="form-container">
                     {formType === 'subscribe' && (
-                      <form>
+                      <form onSubmit={onSubmit}>
                         <div className="row mb-md-3">
                           <div className="col-md-12">
                             <input
@@ -106,12 +148,7 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
                         </div>
                         <div className="row mb-md-3">
                           <div className="col">
-                            <select name="country" className="form-select" aria-label="" onChange={onChange}>
-                              <option selected>Country</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
-                            </select>
+                            <CountryDropdown selectedCountry={country} handleCountryChange={onChange} />
                           </div>
                         </div>
                         <div className="row mt-4">
@@ -195,7 +232,7 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
                         <div className="row mb-md-3">
                           <div className="col-md-6">
                             <input
-                              name="name"
+                              name="organization"
                               className="form-control"
                               type="text"
                               placeholder="Organization*"
@@ -204,7 +241,7 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
                           </div>
                           <div className="col-md-6">
                             <input
-                              name="name"
+                              name="role"
                               className="form-control"
                               type="text"
                               placeholder="Role*"
@@ -214,22 +251,17 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
                         </div>
                         <div className="row mb-md-3">
                           <div className="col-12">
-                            <select
-                              name="country"
-                              className="form-select"
-                              aria-label="Default select example"
-                              onChange={onChange}
-                            >
-                              <option selected>Country</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
-                            </select>
+                            <CountryDropdown selectedCountry={country} handleCountryChange={onChange} />
                           </div>
                         </div>
                         <div className="row mb-md-3">
                           <div className="col-12">
-                            <textarea name="message" placeholder="Message" className="form-control"></textarea>
+                            <textarea
+                              name="message"
+                              placeholder="Message"
+                              className="form-control"
+                              onChange={onChange}
+                            ></textarea>
                           </div>
                         </div>
                         <div className="row mt-4">
@@ -289,15 +321,15 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
                 <h2 className="h1">Follow us on Social Network</h2>
               </div>
               <div className="col-md-6 offset-md-1 align-self-center">
-                <SocialLinkList socialLinks={
-                    [
-                        { socialNetwork: 'facebook', url: 'https://www.facebook.com/CSforFFDMechanism' },
-                        { socialNetwork: 'twitter', url: '#' },
-                        { socialNetwork: 'youtube', url: 'https://www.youtube.com/watch?v=sH7iD-jA-wo&feature=youtu.be' },
-                        { socialNetwork: 'instagram', url: 'https://www.instagram.com/csffdmechanism/' },
-                        { socialNetwork: 'linkedin', url: '#' },
-                    ]
-                } />
+                <SocialLinkList
+                  socialLinks={[
+                    { socialNetwork: 'facebook', url: 'https://www.facebook.com/CSforFFDMechanism' },
+                    { socialNetwork: 'twitter', url: '#' },
+                    { socialNetwork: 'youtube', url: 'https://www.youtube.com/watch?v=sH7iD-jA-wo&feature=youtu.be' },
+                    { socialNetwork: 'instagram', url: 'https://www.instagram.com/csffdmechanism/' },
+                    { socialNetwork: 'linkedin', url: '#' },
+                  ]}
+                />
               </div>
             </div>
           </div>
