@@ -58,7 +58,10 @@ export const ConferenceThemeQuery = graphql`
                 title
                 introduction
                 cta {
-                  ...BlockCta
+                  id: originalId
+                  title
+                  isButton
+                  style
                 }
               }
             }

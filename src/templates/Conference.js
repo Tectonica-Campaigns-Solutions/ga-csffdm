@@ -91,7 +91,101 @@ export const ConferenceQuery = graphql`
                         title
                         introduction
                         cta {
-                          ...BlockCta
+                          id: originalId
+                          title
+                          isButton
+                          style
+                          link {
+                            ... on DatoCmsGlobalLink {
+                              label
+                              externalUrl
+                              content {
+                                ... on DatoCmsHome {
+                                  model {
+                                    apiKey
+                                  }
+                                }
+                                ... on DatoCmsResource {
+                                  slug
+                                  model {
+                                    apiKey
+                                  }
+                                }
+                                ... on DatoCmsEvent {
+                                  slug
+                                  model {
+                                    apiKey
+                                  }
+                                }
+                                ... on DatoCmsWork {
+                                  slug
+                                  model {
+                                    apiKey
+                                  }
+                                }
+                                ... on DatoCmsEvent {
+                                  slug
+                                  model {
+                                    apiKey
+                                  }
+                                }
+                                ... on DatoCmsPost {
+                                  slug
+                                  model {
+                                    apiKey
+                                  }
+                                }
+                                ... on DatoCmsAreasOfWork {
+                                  slug
+                                  model {
+                                    apiKey
+                                  }
+                                }
+                                ... on DatoCmsBasicPage {
+                                  slug
+                                  model {
+                                    apiKey
+                                  }
+                                }
+                                ... on DatoCmsNews {
+                                  slug
+                                  model {
+                                    apiKey
+                                  }
+                                }
+                                ... on DatoCmsGovernance {
+                                  slug
+                                  model {
+                                    apiKey
+                                  }
+                                }
+                                ... on DatoCmsForm {
+                                  slug
+                                  model {
+                                    apiKey
+                                  }
+                                }
+                                ... on DatoCmsConference {
+                                  slug
+                                  model {
+                                    apiKey
+                                  }
+                                }
+                                ... on DatoCmsConferenceTheme {
+                                  slug
+                                  model {
+                                    apiKey
+                                  }
+                                }
+                                ##... on DatoCmsConferenceSubtopic {
+                                ##slug
+                                ##model {
+                                ##apiKey
+                                ##}
+                                ##}
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -123,7 +217,10 @@ export const ConferenceQuery = graphql`
                             title
                             introduction
                             cta {
-                              ...BlockCta
+                              id: originalId
+                              title
+                              isButton
+                              style
                             }
                           }
                         }
