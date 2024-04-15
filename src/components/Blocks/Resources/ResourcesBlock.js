@@ -36,7 +36,7 @@ const ResourcesBlock = ({ block }) => {
   };
 
   return (
-    <Section headline={headline} introduction={introduction} cta={cta} hClass="h4">
+    <Section headline={headline} introduction={introduction} cta={cta} hClass="h4" extraClassNames="resources-section">
       <div className="row">
         <div className="col-lg-4">
           <ResourceCard resource={fixedCard} className="fixedCard" />

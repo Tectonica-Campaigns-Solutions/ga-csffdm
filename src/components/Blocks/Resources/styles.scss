@@ -1,3 +1,7 @@
+.resources-section {
+  padding-top: 133px;
+}
+
 .resource-card {
   height: 557px;
   padding: 40px 30px 35px 30px;
@@ -100,6 +104,11 @@
 }
 
 @media screen and (max-width:992px) {
+
+  .resources-section {
+    padding-top: 70px;
+  }
+
   .resource-card {
     height: 452px;
     padding: 30px 25px;

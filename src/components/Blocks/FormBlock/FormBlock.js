@@ -6,6 +6,7 @@ function FormBlock({ block }) {
   const { title, backgroundColor, backgroundImage, footerForm, formType } = block;
   const bgImageUrl = backgroundImage?.gatsbyImageData?.images?.fallback?.src;
 
+  console.log('FormBlock', footerForm);
   return (
     <div className={`form-block-wrapper ${backgroundColor ? backgroundColor : ''}`}>
       <div className="container">
