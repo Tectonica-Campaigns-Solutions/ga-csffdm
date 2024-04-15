@@ -5,7 +5,7 @@ import Layout from '../components/Layout/Layout';
 import StructuredTextDefault from '../components/Blocks/StructuredTextDefault/StructuredTextDefault';
 import Breadcrumb from '../components/Global/Breadcrumb/Breadcrumb';
 import ImageWrapper from '../components/Global/Image/ImageWrapper';
-import { isArray } from '../utils';
+import { formatDate, isArray } from '../utils';
 import TagList from '../components/Global/Tag/TagList';
 import ShareButtons from '../components/Global/ShareButtons/ShareButtons';
 
@@ -23,7 +23,7 @@ const Post = ({ pageContext, data: { post, favicon } }) => {
         <ShareButtons />
 
         <div className="post-info">
-          {date && <span className="date">{date}</span>}
+          {date && <span className="date">{formatDate(date)}</span>}
           {title && <h1>{title}</h1>}
           {introduction && <p className="post-intro">{introduction}</p>}
           {mainImage && <ImageWrapper image={mainImage} />}
