@@ -65,6 +65,26 @@ export const ConferenceThemeQuery = graphql`
                   title
                   isButton
                   style
+                  link {
+                    ... on DatoCmsConference {
+                      slug
+                      model {
+                        apiKey
+                      }
+                    }
+                    ... on DatoCmsConferenceTheme {
+                      slug
+                      model {
+                        apiKey
+                      }
+                    }
+                    ... on DatoCmsConferenceSubtopic {
+                      slug
+                      model {
+                        apiKey
+                      }
+                    }
+                  }
                 }
               }
             }

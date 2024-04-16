@@ -14,12 +14,17 @@ const GenericCardGrid = ({ items = [] }) => {
 
   const [, conference, conferenceSlug, subTopic] = currentUrl.trim().split('/');
 
-  console.log({ items });
-
   return (
     <div className="generic-card-grid">
       {items.map((item) => {
-        const urlTo = `/${conference}/${conferenceSlug}/${subTopic}/${item.linkTo}`;
+        let urlTo = '';
+        const { slug, model } = item.cta.link;
+
+        if (model === 'conference_subtopic') {
+          urlTo = `/${conference}/${conferenceSlug}/${slug}`;
+        } else {
+          urlTo = `/${conference}/${conferenceSlug}/${subTopic}/${slug}`;
+        }
 
         return (
           <Link className="generic-card" to={urlTo}>
