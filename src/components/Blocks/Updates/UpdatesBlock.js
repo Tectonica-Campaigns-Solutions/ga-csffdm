@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import Section from '../../Layout/Section/Section';
 import PostCard from './PostCard';
+import Cta from '../../Global/Cta/Cta';
 
 import './styles.scss';
 
@@ -52,6 +53,12 @@ const UpdatesBlock = ({ block }) => {
             <PostCard post={item} />
           </div>
         ))}
+
+        {cta && (
+          <div className="col cta-extra">
+            <Cta cta={cta} />
+          </div>
+        )}
       </div>
     </Section>
   );

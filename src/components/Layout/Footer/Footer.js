@@ -1,14 +1,6 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import Link from '../../Global/Link/Link';
-import { ReactSVG } from 'react-svg';
-/*
-import facebookIcon from '../../Icons/facebook.svg';
-import xIcon from '../../Icons/social-media-icons-x.svg';
-import youtubeIcon from '../../Icons/social-media-icons-youtube.svg';
-import instagramIcon from '../../Icons/social-media-icons-instagram.svg';
-import linkedinIcon from '../../Icons/social-media-icons-linkedin.svg';
-*/
 import './index.scss';
 
 function Footer({ isLanding = false, customLogo = null }) {
@@ -80,6 +72,18 @@ function Footer({ isLanding = false, customLogo = null }) {
           <div className="col-lg-3 col-12">
             <div className="content" dangerouslySetInnerHTML={{ __html: contactInfo }} />
           </div>
+
+          <div className="col-12 mobile-social-links extra-links">
+            {socialLinks.map((link) => (
+              <a
+                className={`social-btn ${link.socialNetwork}-btn`}
+                href={`${link.url}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              ></a>
+            ))}
+          </div>
+
           <div className="col-lg-5 col-12 ms-auto">
             <div className="extra-links">
               {bottomLinks.map((link) => (

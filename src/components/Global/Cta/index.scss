@@ -76,5 +76,13 @@
     font-size: 20px;
     padding: 13px 20px;
     text-align: center;
+
+    &.custom-btn-play {
+      background-position: 95% 60%;
+    }
+  }
+
+  .ctas {
+    gap: 20px;
   }
 }

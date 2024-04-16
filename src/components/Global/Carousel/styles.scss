@@ -39,6 +39,10 @@
 }
 
 @media screen and (max-width:992px) {
+  .slick-initialized .slick-slide {
+    padding-right: 1rem;
+  }
+
   .carousel-actions {
     padding-top: 20px;
     justify-content: flex-end;

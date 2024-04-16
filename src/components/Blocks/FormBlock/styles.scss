@@ -82,7 +82,9 @@
 
     form {
 
-      input.form-control, select.form-select, textarea.form-control {
+      input.form-control,
+      select.form-select,
+      textarea.form-control {
         border-radius: 5px;
         border: 1px solid rgba(33, 36, 39, 0.20);
         background: var(--white);
@@ -96,7 +98,7 @@
         }
       }
 
-      textarea.form-control { 
+      textarea.form-control {
         min-height: 220px;
       }
 
@@ -152,7 +154,7 @@
     }
 
     .form-block {
-      padding: 26px 0 100px 0;
+      padding: 26px 0 40px 0;
       border-radius: 0;
       margin: 0;
 
@@ -174,27 +176,15 @@
       }
 
       .form-container-content {
+        max-width: 100%;
         padding-left: 15px;
         padding-right: 15px;
       }
 
-      input.form-control, select.form-select {
+      input.form-control,
+      select.form-select {
         margin-bottom: 15px;
       }
     }
   }
-}
-
-@media screen and (max-width: 350px) {
-  .form-block-wrapper {
-    .form-block {
-      padding-bottom: 150px;
-
-      .form-hubspot form .legal-consent-container .hs-richtext {
-        top: 8.5rem;
-      }
-
-    }
-  }
- 
 }

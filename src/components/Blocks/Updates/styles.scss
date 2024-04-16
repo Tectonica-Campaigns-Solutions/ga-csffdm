@@ -1,5 +1,9 @@
 .updatesSection {
   padding-bottom: 11.625rem;
+
+  .cta-extra {
+    display: none;
+  }
 }
 
 .post-card {
@@ -107,6 +111,10 @@
 @media screen and (max-width:992px) {
   .updatesSection {
     padding-bottom: 5rem;
+
+    .cta-extra {
+      display: block;
+    }
   }
 
   .post-card {

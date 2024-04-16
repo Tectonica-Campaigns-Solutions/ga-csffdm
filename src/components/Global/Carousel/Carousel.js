@@ -41,7 +41,7 @@ const Carousel = ({ customRef, items = [], renderItem, showDefaultActions = fals
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
-        infinite: true,
+        infinite: false,
         arrows: false,
         dots: false,
         centerMode: false,

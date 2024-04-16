@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import Section from '../../Layout/Section/Section';
 import ResourceCard from './ResourceCard';
+import Cta from '../../Global/Cta/Cta';
 
 import './styles.scss';
 
@@ -41,11 +42,18 @@ const ResourcesBlock = ({ block }) => {
         <div className="col-lg-4">
           <ResourceCard resource={fixedCard} className="fixedCard" />
         </div>
+
         {itemsSorted.map((item) => (
           <div className="col-lg-4" key={item.id}>
             <ResourceCard resource={item} />
           </div>
         ))}
+
+        {cta && (
+          <div className="col cta-extra">
+            <Cta cta={cta} />
+          </div>
+        )}
       </div>
     </Section>
   );

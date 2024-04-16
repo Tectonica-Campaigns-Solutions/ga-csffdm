@@ -1,5 +1,9 @@
 .resources-section {
   padding-top: 133px;
+
+  .cta-extra {
+    display: none;
+  }
 }
 
 .resource-card {
@@ -107,6 +111,10 @@
 
   .resources-section {
     padding-top: 70px;
+
+    .cta-extra {
+      display: block;
+    }
   }
 
   .resource-card {
