@@ -35,6 +35,7 @@ exports.createPages = ({ graphql, actions }) => {
                 id
                 slug
                 title
+                tag
               }
             }
           }
@@ -184,6 +185,8 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: work.node.slug,
               id: work.node.id,
+              tag: work.node.tag,
+              today: new Date().toISOString().split('T')[0],
             },
           });
         }

@@ -272,6 +272,7 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
                           </div>
                           <div className="col">
                             <div className="form-check float-start me-3">
+                            <label className="form-check-label" for="flexRadioConsent2">
                               <input
                                 className="form-check-input"
                                 type="radio"
@@ -281,11 +282,11 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
                                 onChange={onChange}
                                 required
                               />
-                              <label className="form-check-label" for="flexRadioConsent2">
                                 No
                               </label>
                             </div>
                             <div className="form-check float-start">
+                            <label className="form-check-label" for="flexRadioConsent1">
                               <input
                                 className="form-check-input"
                                 type="radio"
@@ -295,7 +296,101 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
                                 onChange={onChange}
                                 required
                               />
-                              <label className="form-check-label" for="flexRadioConsent1">
+                                Yes
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-12">
+                          <button className="custom-btn custom-btn-primary custom-btn-primary w-100 mt-4" type="submit">
+                            Join
+                          </button>
+                        </div>
+                      </form>
+                    )}
+                    {formType === 'contact' && (
+                      <form onSubmit={onSubmit}>
+                        <div className="row mb-md-3">
+                          <div className="col-md-6">
+                            <input
+                              name="name"
+                              className="form-control"
+                              type="text"
+                              placeholder="First Name*"
+                              required
+                              onChange={onChange}
+                            />
+                          </div>
+                          <div className="col-md-6">
+                            <input
+                              name="lastname"
+                              className="form-control"
+                              type="text"
+                              placeholder="Last Name*"
+                              required
+                              onChange={onChange}
+                            />
+                          </div>
+                        </div>
+                        <div className="row mb-md-3">
+                          <div className="col-12">
+                            <input
+                              name="email"
+                              className="form-control"
+                              type="email"
+                              placeholder="Email*"
+                              required
+                              onChange={onChange}
+                            />
+                          </div>
+                        </div>
+                        <div className="row mb-md-3">
+                          <div className="col-12">
+                            <CountryDropdown selectedCountry={country} handleCountryChange={onChange} />
+                          </div>
+                        </div>
+                        <div className="row mb-md-3">
+                          <div className="col-12">
+                            <textarea
+                              name="message"
+                              placeholder="Message"
+                              className="form-control"
+                              onChange={onChange}
+                            ></textarea>
+                          </div>
+                        </div>
+                        <div className="row mt-4">
+                          <div className="col-12">
+                            <label className="mb-3" for="form-check-input">
+                              I consent receiving email from CSFFD
+                            </label>
+                          </div>
+                          <div className="col">
+                            <div className="form-check float-start me-3">
+                            <label className="form-check-label" for="flexRadioConsent2">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="consent"
+                                id="flexRadioConsent2"
+                                value="no"
+                                onChange={onChange}
+                                required
+                              />
+                                No
+                              </label>
+                            </div>
+                            <div className="form-check float-start">
+                            <label className="form-check-label" for="flexRadioConsent1">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="consent"
+                                id="flexRadioConsent1"
+                                value="yes"
+                                onChange={onChange}
+                                required
+                              />
                                 Yes
                               </label>
                             </div>

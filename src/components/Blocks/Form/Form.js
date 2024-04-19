@@ -16,8 +16,6 @@ function Form({ formType }) {
     consent: '',
   });
 
-  console.log('Form type', formType);
-
   const { name, lastname, email, organization, role, country, message, consent } = formState;
 
   const onChange = (event) => {
@@ -113,26 +111,28 @@ function Form({ formType }) {
           </div>
           <div className="row mt-4">
             <div className="col-12">
-              <label className="mb-3" for="form-check-input">
+              <p>
                 I consent receiving email from CSFFD
-              </label>
+              </p>
             </div>
             <div className="col">
               <div className="form-check float-start me-3">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="consent"
-                  id="flexRadioConsent2"
-                  value="no"
-                  onChange={onChange}
-                  required
-                />
+                
                 <label className="form-check-label" for="flexRadioConsent2">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="consent"
+                    id="flexRadioConsent2"
+                    value="no"
+                    onChange={onChange}
+                    required
+                  />
                   No
                 </label>
               </div>
               <div className="form-check float-start">
+                <label className="form-check-label" for="flexRadioConsent1">
                 <input
                   className="form-check-input"
                   type="radio"
@@ -142,7 +142,6 @@ function Form({ formType }) {
                   onChange={onChange}
                   required
                 />
-                <label className="form-check-label" for="flexRadioConsent1">
                   Yes
                 </label>
               </div>

@@ -14,7 +14,7 @@ import WorkBlock from './Work/WorkBlock';
 import ProcessBlock from './Process/ProcessBlock';
 import LinksCard from './LinksCard/LinksCard';
 
-export default function Blocks({ blocks, usePrimaryHeading = false }) {
+export default function Blocks({ blocks, usePrimaryHeading = false, posts = []}) {
   return (
     <>
       {blocks.map((block, index) => {
@@ -47,7 +47,6 @@ export default function Blocks({ blocks, usePrimaryHeading = false }) {
             return <Share key={block.id} block={block} />;
           case 'DatoCmsLinksCard':
             return <LinksCard key={block.id} block={block} />;
-
           default:
             return null;
         }

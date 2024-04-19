@@ -62,7 +62,7 @@ function Footer({ isLanding = false, customLogo = null }) {
                 href={`${link.url}`}
                 target="_blank"
                 rel="noopener noreferrer"
-              ></a>
+              >{link.socialNetwork}</a>
             ))}
           </div>
         </div>
@@ -80,7 +80,7 @@ function Footer({ isLanding = false, customLogo = null }) {
                 href={`${link.url}`}
                 target="_blank"
                 rel="noopener noreferrer"
-              ></a>
+              >{link.socialNetwork}</a>
             ))}
           </div>
 

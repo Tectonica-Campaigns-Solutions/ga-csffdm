@@ -23,9 +23,11 @@
     height: 45px;
     width: 45px;
     background-repeat: no-repeat;
+    color: transparent!important;
 
     &.facebook-btn {
       background-image: url('../../Icons/social-media-icons-facebook.svg');
+      
 
       &:hover {
         background-image: url('../../Icons/social-media-icons-facebook-hover.svg');

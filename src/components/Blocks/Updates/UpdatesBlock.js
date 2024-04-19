@@ -7,7 +7,7 @@ import Cta from '../../Global/Cta/Cta';
 import './styles.scss';
 
 const UpdatesBlock = ({ block }) => {
-  const { headline, introduction, cta = [], items = [], backgroundImage = null } = block;
+  const { headline, introduction, cta = [], backgroundImage = null } = block;
   const bgImageUrl = backgroundImage?.gatsbyImageData?.images?.fallback?.src;
 
   const updatesPosts = useStaticQuery(graphql`

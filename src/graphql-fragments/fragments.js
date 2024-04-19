@@ -594,4 +594,13 @@ export const DatoCMS = graphql`
       }
     }
   }
+
+  fragment BlockRelatedContent on DatoCmsRelatedContent {
+    __typename
+    id: originalId
+    introduction
+    headline
+    typeOfContent
+  }
 `;
+
