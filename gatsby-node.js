@@ -19,6 +19,7 @@ exports.createPages = ({ graphql, actions }) => {
       resources: path.resolve('./src/templates/Resources.js'),
       resource: path.resolve('./src/templates/Resource.js'),
       form: path.resolve('./src/templates/Form.js'),
+      meeting: path.resolve('./src/templates/UNMeeting.js'),
     };
 
     resolve(
@@ -136,6 +137,17 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
+
+          meetings: allDatoCmsUnMeeting {
+            edges {
+              node {
+                id
+                title
+                slug
+              }
+            }
+          }
+
         }
       `).then((result) => {
         if (result.errors) {
@@ -306,6 +318,19 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         }
+
+        const meetings = result.data.meetings.edges;
+        for (const meeting of meetings) {
+          createPage({
+            path: meeting.node.slug,
+            component: templates.meeting,
+            context: {
+              slug: meeting.node.slug,
+              id: meeting.node.id,
+            },
+          });
+        }
+
       })
     );
   });
@@ -317,15 +342,6 @@ exports.onCreateWebpackConfig = ({ actions }) => {
       new FilterWarningsPlugin({
         exclude: /mini-css-extract-plugin[^]*Conflicting order. Following module has been added:/,
       }),
-      /*new webpack.NormalModuleReplacementPlugin(
-        /@gatsbyjs\/reach-router\/dist\/index\.js/,
-        resource => {
-          resource.request = path.resolve(
-            __dirname,
-            'node_modules/@gatsbyjs/reach-router/dist/index.js'
-          ).replace(/\\/g, '/');
-        }
-      ),*/
     ],
   });
 };
