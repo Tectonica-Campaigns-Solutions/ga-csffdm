@@ -57,6 +57,78 @@
     max-height: 100%;
     // z-index: 1;
   }
+
+  &.past-events {
+
+    padding: 0 0 100px;
+    .h4 {
+      font-size: 1.938rem;
+      font-weight: 600;
+    }
+  }
+
+  &.meetings {
+    background-color: #E4F1FA;
+
+    &.future-meeting {
+      padding-bottom: 0;
+
+      .event-card.meeting {
+        background-color: transparent;
+        color: var(--dark);
+        padding: 0;
+        height: 356px;
+
+        .event-card-data {
+          padding-top: 2rem;
+        }
+
+        .basic-info {
+
+          h4 { 
+            color: var(--dark-blue);
+            font-size: 1.938rem;
+          }
+
+          .introduction {
+            color: var(--dark);
+            max-width: none;
+          }
+        }
+
+        .metadata {
+          background: url('../../Icons/unmeeting-icon.svg') no-repeat left center;
+          
+
+          .date {
+            color: var(--dark-blue);
+          }
+        }
+
+        .image {
+          max-width: 45%;
+          height: 100%;
+          float: left;
+          background-color: white;
+          margin-right: 1.5rem;
+          padding: 1.5rem;
+        }
+      }
+    }
+
+    &.past-meetings {
+
+      .h4 {
+        font-size: 1.938rem;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &.news {
+    background-color: rgba(248, 243, 234, 0.40);
+    padding: 50px 0;
+  }
 }
 
 @media screen and (max-width:992px) {

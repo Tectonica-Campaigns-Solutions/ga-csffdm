@@ -3,27 +3,31 @@
 }
 
 .event-card {
-  background: var(--cream);
-  margin-bottom: 22px;
-  padding: 48px 41px;
+  background: #ECF4FF;
+  border-top: 1px solid var(--dark-blue);
+  padding: 25px 30px;
   text-decoration: none;
   color: initial;
 
-  display: grid;
+  display: block;
   gap: 41px;
   grid-template-columns: .6fr 2fr 1fr;
+  min-height: 390px;
 
   .metadata {
+    background: url('../../Icons/icon-calendar.svg') no-repeat left center;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    padding-left: 44px;
+    height: 52px;
+    margin-bottom: 15px;
 
     .date {
       color: var(--black);
-      font-family: var(--secondary-font);
-      font-size: 20px;
+      font-family: var(--neue-font);
+      font-size: 16px;
       font-style: normal;
-      font-weight: 450;
+      font-weight: 500;
       line-height: 130%;
     }
 
@@ -43,13 +47,18 @@
         letter-spacing: 0.06px;
       }
     }
+
+    .tag {
+      margin-bottom: 5px;
+      text-transform: capitalize;
+    }
   }
 
   .basic-info {
     h4 {
-      color: var(--black);
+      color: var(--dark-blue);
       font-family: var(--primary-font);
-      font-size: 31px;
+      font-size: 1.563rem;
       font-style: normal;
       font-weight: 600;
       line-height: 115%;
@@ -60,7 +69,7 @@
 
     .introduction {
       color: var(--black);
-      font-family: var(--secondary-font);
+      font-family: var(--neue-font);
       font-size: 20px;
       font-style: normal;
       font-weight: 450;
@@ -89,8 +98,6 @@
   }
 
   &:hover {
-    background-color: var(--primary-color-lighter);
-    box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
 
     .custom-btn {
       background-color: var(--primary-color);
@@ -98,6 +105,42 @@
       border-color: transparent;
     }
   }
+
+  &.meeting {
+    background-color: var(--blue);
+    color: var(--white);
+    border-top: none;
+
+    .metadata {
+      background: url('../../Icons/unmeeting-inverted-icon.svg') no-repeat left center;
+      gap: 0;
+      height: 57px;
+      margin-bottom: 1rem;
+      padding-left: 4.5rem;
+
+      .date {
+        color: var(--white);
+      }
+    }
+
+    .basic-info {
+      color: var(--white);
+
+      h4 {
+        color: var(--white);
+      }
+
+      .introduction {
+        color: var(--white);
+      }
+
+    }
+
+    &:hover {
+      background-color: darken(#3498DB, 5);
+    }
+  }
+
 }
 
 @media screen and (max-width: 992px) {

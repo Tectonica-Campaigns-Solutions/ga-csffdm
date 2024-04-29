@@ -10,7 +10,7 @@ import RelatedContent from '../components/Blocks/RelatedContent/RelatedContent';
 
 import './basic.scss';
 
-const Work = ({ pageContext, data: { work, favicon, updates, resources, meetings, events, pastEvents } }) => {
+const Work = ({ pageContext, data: { work, favicon, updates, resources, meetings, events, pastEvents, upcomingMeeting } }) => {
   const { title, introduction, image, content, seo, blocks = [] } = work;
 
   return (
@@ -21,28 +21,33 @@ const Work = ({ pageContext, data: { work, favicon, updates, resources, meetings
       <div className="container page-content">
         <ShareButtons />
         {content?.value && <StructuredTextDefault content={content} />}
-        {blocks && <Blocks blocks={blocks} />}
       </div>
-      <div className="container">
+      
       {blocks.map((block) => {
           if (block.__typename === 'DatoCmsRelatedContent') 
-              console.log(block);
               if (block.typeOfContent === 'news')
                 return <RelatedContent key={block.id} block={block} posts={updates} />;
               else if (block.typeOfContent === 'resources')
                 return <RelatedContent key={block.id} block={block} posts={resources} />;
               else if (block.typeOfContent === 'meetings')
-                return <RelatedContent key={block.id} block={block} posts={meetings} />;
+                return (
+                <>
+                  <RelatedContent key={block.id} block={block} posts={upcomingMeeting} blockHeadline="Feature UN Meeting" extraClassNames="future-meeting" />
+                  <RelatedContent key={block.id} block={block} posts={meetings} blockHeadline="Other UN Meetings" extraClassNames="past-meetings" />
+                </>
+                );
               else if (block.typeOfContent === 'events')
                 return (
                 <>
-                  <RelatedContent key={block.id} block={block} posts={events} />
-                  <RelatedContent key="pastEvents" block={block} posts={pastEvents} blockHeadline="Past Events" />
+                  <RelatedContent key={block.id} block={block} posts={events} extraClassNames="future-events" />
+                  <RelatedContent key="pastEvents" block={block} posts={pastEvents} blockHeadline="Past Events" extraClassNames="past-events"/>
                 </>
               )
           }
         )}
-      </div>
+
+      {blocks && <Blocks blocks={blocks} />}
+
     </Layout>
   );
 };
@@ -64,9 +69,9 @@ export const WorkQuery = graphql`
         alt
         gatsbyImageData
       }
-      ##content {
-      ## value
-      ##}
+      content {
+       value
+      }
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
@@ -133,6 +138,9 @@ export const WorkQuery = graphql`
           gatsbyImageData
           alt
         }
+        tags {
+          title
+        }
       }
     }
     events: allDatoCmsEvent(filter: {tags: {elemMatch: {title: {eq: $tag}}}, date: {gte: $today}}, limit: 3) {
@@ -160,6 +168,40 @@ export const WorkQuery = graphql`
           height
           gatsbyImageData
           alt
+        }
+      }
+    }
+    upcomingMeeting: allDatoCmsUnMeeting(filter: {tags: {elemMatch: {title: {eq: $tag}}}, date: {gte: $today}}, limit: 1) {
+      nodes {
+        title
+        slug
+        date
+        introduction
+        image {
+          width
+          height
+          gatsbyImageData
+          alt
+        }
+        tags {
+          title
+        }
+      }
+    }
+    meetings: allDatoCmsUnMeeting(filter: {tags: {elemMatch: {title: {eq: $tag}}}, date: {lt: $today}}, limit: 3) {
+      nodes {
+        title
+        slug
+        date
+        introduction
+        image {
+          width
+          height
+          gatsbyImageData
+          alt
+        }
+        tags {
+          title
         }
       }
     }

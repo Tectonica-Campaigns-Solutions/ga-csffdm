@@ -7,6 +7,7 @@ import SocialLinkList from '../components/Global/SocialLink/SocialLinkList';
 import CountryDropdown from '../components/Blocks/Form/CountryDropdown';
 import '../components/Blocks/FormBlock/styles.scss';
 import '../components/Blocks/Form/styles.scss';
+import addToMailchimp from 'gatsby-plugin-mailchimp'
 
 const Form = ({ pageContext, data: { form, favicon } }) => {
   const { title, formType, introduction, backgroundColor, backgroundImage, seo } = form;
@@ -69,7 +70,10 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
 
     appendAlert('Submitting data...', 'primary');
 
+    const result = await addToMailchimp(data.email, data)
+
     // Send data to server
+    /*
     try {
       const zapierHook =
         lastname == ''
@@ -92,6 +96,7 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
       removeAlerts();
       appendAlert('Your data could not be sent. Please, try again.', 'danger');
     }
+    */
   };
 
   const onSubmit = (event) => {
