@@ -23,23 +23,71 @@ const DropdownItem = ({ link, label, children }) => {
   };
 
   const mouseLeave = () => {
-    setDropdownOpen(false);
+    if (link.hasMegaMenu === false) setDropdownOpen(false);
   };
 
+  const openMegamenu = () => {
+    document.getElementById('megamenu').classList.add('open');
+  };
+
+  const closeMegamenu = () => {
+    document.getElementById('megamenu').classList.remove('open');
+  };
+
+  console.log(children);
   return (
-    <li className="dropdown nav-item" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
+    <li
+      className="dropdown nav-item"
+      onMouseEnter={() => {
+        mouseEnter();
+        if (link.hasMegaMenu) {
+          openMegamenu();
+        } else {
+          closeMegamenu();
+        }
+      }}
+      onMouseLeave={() => {
+        if (link.hasMegaMenu === false) {
+          mouseLeave();
+        }
+      }}
+    >
       <Link to={link} type="button" aria-label="Expand" aria-expanded="false" data-bs-toggle="dropdown">
         {label}
       </Link>
 
-      <ul className={`dropdown-menu ${dropdownOpen ? 'open' : null}`}>
-        {children
+      <ul
+        id={`${link.hasMegaMenu ? 'megamenu' : label.toLowerCase().replace(/ /g, '_')}`}
+        className={`dropdown-menu ${link.hasMegaMenu ? 'megamenu column-count-' + children.length : null} ${dropdownOpen ? 'open' : null}`}
+        onMouseLeave={closeMegamenu}
+      >
+        {
+        children
           ?.sort((a, b) => a.position - b.position)
           .map((link) => (
+            //console.log(link),
             <li className="dropdown-item" key={link.id}>
-              <Link className="dropdown-link" to={link}>
-                {link?.title}
-              </Link>
+              
+              { link?.treeChildren && link?.treeChildren.length === 0 &&  (
+                <Link className="dropdown-link" to={link} onClick={openMegamenu}>
+                  <div className="dropdown-title">{link?.title}</div>
+                  {link.introText && <div className='introtext' dangerouslySetInnerHTML={{ __html: link?.introText }} ></div>}
+                </Link>
+              )}
+
+              { link?.treeChildren && link?.treeChildren.length > 0 && (
+              <div className="dropdown-link" to={link}>
+                <div className="dropdown-title">{link?.title}</div>
+                    <ul className="megamenu-col">
+                      {link.treeChildren.sort((a, b) => a.position - b.position).map((subLink) => (
+                        console.log('Sublink', subLink),
+                        <li key={subLink.id}>
+                          <Link to={`/conference/${link?.content?.slug}/${subLink?.conferenceTheme?.slug}/${subLink?.content?.slug}`}>{subLink?.title}</Link>
+                        </li>
+                      ))}
+                    </ul>
+              </div>
+              )}
             </li>
           ))}
       </ul>

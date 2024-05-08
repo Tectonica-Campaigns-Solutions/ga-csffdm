@@ -7,7 +7,7 @@ import './styles.scss';
 import ResourceCard from '../Resources/ResourceCard';
 
 export const RelatedContent = ({ block, posts, blockHeadline = '', extraClassNames = '' }) => {
-  const { headline, introduction, typeOfContent } = block;
+  const { headline, introduction, typeOfContent, cta } = block;
 
   const itemsSorted = [...posts.nodes];
   const featured = extraClassNames.includes('future');
@@ -16,7 +16,7 @@ export const RelatedContent = ({ block, posts, blockHeadline = '', extraClassNam
     <Section
       headline={blockHeadline === '' ? headline : blockHeadline}
       introduction={introduction}
-      cta=""
+      cta={cta}
       bgImage=""
       extraClassNames={`${typeOfContent} ${extraClassNames}`}
       hClass="h4"

@@ -3,6 +3,7 @@ import { Link as GatsbyLink } from 'gatsby';
 import { getCtaUrl } from '../../../utils';
 
 const Link = ({ to, children, ...rest }) => {
+  
   if (typeof to === 'string') {
     return (
       <GatsbyLink to={to} {...rest}>
@@ -12,6 +13,14 @@ const Link = ({ to, children, ...rest }) => {
   } else if (to?.slug || to?.content?.slug || to?.link?.content) {
     const url = getCtaUrl(to);
 
+    /*
+    if (to?.content?.model.apiKey === 'conference_subtopic') {
+      console.log('To', to);
+      const lnk = '/conference/' + to?.content?.slug + '/' + to?.content?.slug;
+      console.log(lnk);
+    }
+    */
+    
     return (
       <GatsbyLink to={url} {...rest}>
         {children}

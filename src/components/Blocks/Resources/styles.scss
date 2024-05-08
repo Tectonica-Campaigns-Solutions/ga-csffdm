@@ -46,7 +46,7 @@
     font-size: 1.3rem;
     font-style: normal;
     line-height: 1.2;
-    letter-spacing: 0.06px;
+    letter-spacing: 1.5px;
     margin-top: 4rem;
   }
 
@@ -59,7 +59,8 @@
     font-family: var(--neue-font);
     margin: 0.75rem 0;
     display: block;
-    color: var(--white)
+    color: var(--white);
+    letter-spacing: 1.5px;
   }
 
   .custom-btn-primary {

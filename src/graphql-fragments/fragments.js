@@ -7,6 +7,7 @@ export const DatoCMS = graphql`
     position
     externalUrl
     isButton
+    hasMegaMenu
     content {
       ... on DatoCmsResource {
         slug
@@ -80,13 +81,59 @@ export const DatoCMS = graphql`
           apiKey
         }
       }
+      ... on DatoCmsGlobalLink {
+        id
+        content {
+          ... on DatoCmsBasicPage {
+            id
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsForm {
+            id
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsConference {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsConferenceTheme {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsConferenceSubtopic {
+            slug
+            model {
+              apiKey
+            }
+          }
+        }
+      }
     }
+    conferenceTheme {
+        ... on DatoCmsConferenceTheme {
+          slug
+          model {
+            apiKey
+          }
+        }
+      }
     treeChildren {
       ... on DatoCmsMenuItem {
         id
         title
         position
         externalUrl
+        introText
         content {
           ... on DatoCmsResource {
             slug
@@ -152,6 +199,197 @@ export const DatoCMS = graphql`
             slug
             model {
               apiKey
+            }
+          }
+          ... on DatoCmsConferenceTheme {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsConferenceSubtopic {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsGlobalLink {
+            id
+            content {
+              ... on DatoCmsBasicPage {
+                id
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsForm {
+                id
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsConference {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsConferenceTheme {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsConferenceSubtopic {
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+        conferenceTheme {
+          ... on DatoCmsConferenceTheme {
+            slug
+            model {
+              apiKey
+            }
+          }
+        }
+      }
+      treeChildren {
+        ... on DatoCmsMenuItem {
+          id
+          title
+          position
+          externalUrl
+          introText
+          content {
+            ... on DatoCmsResource {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsEvent {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsWork {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsEvent {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsPost {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsAreasOfWork {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsBasicPage {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsNews {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsGovernance {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsForm {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsConference {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsConferenceTheme {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsConferenceSubtopic {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsGlobalLink {
+              id
+              content {
+                ... on DatoCmsBasicPage {
+                  id
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsForm {
+                  id
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsConference {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsConferenceTheme {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsConferenceSubtopic {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+              }
+            }
+          }
+          conferenceTheme {
+            ... on DatoCmsConferenceTheme {
+              slug
+              model {
+                apiKey
+              }
             }
           }
         }
@@ -554,6 +792,18 @@ export const DatoCMS = graphql`
     }
   }
 
+  fragment BlockImage on DatoCmsImage {
+    __typename
+    id: originalId
+    image {
+      alt
+      url
+      title
+      width
+      height
+    }
+  }
+
   fragment BlockTable on DatoCmsTable {
     __typename
     id: originalId
@@ -601,6 +851,41 @@ export const DatoCMS = graphql`
     introduction
     headline
     typeOfContent
+    cta {
+      ... on DatoCmsCta {
+        id: originalId
+        title
+        isButton
+        style
+        link {
+          ... on DatoCmsGlobalLink {
+            id
+            content {
+              ... on DatoCmsBasicPage {
+                id
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsResourcesModel {
+                id
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsNews {
+                id
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 `;
-

@@ -66,6 +66,14 @@ export const PageQuery = graphql`
         ... on DatoCmsSimpleText {
           ...BlockText
         }
+        ... on DatoCmsImage {
+          __typename
+          id: originalId
+          image {
+            alt
+            gatsbyImageData
+          }
+        }
         ... on DatoCmsVideoBlock {
           ...BlockVideo
         }

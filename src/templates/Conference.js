@@ -12,6 +12,8 @@ const Conference = ({ pageContext, data: { conference, prevConferences, favicon 
 
   const mainTheme = Array.isArray(themes[0]?.subtopics) ? themes[0].subtopics[0] : null;
 
+  const filteredPrevConferences = mappedPrevConferences.filter(event => event.eventType === conference.eventType);
+
   return (
     <Layout>
       <SeoDatoCMS seo={seo} favicon={favicon} />
@@ -19,7 +21,8 @@ const Conference = ({ pageContext, data: { conference, prevConferences, favicon 
         title={title}
         description={description}
         image={heroImage}
-        previousConferences={mappedPrevConferences}
+        previousConferences={filteredPrevConferences}
+        eventType={conference.eventType}
       />
 
       <ConferenceWrapper themes={themes} themeFirstActive parentSlug={slug}>
@@ -48,6 +51,7 @@ export const ConferenceQuery = graphql`
         id
         title
         slug
+        eventType
       }
     }
     conference: datoCmsConference(id: { eq: $id }) {
@@ -55,6 +59,7 @@ export const ConferenceQuery = graphql`
       title
       slug
       description
+      eventType
       heroImage {
         alt
         url
@@ -96,10 +101,10 @@ export const ConferenceQuery = graphql`
                           isButton
                           style
                           link {
-                            ... on DatoCmsGlobalLink {
-                              label
-                              externalUrl
-                              content {
+                            #... on DatoCmsGlobalLink {
+                            #  label
+                            #  externalUrl
+                            #  content {
                                 ... on DatoCmsHome {
                                   model {
                                     apiKey
@@ -184,8 +189,11 @@ export const ConferenceQuery = graphql`
                                 ##}
                                 ##}
                               }
-                            }
-                          }
+                              model {
+                                apiKey
+                              }
+                            #}
+                          #}
                         }
                       }
                     }

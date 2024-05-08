@@ -13,8 +13,9 @@ import UpdatesBlock from './Updates/UpdatesBlock';
 import WorkBlock from './Work/WorkBlock';
 import ProcessBlock from './Process/ProcessBlock';
 import LinksCard from './LinksCard/LinksCard';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
-export default function Blocks({ blocks, usePrimaryHeading = false, posts = []}) {
+export default function Blocks({ blocks, usePrimaryHeading = false, fixedCard = true, homePage = true}) {
   return (
     <>
       {blocks.map((block, index) => {
@@ -24,7 +25,7 @@ export default function Blocks({ blocks, usePrimaryHeading = false, posts = []})
           case 'DatoCmsCalendarBlock':
             return <CalendarBlock key={block.id} block={block} />;
           case 'DatoCmsResourcesBlock':
-            return <ResourcesBlock key={block.id} block={block} />;
+            return <ResourcesBlock key={block.id} block={block} withFixedCard={fixedCard} homePage={homePage} />;
           case 'DatoCmsUpdatesBlock':
             return <UpdatesBlock key={block.id} block={block} />;
           case 'DatoCmsFormBlock':
@@ -47,6 +48,14 @@ export default function Blocks({ blocks, usePrimaryHeading = false, posts = []})
             return <Share key={block.id} block={block} />;
           case 'DatoCmsLinksCard':
             return <LinksCard key={block.id} block={block} />;
+          case 'DatoCmsImage':
+            return (
+              <div className='image-block'>
+                <div className='container'>
+                  <GatsbyImage key={block.id} image={block.image.gatsbyImageData} alt={block.image.alt}  />
+                </div>
+              </div>
+            );
           default:
             return null;
         }

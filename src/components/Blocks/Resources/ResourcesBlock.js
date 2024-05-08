@@ -6,8 +6,8 @@ import Cta from '../../Global/Cta/Cta';
 
 import './styles.scss';
 
-const ResourcesBlock = ({ block }) => {
-  const { headline, introduction, cta = [], fixedCardTitle, fixedCardLink, fixedCardIntro } = block;
+const ResourcesBlock = ({ block, withFixedCard = false, homePage = true }) => {
+  const { headline, introduction, cta = [], fixedCardTitle, fixedCardLink, fixedCardIntro, items = [] } = block;
 
   const resourcesPosts = useStaticQuery(graphql`
     query allResources {
@@ -29,7 +29,7 @@ const ResourcesBlock = ({ block }) => {
     }
   `);
 
-  const itemsSorted = [...resourcesPosts.allDatoCmsResource.nodes];
+  const itemsSorted = homePage ? [...resourcesPosts.allDatoCmsResource.nodes] : [...items];
   const fixedCard = {
     title: fixedCardTitle,
     slug: fixedCardLink,
@@ -39,12 +39,14 @@ const ResourcesBlock = ({ block }) => {
   return (
     <Section headline={headline} introduction={introduction} cta={cta} hClass="h4" extraClassNames="resources-section">
       <div className="row">
+        { withFixedCard && (
         <div className="col-lg-4">
           <ResourceCard resource={fixedCard} className="fixedCard" />
         </div>
+        )}
 
         {itemsSorted.map((item) => (
-          <div className="col-lg-4" key={item.id}>
+          <div className={ itemsSorted.length > 2 ? "col-lg-6" : "col-lg-4" }  key={item.id}>
             <ResourceCard resource={item} />
           </div>
         ))}

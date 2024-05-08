@@ -4,17 +4,18 @@ import Dropdown from '../../../Global/Inputs/Dropdown/Dropdown';
 
 import './styles.scss';
 
-const ConferenceHero = ({ title, description, image, previousConferences = [], isInnerPage = false }) => {
+const ConferenceHero = ({ title, description, image, previousConferences = [], isInnerPage = false, eventType }) => {
   const handleOnSelectPrevConference = (value) => {
     if (!value) return;
     navigate('/conference/' + value);
   };
 
+  const dropdownLabel = eventType == 'conference' ? 'Browse Previous Conferences' : 'Browse Past Forums';
   return (
     <>
       <div className="previous-conferences-wrapper">
         <Dropdown
-          title="Browse Previous Conferences"
+          title={dropdownLabel}
           onSelect={handleOnSelectPrevConference}
           options={previousConferences.map((c) => ({ value: c.slug, label: c.title }))}
         />

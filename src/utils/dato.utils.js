@@ -7,10 +7,12 @@ export const pathToModel = (model = null, slug = '') => {
     return `/post/${slug}`;
   } else if (model === 'organization') {
     return `/organization/${slug}`;
-  } else if (model === 'resource ') {
+  } else if (model === 'resource') {
     return `/campaign-resources-and-tools/${slug}`;
-  } else if (model === 'form ') {
+  } else if (model === 'form') {
     return `/take-action/${slug}`;
+  } else if (model === 'conference') {
+    return `/conference/${slug}`;    
   } else {
     return `/${slug}`;
   }

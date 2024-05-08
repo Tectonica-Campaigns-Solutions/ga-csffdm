@@ -27,13 +27,49 @@
         font-style: normal;
         font-weight: 450;
         line-height: 145%;
-        letter-spacing: 0.06px;
+        letter-spacing: 1.5px;
+      }
+
+      .generic-card-grid {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
       }
     }
   }
 
   .mobile-toggle-sidebar {
     display: none;
+  }
+
+  .blocks-wrapper {
+
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .content {
+      display: flex;
+      gap: 1rem;
+
+      .event-card {
+        max-width: 50%;
+      }
+    }
+
+    .app-section .header .h4 {
+      color: var(--dark-blue);
+      font-size: 1.938rem;
+    }
+
+    .resources-section {
+      padding-top: 1rem;
+
+      .resource-card {
+        max-height: 450px;
+        margin-bottom: 1.5rem;
+      }
+    }
   }
 }
 
@@ -54,7 +90,7 @@
 
         p {
           font-size: 18px;
-          letter-spacing: 0.054px;
+          letter-spacing: 1.5px;
         }
       }
     }
