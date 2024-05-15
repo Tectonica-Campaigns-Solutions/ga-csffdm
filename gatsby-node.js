@@ -20,6 +20,7 @@ exports.createPages = ({ graphql, actions }) => {
       resource: path.resolve('./src/templates/Resource.js'),
       form: path.resolve('./src/templates/Form.js'),
       meeting: path.resolve('./src/templates/UNMeeting.js'),
+      pressReleases: path.resolve('./src/templates/PressReleases.js'),
     };
 
     resolve(
@@ -52,6 +53,9 @@ exports.createPages = ({ graphql, actions }) => {
                 id
                 slug
                 title
+                tags {
+                  title
+                }
               }
             }
           }
@@ -148,6 +152,12 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
 
+          pressReleases: datoCmsPressReleasesModel {
+            id
+            title
+            slug
+          }
+
         }
       `).then((result) => {
         if (result.errors) {
@@ -216,12 +226,14 @@ exports.createPages = ({ graphql, actions }) => {
 
         const posts = result.data.posts.edges;
         for (const post of posts) {
+          const tags = post.node.tags.map((tag) => tag.title); 
           createPage({
             path: '/post/' + post.node.slug,
             component: templates.post,
             context: {
               slug: post.node.slug,
               id: post.node.id,
+              tags: tags,
             },
           });
         }
@@ -327,6 +339,18 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: meeting.node.slug,
               id: meeting.node.id,
+            },
+          });
+        }
+
+        const pressReleases = result.data.pressReleases;
+        if (pressReleases) {
+          createPage({
+            path: pressReleases.slug,
+            component: templates.pressReleases,
+            context: {
+              slug: pressReleases.slug,
+              id: pressReleases.id,
             },
           });
         }

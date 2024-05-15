@@ -28,7 +28,7 @@ const Breadcrumb = ({ breadcrumb = null, currentPage }) => {
         {breadcrumb && (
           <>
             <li>
-              <Link to={breadcrumb}>{breadcrumb.title}</Link>
+              <Link to={breadcrumb.url}>{breadcrumb.title}</Link>
             </li>
             {renderSeparator()}
           </>

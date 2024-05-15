@@ -13,8 +13,8 @@ export const pathToModel = (model = null, slug = '') => {
     return `/take-action/${slug}`;
   } else if (model === 'conference') {
     return `/conference/${slug}`;
-  } else if (model === 'conference_subtopic') {
-    return `/conference/${slug}`;
+  /*} else if (model === 'conference_subtopic') {
+    return `/conference/${slug}`;*/
   } else {
     return `/${slug}`;
   }

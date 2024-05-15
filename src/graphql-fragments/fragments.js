@@ -81,6 +81,12 @@ export const DatoCMS = graphql`
           apiKey
         }
       }
+      ... on DatoCmsPressReleasesModel {
+        slug
+        model {
+          apiKey
+        }
+      }
       ... on DatoCmsGlobalLink {
         id
         content {

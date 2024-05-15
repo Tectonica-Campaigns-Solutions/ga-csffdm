@@ -10,7 +10,7 @@ import ShareButtons from '../components/Global/ShareButtons/ShareButtons';
 const Page = ({ pageContext, data: { page, favicon } }) => {
   const { seo, title, introduction, image, blocks = [] } = page;
 
-  console.log(blocks);
+  //console.log(blocks);
   const renderMainContent = () => (
     <>
       <Blocks blocks={blocks} />

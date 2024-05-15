@@ -4,14 +4,14 @@ import Layout from '../components/Layout/Layout';
 import SeoDatoCMS from '../components/Layout/SeoDatocms';
 import Blocks from '../components/Blocks/Blocks';
 import PostCard from '../components/Blocks/Updates/PostCard';
-import HeroPost from '../components/Global/HeroPost/HeroPost';
 import Dropdown from '../components/Global/Inputs/Dropdown/Dropdown';
 import ListPaginated from '../components/Global/Pagination/ListPaginated';
+import HeroBasic from '../components/Global/HeroBasic/HeroBasic';
 
 import './basic.scss';
 
 function NewsDistributor({ pageContext, data: { page, news = [], favicon } }) {
-  const { seo, title, highlightedPost, blocks = [], introduction } = page;
+  const { seo, title, blocks = [], introduction } = page;
 
   const rawPosts = news.edges.map((e) => e.node);
 
@@ -41,7 +41,7 @@ function NewsDistributor({ pageContext, data: { page, news = [], favicon } }) {
   return (
     <Layout>
       <SeoDatoCMS seo={seo} favicon={favicon} />
-      {highlightedPost && <HeroPost post={highlightedPost} currentPage={title} />}
+      <HeroBasic title={title}  currentPage={title} />
 
       <div className="container basic-layout">
         {introduction && introduction.length > 0 && (
@@ -99,29 +99,10 @@ export const NewsDistributorQuery = graphql`
         tags
       }
     }
-    page: datoCmsNews {
+    page: datoCmsPressReleasesModel {
       id
       title
       introduction
-      highlightedPost {
-        ... on DatoCmsPost {
-          id
-          title
-          slug
-          date
-          introduction
-          tags {
-            ...Tags
-          }
-          mainImage {
-            alt
-            gatsbyImageData
-          }
-          model {
-            apiKey
-          }
-        }
-      }
       blocks {
         ... on DatoCmsFormBlock {
           ...BlockForm
@@ -131,7 +112,7 @@ export const NewsDistributorQuery = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
     }
-    news: allDatoCmsPost(filter: {typeOfPost: {eq: "news"}}) {
+    news: allDatoCmsPost(filter: {typeOfPost: {eq: "press_release"}}) {
       edges {
         node {
           id

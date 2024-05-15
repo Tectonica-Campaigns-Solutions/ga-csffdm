@@ -12,6 +12,7 @@
       h2 {
         color: var(--dark-blue);
       }
+
     }
   }
 }
@@ -41,10 +42,20 @@
   &.light_blue {
     background-color: rgba(55, 85, 127, 0.20);
     border-top: 2px solid var(--dark-blue);
+
+    h2 {
+      color: var(--dark-blue)!important;
+    }
+
+    .form-block {
+      p {
+        color: var(--dark);
+      }
+    }
   }
 
   .form-block {
-    padding: 49px 0;
+    padding: 40px 15px;
     min-height: 304px;
 
     h2 {

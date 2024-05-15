@@ -26,6 +26,8 @@
 .work-card {
   padding: 50px 31px;
   background: var(--yellow);
+  min-height: 552px;
+  position: relative;
 
   a {
     text-decoration: none;
@@ -58,6 +60,8 @@
     .workIcon {
       max-height: 75px;
       width: auto;
+      position: absolute ;
+      bottom: 50px;
     }
   }
 

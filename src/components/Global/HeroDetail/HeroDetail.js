@@ -7,13 +7,17 @@ import Cta from '../Cta/Cta';
 
 const HeroDetail = ({ currentPage, title, description, link = null, image, type = null }) => {
 
+  const breadcrumb = {
+    title: 'Areas of Work',
+    url: '/areas-of-work'
+  }
 
   return (
     <div className="hero-detail">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <Breadcrumb currentPage={currentPage} />
+            <Breadcrumb currentPage={currentPage} breadcrumb={breadcrumb}/>
           </div>
 
           {type === 'organization' && (

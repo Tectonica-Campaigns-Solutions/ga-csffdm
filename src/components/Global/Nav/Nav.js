@@ -34,7 +34,7 @@ const DropdownItem = ({ link, label, children }) => {
     document.getElementById('megamenu').classList.remove('open');
   };
 
-  console.log(children);
+  //console.log(children);
   return (
     <li
       className="dropdown nav-item"
@@ -80,7 +80,7 @@ const DropdownItem = ({ link, label, children }) => {
                 <div className="dropdown-title">{link?.title}</div>
                     <ul className="megamenu-col">
                       {link.treeChildren.sort((a, b) => a.position - b.position).map((subLink) => (
-                        console.log('Sublink', subLink),
+                        //console.log('Sublink', subLink),
                         <li key={subLink.id}>
                           <Link to={`/conference/${link?.content?.slug}/${subLink?.conferenceTheme?.slug}/${subLink?.content?.slug}`}>{subLink?.title}</Link>
                         </li>
