@@ -5,6 +5,8 @@ export const pathToModel = (model = null, slug = '') => {
     return `/work/${slug}`;
   } else if (model === 'post') {
     return `/post/${slug}`;
+  } else if (model === 'event') {
+    return `/event/${slug}`;
   } else if (model === 'organization') {
     return `/organization/${slug}`;
   } else if (model === 'resource') {

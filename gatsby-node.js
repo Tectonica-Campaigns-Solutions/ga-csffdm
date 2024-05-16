@@ -21,6 +21,8 @@ exports.createPages = ({ graphql, actions }) => {
       form: path.resolve('./src/templates/Form.js'),
       meeting: path.resolve('./src/templates/UNMeeting.js'),
       pressReleases: path.resolve('./src/templates/PressReleases.js'),
+      eventsDistributor: path.resolve('./src/templates/EventsDistributor.js'),
+      event: path.resolve('./src/templates/Event.js'),
     };
 
     resolve(
@@ -156,6 +158,24 @@ exports.createPages = ({ graphql, actions }) => {
             id
             title
             slug
+          }
+
+          eventsDistributor: datoCmsEventsModel {
+            id
+            title
+            slug
+          }
+          events: allDatoCmsEvent {
+            edges {
+              node {
+                id
+                slug
+                title
+                tags {
+                  title
+                }
+              }
+            }
           }
 
         }
@@ -351,6 +371,31 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: pressReleases.slug,
               id: pressReleases.id,
+            },
+          });
+        }
+
+        const eventsDistributor = result.data.eventsDistributor;
+        if (eventsDistributor) {
+          createPage({
+            path: eventsDistributor.slug,
+            component: templates.eventsDistributor,
+            context: {
+              slug: eventsDistributor.slug,
+            },
+          });
+        }
+
+        const events = result.data.events.edges;
+        for (const event of events) {
+          const tags = event.node.tags.map((tag) => tag.title); 
+          createPage({
+            path: '/event/' + event.node.slug,
+            component: templates.event,
+            context: {
+              slug: event.node.slug,
+              id: event.node.id,
+              tags: tags,
             },
           });
         }

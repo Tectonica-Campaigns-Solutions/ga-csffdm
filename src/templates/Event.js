@@ -10,22 +10,22 @@ import TagList from '../components/Global/Tag/TagList';
 import ShareButtons from '../components/Global/ShareButtons/ShareButtons';
 import Blocks from '../components/Blocks/Blocks';
 import Section from '../components/Layout/Section/Section';
-import PostCard from '../components/Blocks/Updates/PostCard';
+import EventCard from '../components/Blocks/Calendar/EventCard';
 import Cta from '../components/Global/Cta/Cta';
 import './basic.scss';
 
-const Post = ({ pageContext, data: { post, favicon, updates } }) => {
-  const { title, date, tags = [], introduction, mainImage, content, seo, blocks = [] } = post;
+const Post = ({ pageContext, data: { event, favicon, events } }) => {
+  const { title, date, introduction, tags = [], mainImage, content, seo, blocks = [] } = event;
 
   const breadcrumb = {
     title: 'News & Events',
-    url: '/news',
+    url: '/events',
   };
 
-  const itemsSorted = [...updates.nodes];
+  const itemsSorted = [...events.nodes];
   const updatesCta = {
-    url: '/news',
-    externalTitle: 'Explore all the updates',
+    url: '/events',
+    externalTitle: 'Explore all the events',
     isButton: true,
     customVariant: 'custom-btn-primary',
   }
@@ -56,11 +56,11 @@ const Post = ({ pageContext, data: { post, favicon, updates } }) => {
         </div>
       </div>
 
-      <Section headline="Related Updates" cta={updatesCta} extraClassNames="updatesSection" hClass="h4">
+      <Section headline="Related Events" cta={updatesCta} extraClassNames="updatesSection" hClass="h4">
         <div className="row">
           {itemsSorted.map((item) => (
             <div className="col-md-4" key={item.id}>
-              <PostCard post={item} />
+              <EventCard event={item} type="event" />
             </div>
           ))}
         </div>
@@ -78,7 +78,7 @@ export const PostQuery = graphql`
         ...GatsbyDatoCmsFaviconMetaTags
       }
     }
-    post: datoCmsPost(id: { eq: $id }) {
+    event: datoCmsEvent(id: { eq: $id }) {
       id
       title
       date
@@ -133,7 +133,7 @@ export const PostQuery = graphql`
         }
       }
     }
-    updates: allDatoCmsPost(filter: { tags: { elemMatch: { title: { in: $tags } } }, id: { ne: $id } }, limit: 3) {
+    events: allDatoCmsEvent(filter: { tags: { elemMatch: { title: { in: $tags } } }, id: { ne: $id } }, limit: 3) {
       nodes {
         id
         title

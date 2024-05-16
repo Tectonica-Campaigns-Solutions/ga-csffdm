@@ -87,6 +87,12 @@ export const DatoCMS = graphql`
           apiKey
         }
       }
+      ... on DatoCmsEventsModel {
+        slug
+        model {
+          apiKey
+        }
+      }
       ... on DatoCmsGlobalLink {
         id
         content {
@@ -214,6 +220,18 @@ export const DatoCMS = graphql`
             }
           }
           ... on DatoCmsConferenceSubtopic {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsPressReleasesModel {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsEventsModel {
             slug
             model {
               apiKey
@@ -347,6 +365,18 @@ export const DatoCMS = graphql`
               }
             }
             ... on DatoCmsConferenceSubtopic {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsPressReleasesModel {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsEventsModel {
               slug
               model {
                 apiKey
