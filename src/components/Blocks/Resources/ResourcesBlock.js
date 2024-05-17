@@ -32,8 +32,9 @@ const ResourcesBlock = ({ block, withFixedCard = false, homePage = true }) => {
   const itemsSorted = homePage ? [...resourcesPosts.allDatoCmsResource.nodes] : [...items];
   const fixedCard = {
     title: fixedCardTitle,
-    slug: fixedCardLink,
+    slug: fixedCardLink.content.slug,
     introduction: fixedCardIntro,
+    model: { apiKey: "resource" }
   };
 
   return (

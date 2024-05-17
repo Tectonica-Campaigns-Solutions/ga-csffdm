@@ -32,6 +32,8 @@
   display: flex;
   align-items: center;
   gap: 24px;
+  position: relative;
+  z-index: 9;
 
   span {
     cursor: pointer;

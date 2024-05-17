@@ -130,6 +130,7 @@ exports.createPages = ({ graphql, actions }) => {
                 id
                 title
                 slug
+                typeOfResource
               }
             }
           }
@@ -330,11 +331,12 @@ exports.createPages = ({ graphql, actions }) => {
         const resourcesItems = result.data.resourceItems.edges;
         for (const resource of resourcesItems) {
           createPage({
-            path: '/campaign-resources-and-tools/' + resource.node.slug,
+            path: '/resources/' + resource.node.slug,
             component: templates.resource,
             context: {
               slug: resource.node.slug,
               id: resource.node.id,
+              type: resource.node.typeOfResource,
             },
           });
         }

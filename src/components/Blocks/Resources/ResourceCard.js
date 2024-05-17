@@ -11,6 +11,10 @@ import './styles.scss';
 const ResourceCard = ({ resource, className = '' }) => {
   const { title, slug, date, introduction, tags = [] } = resource;
 
+  const intro = introduction.length > 0 ? introduction : title;
+
+  console.log('ResourceCard', resource);
+
   return (
     <article className={`resource-card ${className}`}>
       <Link to={resource}>
@@ -19,8 +23,8 @@ const ResourceCard = ({ resource, className = '' }) => {
         <div className="basic-information">
           <h4>{title}</h4>
         </div>
-        {introduction && (
-          <div className="resource-introduction tk-neue" dangerouslySetInnerHTML={{ __html: introduction }} />
+        {intro && (
+          <div className="resource-introduction tk-neue" dangerouslySetInnerHTML={{ __html: intro }} />
         )}
         <ReactSVG src={arrowIcon} className="btn-img" />
         <div className="custom-btn custom-btn-primary">Read and download</div>

@@ -27,7 +27,8 @@ const Post = ({ pageContext, data: { post, favicon, updates } }) => {
     url: '/news',
     externalTitle: 'Explore all the updates',
     isButton: true,
-    customVariant: 'custom-btn-primary',
+    customVariant: 'custom-btn-secondary',
+    isCta: true
   }
 
   return (

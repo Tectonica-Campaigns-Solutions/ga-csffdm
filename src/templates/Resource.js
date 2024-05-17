@@ -10,18 +10,34 @@ import Breadcrumb from '../components/Global/Breadcrumb/Breadcrumb';
 import ImageWrapper from '../components/Global/Image/ImageWrapper';
 import TagList from '../components/Global/Tag/TagList';
 import FormBlock from '../components/Blocks/FormBlock/FormBlock';
+import Section from '../components/Layout/Section/Section';
+import ResourceCard from '../components/Blocks/Resources/ResourceCard';
 
 import './basic.scss';
 
-const Resource = ({ pageContext, data: { resource, favicon } }) => {
-  const { title, introduction, mainImage, content, seo, tags, blocks = [] } = resource;
+const Resource = ({ pageContext, data: { resource, favicon, resources } }) => {
+  const { title, introduction, mainImage, content, seo, tags, blocks = [], typeOfResource } = resource;
+
+  const itemsSorted = [...resources.nodes];
+  const breadcrumb = {
+    title: 'Resources',
+    url: '/resources',
+  };
+  const resourcesCta = {
+    url: '/resources',
+    externalTitle: 'Explore all the resources',
+    isButton: true,
+    customVariant: 'custom-btn-secondary',
+    off: false,
+    isCta: true
+  }
 
   return (
     <Layout>
       <SeoDatoCMS seo={seo} favicon={favicon} />
 
       <div className="container post-layout">
-        <Breadcrumb currentPage={title} />
+        <Breadcrumb currentPage={title} breadcrumb={breadcrumb} />
         <ShareButtons />
 
         <div className="post-info">
@@ -38,7 +54,16 @@ const Resource = ({ pageContext, data: { resource, favicon } }) => {
           )}
         </div>
       </div>
-      <FormBlock
+      <Section headline="Related Resources" cta={resourcesCta} extraClassNames={`updatesSection ${typeOfResource}`}  hClass="h4">
+        <div className="row">
+          {itemsSorted.map((item) => (
+            <div className="col-md-4" key={item.id}>
+              <ResourceCard resource={item} className={typeOfResource} />
+            </div>
+          ))}
+        </div>
+      </Section>
+        <FormBlock
         block={{
           title: 'Subscribe to the latest updates',
           backgroundColor: 'blue',
@@ -53,7 +78,7 @@ const Resource = ({ pageContext, data: { resource, favicon } }) => {
 export default Resource;
 
 export const ResourceQuery = graphql`
-  query ResourceById($id: String) {
+  query ResourceById($id: String, $type: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -64,6 +89,7 @@ export const ResourceQuery = graphql`
       title
       date
       introduction
+      typeOfResource
       mainImage {
         alt
         gatsbyImageData
@@ -101,6 +127,22 @@ export const ResourceQuery = graphql`
         }
         ... on DatoCmsCta {
           ...BlockCta
+        }
+      }
+    }
+    resources: allDatoCmsResource(filter: { typeOfResource: { eq: $type }, id: { ne: $id } }, limit: 3) {
+      nodes {
+        id
+        title
+        introduction
+        date
+        slug
+        typeOfResource
+        tags {
+          title
+        }
+        model {
+          apiKey
         }
       }
     }

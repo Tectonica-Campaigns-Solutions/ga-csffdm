@@ -8,7 +8,7 @@ import headerLogo from '../../Icons/Logo Component.svg';
 
 import './index.scss';
 
-const client = buildClient({ apiToken: 'a835f214689eaa72fa0f49fd3c5c1f' });
+const client = buildClient({ apiToken: 'c2b76217af13c090bb6eb1e214d2ac' });
 
 export default function SearchEngine({ searchEngineVisible, setSearchEngineVisible }) {
   const [query, setQuery] = useState('');

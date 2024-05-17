@@ -8,7 +8,6 @@ import Blocks from '../components/Blocks/Blocks';
 import Dropdown from '../components/Global/Inputs/Dropdown/Dropdown';
 import ListPaginated from '../components/Global/Pagination/ListPaginated';
 
-
 import './basic.scss';
 
 function Resources({ pageContext, data: { page, resources = [], favicon } }) {
@@ -23,25 +22,17 @@ function Resources({ pageContext, data: { page, resources = [], favicon } }) {
 
   const [filtersByType, setFiltersByType] = useState(() =>
     Array.from(new Set(resources.edges.map((e) => e.node.typeOfResource)))
-  /*
-    Array.from(new Set(resources.edges.map((e) => ({
-      value: e.node.typeOfResource,
-      label: e.node.typeOfResource.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
-    })*/
   );
 
-  console.log(filtersByType);
-
-  
-  /*const filtersByType = resources.edges.flatMap((e) => ({
-    value: e.node.typeOfResource,
-    label: e.node.typeOfResource.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
-  }));*/
+  const [innerTitle, setInnerTitle] = useState('');
+  const [innerTitleArea, setInnerTitleArea] = useState('');
 
   const handleOnFilterPosts = (currentTag) => {
     if (currentTag) {
+      document.getElementsByClassName('dropdown-toggle')[0].innerText = 'All';
       const newPosts = rawPosts.filter((post) => post.tags.some((t) => t.title === currentTag));
       setFilteredPosts(newPosts);
+      setInnerTitle(currentTag.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()))
     } else {
       setFilteredPosts(rawPosts);
     }
@@ -49,8 +40,10 @@ function Resources({ pageContext, data: { page, resources = [], favicon } }) {
 
   const handleOnFilterPostsByType = (currentType) => {
     if (currentType) {
+      document.getElementsByClassName('dropdown-toggle')[1].innerText = 'All';
       const newPosts = rawPosts.filter((post) => post.typeOfResource === currentType);
       setFilteredPosts(newPosts);
+      setInnerTitle(currentType.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()));
     } else {
       setFilteredPosts(rawPosts);
     }
@@ -79,21 +72,17 @@ function Resources({ pageContext, data: { page, resources = [], favicon } }) {
                 <h3>Filter by area of work</h3>
                 <Dropdown options={filters.map((f) => ({ value: f, label: f }))} onSelect={handleOnFilterPosts} />
               </div>
-
           </div>
 
-          {/*isArray(resources?.nodes) &&
-            resources.nodes.map((resource) => (
-              <div className="col-md-4" key={resource.id}>
-                <ResourceCard resource={resource} />
-              </div>
-            ))*/}
+          { innerTitle && (
+            <h2 className='inner-title'>{innerTitle}</h2>
+          )}
 
           <ListPaginated
             list={filteredPosts}
             renderItem={(post) => (
               <div className="col-md-4" key={post.id}>
-                <ResourceCard resource={post} />
+                <ResourceCard resource={post} className={post.typeOfResource} />
               </div>
             )}
           />

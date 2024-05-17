@@ -125,6 +125,14 @@
     }
   }
 
+  &.events {
+    background: #F9FCFF;
+  }
+
+  &.resources {
+    background: rgba(248, 243, 234, 0.40);
+  }
+
   &.news {
     background-color: rgba(248, 243, 234, 0.40);
     padding: 50px 0;

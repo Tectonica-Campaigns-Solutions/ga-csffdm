@@ -141,6 +141,9 @@ export const WorkQuery = graphql`
         tags {
           title
         }
+        model {
+          apiKey
+        }
       }
     }
     events: allDatoCmsEvent(filter: {tags: {elemMatch: {title: {eq: $tag}}}, date: {gte: $today}}, limit: 3) {
@@ -155,6 +158,9 @@ export const WorkQuery = graphql`
           gatsbyImageData
           alt
         }
+        model {
+          apiKey
+        }
       }
     }
     pastEvents: allDatoCmsEvent(filter: {tags: {elemMatch: {title: {eq: $tag}}}, date: {lt: $today}}, limit: 3) {
@@ -168,6 +174,9 @@ export const WorkQuery = graphql`
           height
           gatsbyImageData
           alt
+        }
+        model {
+          apiKey
         }
       }
     }
@@ -186,6 +195,9 @@ export const WorkQuery = graphql`
         tags {
           title
         }
+        model {
+          apiKey
+        }
       }
     }
     meetings: allDatoCmsUnMeeting(filter: {tags: {elemMatch: {title: {eq: $tag}}}, date: {lt: $today}}, limit: 3) {
@@ -202,6 +214,9 @@ export const WorkQuery = graphql`
         }
         tags {
           title
+        }
+        model {
+          apiKey
         }
       }
     }

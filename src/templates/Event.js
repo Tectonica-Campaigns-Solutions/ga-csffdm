@@ -27,7 +27,8 @@ const Post = ({ pageContext, data: { event, favicon, events } }) => {
     url: '/events',
     externalTitle: 'Explore all the events',
     isButton: true,
-    customVariant: 'custom-btn-primary',
+    customVariant: 'custom-btn-secondary',
+    isCta: true
   }
 
   return (

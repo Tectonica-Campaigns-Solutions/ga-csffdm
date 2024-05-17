@@ -519,7 +519,7 @@ export const DatoCMS = graphql`
               apiKey
             }
           }
-          ... on DatoCmsEvent {
+          ... on DatoCmsEventsModel {
             slug
             model {
               apiKey
@@ -619,6 +619,20 @@ export const DatoCMS = graphql`
     introduction
     fixedCardIntro
     fixedCardTitle
+    fixedCardLink {
+      ... on DatoCmsGlobalLink {
+        id
+        content {
+          ... on DatoCmsResource {
+            id
+            slug
+            model {
+              apiKey
+            }
+          }
+        }
+      }
+    }
     cta {
       ... on DatoCmsCta {
         id: originalId
@@ -896,6 +910,9 @@ export const DatoCMS = graphql`
         link {
           ... on DatoCmsGlobalLink {
             id
+            model {
+              apiKey
+            }
             content {
               ... on DatoCmsBasicPage {
                 id
@@ -912,6 +929,13 @@ export const DatoCMS = graphql`
                 }
               }
               ... on DatoCmsNews {
+                id
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsEventsModel {
                 id
                 slug
                 model {

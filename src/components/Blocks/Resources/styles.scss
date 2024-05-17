@@ -95,6 +95,44 @@
     }
   }
 
+  &.database_of_statements {
+
+    height: 402px;
+    min-height: 100%;
+
+    a {
+      display: block;
+      height: 100%;
+    }
+    
+    .basic-information {
+      margin-top: 1rem;
+
+      h4 {
+        font-size: 2.438rem;
+      }
+    }
+
+    &:hover {
+
+      .basic-information {
+        display: block  ;
+      }
+
+      .resource-introduction {
+        display: none;
+      }
+
+      .btn-img {
+        display: block;
+      }
+  
+      .custom-btn-primary {
+        display: none;
+      }
+    }
+  }
+
   &.fixedCard {
     background-color: var(--dark-blue);
     color: var(--white);

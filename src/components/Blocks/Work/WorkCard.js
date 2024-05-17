@@ -11,7 +11,7 @@ const WorkCard = ({ work }) => {
       <Link to={work}>
         <div className="content">
           {title && <h3>{title}</h3>}
-          {introduction && <div className="work-introduction" dangerouslySetInnerHTML={{ __html: introduction }} />}
+          {introduction && <div className="work-introduction" dangerouslySetInnerHTML={{ __html: introduction.slice(0, 150) + '...' }} />}
           {icon && <img src={icon.url} className='workIcon' />}
         </div>
       </Link>

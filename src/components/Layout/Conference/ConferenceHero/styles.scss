@@ -7,6 +7,8 @@
 
   .main-section {
     max-width: 646px;
+    position: relative;
+    z-index: 9;
 
     h1 {
       color: var(--cream);

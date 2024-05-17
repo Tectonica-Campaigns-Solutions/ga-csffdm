@@ -25,15 +25,21 @@ export default function Cta({
     );
   }
 
+  if (cta.isCta) {
+    return (
+      <Link className={`custom-btn ${cta.customVariant}`} to={cta.url}>{cta.externalTitle}</Link>
+    );
+  }
+
   return (
-    <Link
-      className={`custom-btn ${isCtaPrimaryButton ? `custom-btn-${cta?.style}` : ''} custom-btn-${cta?.style} ${
-        customVariant ? customVariant : ''
-      }`}
-      to={url ? url : cta}
-      target={url ? '_blank' : ''}
-    >
-      {externalTitle || cta?.title}
-    </Link>
+      <Link
+        className={`custom-btn ${isCtaPrimaryButton ? `custom-btn-${cta?.style}` : ''} custom-btn-${cta?.style} ${
+          customVariant ? customVariant : ''
+        }`}
+        to={url ? url : cta}
+        target={url ? '_blank' : ''}
+      >
+        {externalTitle || cta?.title}
+      </Link>
   );
 }
