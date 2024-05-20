@@ -7,7 +7,7 @@ import Cta from '../../Global/Cta/Cta';
 import './styles.scss';
 
 const ResourcesBlock = ({ block, withFixedCard = false, homePage = true }) => {
-  const { headline, introduction, cta = [], fixedCardTitle, fixedCardLink, fixedCardIntro, items = [] } = block;
+  const { headline, introduction, cta = [], fixedCardTitle = null, fixedCardLink = null, fixedCardIntro = null, items = [] } = block;
 
   const resourcesPosts = useStaticQuery(graphql`
     query allResources {
@@ -30,10 +30,11 @@ const ResourcesBlock = ({ block, withFixedCard = false, homePage = true }) => {
   `);
 
   const itemsSorted = homePage ? [...resourcesPosts.allDatoCmsResource.nodes] : [...items];
+  
   const fixedCard = {
-    title: fixedCardTitle,
-    slug: fixedCardLink.content.slug,
-    introduction: fixedCardIntro,
+    title: fixedCardTitle != undefined ? fixedCardTitle : '',
+    slug: fixedCardLink?.content?.slug != undefined ? fixedCardLink?.content?.slug : '',
+    introduction: fixedCardIntro != undefined ? fixedCardIntro : '',
     model: { apiKey: "resource" }
   };
 

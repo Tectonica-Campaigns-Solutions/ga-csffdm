@@ -824,6 +824,54 @@ export const DatoCMS = graphql`
     items {
       title
       text
+      blocks {
+        __typename
+        ... on DatoCmsSimpleText {
+          ...BlockText
+        }
+          ... on DatoCmsPdfButton {
+            id: originalId
+            label
+            file {
+              url
+            }
+          }
+        ... on DatoCmsCta {
+          id: originalId
+          title
+          isButton
+          style
+          link {
+            ... on DatoCmsGlobalLink {
+              id
+              content {
+                ... on DatoCmsBasicPage {
+                  id
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsForm {
+                  id
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+              }
+            }
+          }
+        }
+        ... on DatoCmsImage {
+          __typename
+          id: originalId
+          image {
+            alt
+            gatsbyImageData
+          }
+        }
+      }
     }
   }
 

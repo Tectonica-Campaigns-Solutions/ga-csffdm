@@ -5,12 +5,7 @@ import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import './styles.scss';
 import Cta from '../Cta/Cta';
 
-const HeroDetail = ({ currentPage, title, description, link = null, image, type = null }) => {
-
-  const breadcrumb = {
-    title: 'Areas of Work',
-    url: '/areas-of-work'
-  }
+const HeroDetail = ({ currentPage, title, description, link = null, image, type = null, ctas, breadcrumb = null }) => {
 
   return (
     <div className="hero-detail">
@@ -29,7 +24,7 @@ const HeroDetail = ({ currentPage, title, description, link = null, image, type 
               )}
               <div className="col-lg-6">
                 <h1 className="organization-title">{title}</h1>
-                {description && <p>{description}</p>}
+                {description && <div dangerouslySetInnerHTML={{ __html: description }} />}
                 {link && 
                 <div className='mt-3'>
                   <Cta cta={{ style: 'secondary' }} url={link} customVariant="default" externalTitle="Go to main site" />
@@ -43,10 +38,14 @@ const HeroDetail = ({ currentPage, title, description, link = null, image, type 
           <>
             <div className="col-lg-6">
               <h1>{title}</h1>
-              <p>{description}</p>
+              {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
             </div>
             <div className="col-lg-6">
-              <ImageWrapper image={image} />
+              {image && <ImageWrapper image={image} /> }
+              {ctas && 
+              <div className='text-end header-ctas'>
+                <div dangerouslySetInnerHTML={{ __html: ctas }} />
+              </div>}
             </div>
           </>
           }

@@ -1,6 +1,10 @@
 .hero-detail {
   padding: 61px 0 68px 0;
-  background-color: var(--light-orange);
+  background-color: #F8F3EA;
+  background-image: url('../../Icons/bg-header-world.png');
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: cover;
 
   h1 {
     color: var(--dark-blue);
@@ -21,6 +25,45 @@
     line-height: 140%;
     margin: 0;
   }
+
+  a {
+    color: var(--orange);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .header-ctas {
+    a {
+      color: var(--white);
+      background: var(--orange);
+      border-color: var(--orange);
+      display: inline-block;
+      padding: 0;
+      margin: 0;
+      border: none;
+      cursor: pointer;    
+      font-family: var(--primary-font);
+      font-family: Mundial;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 100%;
+      text-decoration: none;
+      padding: 16px 18px;
+      border-radius: 5px;
+      text-align: center;
+
+      &:hover {
+        background: #BA6900;
+        border-color: #BA6900;
+      }
+    }
+    .custom-btn {
+      margin-left: 30px;
+    }
+  }
 }
 
 @media screen and (max-width: 992px) {
@@ -38,6 +81,30 @@
       margin-bottom: 20px;
     }
 
+  }
+
+}
+
+@media screen and (max-width: 575px) {
+
+  .hero-detail {
+
+    background-image: none;
+    
+    .header-ctas {
+      a {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+    }
+  
+  }
+
+  .container.page-content {
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
 }

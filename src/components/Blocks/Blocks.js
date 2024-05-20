@@ -13,6 +13,7 @@ import UpdatesBlock from './Updates/UpdatesBlock';
 import WorkBlock from './Work/WorkBlock';
 import ProcessBlock from './Process/ProcessBlock';
 import LinksCard from './LinksCard/LinksCard';
+import PdfButton from './PdfButton/PdfButton';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
 export default function Blocks({ blocks, usePrimaryHeading = false, fixedCard = true, homePage = true}) {
@@ -48,6 +49,8 @@ export default function Blocks({ blocks, usePrimaryHeading = false, fixedCard = 
             return <Share key={block.id} block={block} />;
           case 'DatoCmsLinksCard':
             return <LinksCard key={block.id} block={block} />;
+          case 'DatoCmsPdfButton':
+            return <PdfButton key={block.id} {...block} />;
           case 'DatoCmsImage':
             return (
               <div className='image-block'>

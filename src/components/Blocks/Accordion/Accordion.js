@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import accordionOpen from '../../Icons/accordion_close.svg';
 import accordionClose from '../../Icons/accordion_open.svg';
+import Blocks from '../Blocks';
 
 import './index.scss';
 
@@ -24,7 +25,13 @@ function Accordion({ items, renderCustomTitle = null, defaultActive = 0 }) {
             <img src={activeItem === index ? accordionClose : accordionOpen} alt="Accordion close/open icon" />
           </div>
 
-          <div id="ac-content" className="ac-content" dangerouslySetInnerHTML={{ __html: item.text }}></div>
+          <div id="ac-content" className="ac-content">
+            <div className='mb-4' dangerouslySetInnerHTML={{ __html: item.text }} />
+            { item.blocks && (
+            <Blocks blocks={item.blocks} />) 
+            }
+          </div>
+
         </div>
       ))}
     </div>

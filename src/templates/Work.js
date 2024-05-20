@@ -13,10 +13,15 @@ import './basic.scss';
 const Work = ({ pageContext, data: { work, favicon, updates, resources, meetings, events, pastEvents, upcomingMeeting } }) => {
   const { title, introduction, image, content, seo, blocks = [] } = work;
 
+  const breadcrumb = {
+    title: 'Areas of Work',
+    url: '/areas-of-work'
+  }
+
   return (
     <Layout>
       <SeoDatoCMS seo={seo} favicon={favicon} />
-      <HeroDetail currentPage={title} title={title} description={introduction} image={image} />
+      <HeroDetail currentPage={title} title={title} description={introduction} image={image} breadcrumb={breadcrumb} />
 
       <div className="container page-content">
         <ShareButtons />

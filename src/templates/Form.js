@@ -117,7 +117,7 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
         <div className="row">
           <div className="col-lg-5">
             {title && <h1>{title}</h1>}
-            {introduction && <p>{introduction}</p>}
+            {introduction && <p dangerouslySetInnerHTML={{ __html: introduction }} />}
           </div>
           <div className="col-lg-6 offset-lg-1">
             <div id="liveAlertPlaceholder"></div>
