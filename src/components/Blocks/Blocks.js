@@ -15,6 +15,7 @@ import ProcessBlock from './Process/ProcessBlock';
 import LinksCard from './LinksCard/LinksCard';
 import PdfButton from './PdfButton/PdfButton';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import EmbedIframe from './EmbedIframe/EmbedIframe';
 
 export default function Blocks({ blocks, usePrimaryHeading = false, fixedCard = true, homePage = true}) {
   return (
@@ -51,6 +52,8 @@ export default function Blocks({ blocks, usePrimaryHeading = false, fixedCard = 
             return <LinksCard key={block.id} block={block} />;
           case 'DatoCmsPdfButton':
             return <PdfButton key={block.id} {...block} />;
+          case 'DatoCmsEmbedForm':
+            return <EmbedIframe key={block.id} content={block} />;
           case 'DatoCmsImage':
             return (
               <div className='image-block'>

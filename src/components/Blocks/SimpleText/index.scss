@@ -12,7 +12,10 @@
     ul,
     ol,
     p {
+      font-family: var(--neue-font);
+      font-size: 20px;
       margin-bottom: 1rem;
+      letter-spacing: 1.5px;
     }
 
     table {
@@ -58,7 +61,7 @@
       font-family: var(--neue-font);
     }
 
-    * {
+    /** {
       color: var(--dark);
       font-family: var(--neue-font);
       font-size: 20px;
@@ -68,7 +71,7 @@
       margin: 0;
       padding: 0;
       letter-spacing: 1.5px;
-    }
+    }*/
 
     em {
       font-style: italic;
@@ -128,6 +131,10 @@
         margin: 0;
         letter-spacing: 0;
       }
+    }
+
+    img {
+      max-width: 100%;
     }
 
     &.limited-with {

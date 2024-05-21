@@ -122,6 +122,7 @@
   }
 
   .extra-text {
+    letter-spacing: 1.5px;
     text-align: right;
 
     span {
@@ -136,6 +137,10 @@
 
   .mobile-social-links {
     display: none;
+  }
+
+  .copyright-section {
+    letter-spacing: 1.5px;
   }
 }
 

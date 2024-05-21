@@ -68,6 +68,7 @@ export const AreasOfWorkQuery = graphql`
       nodes {
         title
         slug
+        description
         introduction
         id
         icon {

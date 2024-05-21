@@ -35,6 +35,8 @@ const Page = ({ pageContext, data: { page, favicon } }) => {
     </>
   );
 
+  console.log(blocks)
+
   return (
     <Layout>
       <SeoDatoCMS seo={seo} favicon={favicon} />
@@ -111,6 +113,10 @@ export const PageQuery = graphql`
           introduction
           title
           links
+        }
+        ... on DatoCmsEmbedForm {
+          __typename
+          embedCode
         }
       }
     }

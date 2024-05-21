@@ -7,10 +7,12 @@ import SocialLinkList from '../components/Global/SocialLink/SocialLinkList';
 import CountryDropdown from '../components/Blocks/Form/CountryDropdown';
 import '../components/Blocks/FormBlock/styles.scss';
 import '../components/Blocks/Form/styles.scss';
-import addToMailchimp from 'gatsby-plugin-mailchimp'
+import EmbedIframe from '../components/Blocks/EmbedIframe/EmbedIframe';
+//import addToMailchimp from 'gatsby-plugin-mailchimp'
+
 
 const Form = ({ pageContext, data: { form, favicon } }) => {
-  const { title, formType, introduction, backgroundColor, backgroundImage, seo } = form;
+  const { title, formType, introduction, backgroundColor, backgroundImage, seo, embedForm } = form;
   const bgImageUrl = backgroundImage?.gatsbyImageData?.images?.fallback?.src;
 
   const [isLoading, setIsLoading] = useState(false);
@@ -70,7 +72,7 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
 
     appendAlert('Submitting data...', 'primary');
 
-    const result = await addToMailchimp(data.email, data)
+    //const result = await addToMailchimp(data.email, data)
 
     // Send data to server
     /*
@@ -119,7 +121,7 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
             {title && <h1>{title}</h1>}
             {introduction && <p dangerouslySetInnerHTML={{ __html: introduction }} />}
           </div>
-          <div className="col-lg-6 offset-lg-1">
+          <div className="col-lg-7">
             <div id="liveAlertPlaceholder"></div>
             <div className={`form-block-wrapper`}>
               <div className="form-block">
@@ -199,7 +201,8 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
                       </form>
                     )}
                     {formType === 'join' && (
-                      <form onSubmit={onSubmit}>
+                      <EmbedIframe content={embedForm} />
+                      /*<form onSubmit={onSubmit}>
                         <div className="row mb-md-3">
                           <div className="col-md-6">
                             <input
@@ -312,7 +315,7 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
                           </button>
                         </div>
                       </form>
-                    )}
+                    */)}
                     {formType === 'contact' && (
                       <form onSubmit={onSubmit}>
                         <div className="row mb-md-3">
@@ -461,6 +464,9 @@ export const FormQuery = graphql`
       }
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
+      }
+      embedForm {
+        embedCode
       }
     }
   }
