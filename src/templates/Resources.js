@@ -78,6 +78,12 @@ function Resources({ pageContext, data: { page, resources = [], favicon } }) {
             <h2 className='inner-title'>{innerTitle}</h2>
           )}
 
+          { filteredPosts.length === 0 && (
+            <div className="col-12">
+              <h4>There are no records matching the filter criteria. Please select another option and try again.</h4>
+            </div>
+          )}
+
           <ListPaginated
             list={filteredPosts}
             renderItem={(post) => (

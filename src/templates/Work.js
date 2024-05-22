@@ -51,7 +51,11 @@ const Work = ({ pageContext, data: { work, favicon, updates, resources, meetings
           }
         )}
 
-      {blocks && <Blocks blocks={blocks} />}
+      {blocks && 
+        <div className="container">
+          <Blocks blocks={blocks} />
+        </div>
+      }
 
     </Layout>
   );

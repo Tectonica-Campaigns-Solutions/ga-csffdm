@@ -18,6 +18,7 @@ const ConferenceHero = ({ title, description, image, previousConferences = [], i
           title={dropdownLabel}
           onSelect={handleOnSelectPrevConference}
           options={previousConferences.map((c) => ({ value: c.slug, label: c.title }))}
+          showAllOption={false}
         />
       </div>
 

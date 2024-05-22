@@ -205,3 +205,10 @@
     }
   }
 }
+
+@media screen and (max-width: 767px) {
+
+  .event-card {
+    min-height: auto;
+  }
+}

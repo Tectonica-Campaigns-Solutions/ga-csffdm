@@ -74,13 +74,19 @@ function NewsDistributor({ pageContext, data: { page, news = [], favicon } }) {
 
           </div>
 
+          { filteredPosts.length === 0 && (
+            <div className="col-12">
+              <h4>There are no records matching the filter criteria. Please select another option and try again.</h4>
+            </div>
+          )}
+
           <ListPaginated
             list={filteredPosts}
             renderItem={(post) => (
               <div className="col-md-4" key={post.id}>
                 <PostCard post={post} />
               </div>
-            )}
+            )}            
           />
         </div>
       </div>

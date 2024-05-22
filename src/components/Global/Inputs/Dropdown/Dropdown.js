@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './styles.scss';
 
-const Dropdown = ({ title, options, onSelect }) => {
+const Dropdown = ({ title, options, onSelect, showAllOption = true }) => {
   const dropdownRef = useRef(null);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +36,7 @@ const Dropdown = ({ title, options, onSelect }) => {
       </button>
 
       <ul className="dropdown-menu">
-        <li onClick={() => handleOptionClick()}>All</li>
+        { showAllOption && (<li onClick={() => handleOptionClick()}>All</li>)}
         {options.map((option) => (
           <li key={option.value} onClick={() => handleOptionClick(option.value)}>
             {option.label}

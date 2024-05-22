@@ -8,7 +8,13 @@ import './index.scss';
 function Accordion({ items, renderCustomTitle = null, defaultActive = 0 }) {
   const [activeItem, setActiveItem] = useState(defaultActive);
 
-  const handleOnChangeAccordion = (newIndex) => setActiveItem(newIndex);
+  const handleOnChangeAccordion = (newIndex) => {
+    setActiveItem(newIndex)
+    // if the current item has the class 'active', remove it
+    if (activeItem === newIndex) {
+      setActiveItem(null);
+    }
+  };
 
   if (items.length === 0) return null;
 

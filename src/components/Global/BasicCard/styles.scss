@@ -2,6 +2,7 @@
   height: 530px;
   padding: 48px 34px 45px 41px;
   background: var(--dark-blue);
+  position: relative;
 
   &>a {
     height: 100%;
@@ -31,6 +32,12 @@
     font-weight: 450;
     line-height: 130%;
     letter-spacing: 1.5px;
+  }
+
+  .custom-btn {
+    position: absolute ;
+    bottom: 2rem;
+    left: 41px;
   }
 
   &:hover {

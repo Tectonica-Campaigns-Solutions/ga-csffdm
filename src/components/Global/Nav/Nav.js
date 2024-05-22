@@ -6,8 +6,17 @@ import searchIcon from '../../Icons/icons-search.svg';
 import './index.scss';
 
 const LinkItem = ({ link, label, isButton }) => {
+
+  const closeMegamenu = () => {
+    document.getElementById('megamenu').classList.remove('open');
+  };
+  
   return (
-    <li className="nav-item">
+    <li className="nav-item"
+      onMouseEnter={() => {
+          closeMegamenu();
+      }}
+    >
       <Link to={link} className={isButton ? 'btn btn-primary' : ''}>
         {label}
       </Link>
@@ -77,7 +86,7 @@ const DropdownItem = ({ link, label, children }) => {
 
               { link?.treeChildren && link?.treeChildren.length > 0 && (
               <div className="dropdown-link" to={link}>
-                <div className="dropdown-title">{link?.title}</div>
+                <div className="dropdown-title"><Link to={`/conference/${link?.content?.slug}`}>{link?.title}</Link></div>
                     <ul className="megamenu-col">
                       {link.treeChildren.sort((a, b) => a.position - b.position).map((subLink) => (
                         //console.log('Sublink', subLink),

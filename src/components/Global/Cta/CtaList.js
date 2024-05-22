@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 import Cta from './Cta';
 
 import './index.scss';
@@ -11,6 +11,7 @@ const CtaList = ({ ctas = [], customVariant = null, off = false }) => {
       {ctas.map((cta, index) => (
         <Cta key={cta.id ?? `cta-${index}`} cta={cta} customVariant={customVariant} off={off} />
       ))}
+      
     </div>
   );
 };

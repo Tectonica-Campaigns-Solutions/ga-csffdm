@@ -27,6 +27,8 @@ const Page = ({ pageContext, data: { page, favicon } }) => {
         url: '/about'
       }
       break;
+    default:
+      breadcrumb = null
   }
 
   const renderMainContent = () => (

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ImageWrapper from '../Image/ImageWrapper';
+import closeIcon from '../../Icons/ico-close-line.svg';
 
 import './index.scss';
 
@@ -23,7 +24,7 @@ function VideoPlayer({ video }) {
     <div className="video-player">
       {isFullScreen ? (
         <div className="fullscreen">
-          <span onClick={handleOnCloseVideo}>X</span>
+          <span onClick={handleOnCloseVideo}>Close <img src={closeIcon} /></span>
           <iframe src={getYoutubeVideoSrc()} />
         </div>
       ) : (

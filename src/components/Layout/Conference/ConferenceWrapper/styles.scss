@@ -106,3 +106,16 @@
     }
   }
 }
+
+@media screen and (max-width:767px) {
+
+  .conference-wrapper .blocks-wrapper {
+    .content {
+      flex-direction: column;
+      .event-card {
+        max-width: 100%;
+      }
+    }
+  }
+
+}

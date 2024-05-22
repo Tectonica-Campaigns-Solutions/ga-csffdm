@@ -35,11 +35,15 @@ blockquote {
     p {
       color: var(--dark);
       font-family: var(--primary-font);
-      font-size: 25px;
+      font-size: 22px;
       font-style: normal;
       font-weight: 400;
       line-height: 140%;
       margin: 0;
+
+      a {
+        color: var(--orange);
+      }
     }
   }
 
@@ -95,6 +99,10 @@ blockquote {
     line-height: 145%;
     letter-spacing: 1.5px;
     margin-bottom: 25px;
+
+    a {
+      color: var(--orange);
+    }
   }
 
   h1 {
@@ -172,6 +180,10 @@ blockquote {
       font-weight: 450;
       line-height: 145%;
       letter-spacing: 1.5px;
+
+      a {
+        color: var(--orange);
+      }
     }
 
     .simple-text-wrapper {
