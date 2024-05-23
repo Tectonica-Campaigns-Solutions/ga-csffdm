@@ -56,54 +56,7 @@ export const ConferenceThemeQuery = graphql`
       title
       slug
       content {
-        __typename
         value
-        blocks {
-          __typename
-          ... on DatoCmsPdfButton {
-            id: originalId
-            label
-            file {
-              url
-            }
-          }
-          ... on DatoCmsGenericCardGrid {
-            id: originalId
-            items {
-              ... on DatoCmsGenericCard {
-                id
-                title
-                introduction
-                cta {
-                  id: originalId
-                  title
-                  isButton
-                  style
-                  link {
-                    ... on DatoCmsConference {
-                      slug
-                      model {
-                        apiKey
-                      }
-                    }
-                    ... on DatoCmsConferenceTheme {
-                      slug
-                      model {
-                        apiKey
-                      }
-                    }
-                    ... on DatoCmsConferenceSubtopic {
-                      slug
-                      model {
-                        apiKey
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
       }
       blocks {
         ... on DatoCmsCalendarBlock {
