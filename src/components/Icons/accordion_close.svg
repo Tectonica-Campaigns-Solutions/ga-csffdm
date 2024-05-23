@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="31" viewBox="0 0 30 31" fill="none">
-<path d="M15 17.1794L21.1875 10.9919L22.955 12.7594L15 20.7144L7.04496 12.7594L8.81371 10.9919L15.0012 17.1794L15 17.1794Z" fill="#37557F"/>
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="ri:arrow-up-s-line">
+<path id="Vector" d="M14.9991 13.8125L8.81163 20L7.04413 18.2325L14.9991 10.2775L22.9541 18.2325L21.1854 20L14.9979 13.8125H14.9991Z" fill="black"/>
+</g>
 </svg>

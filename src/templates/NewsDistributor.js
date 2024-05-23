@@ -14,6 +14,7 @@ function NewsDistributor({ pageContext, data: { page, news = [], favicon } }) {
   const { seo, title, highlightedPost, blocks = [], introduction } = page;
 
   const rawPosts = news.edges.map((e) => e.node);
+  rawPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   const [filteredPosts, setFilteredPosts] = useState(rawPosts);
   const [filters, setFilters] = useState(() =>
@@ -145,6 +146,9 @@ export const NewsDistributorQuery = graphql`
           title
           date
           introduction
+          content {
+            value
+          }
           tags {
             ...Tags
           }

@@ -7,8 +7,24 @@ import Link from '../../Global/Link/Link';
 import './styles.scss';
 
 const PostCard = ({ post }) => {
-  const { title, introduction, date, tags = [], mainImage, logo, location } = post;
+  const { title, introduction, content, date, tags = [], mainImage, logo, location } = post;
 
+  function truncateToWords(str, n) {
+    // Split the string into an array of words
+    const words = str.split(' ');
+  
+    // If the number of words is less than or equal to n, return the original string
+    if (words.length <= n) {
+      return str;
+    }
+  
+    // Slice the array to get the first n words and join them back into a string
+    return words.slice(0, n).join(' ');
+  }
+  
+  const intro = content.value?.document.children[0].children[0].value !== undefined ? truncateToWords(content.value.document.children[0].children[0].value, 20) + '...' : '';
+
+  console.log(introduction.length)
   return (
     <article className="post-card">
       <Link to={post}>
@@ -28,7 +44,9 @@ const PostCard = ({ post }) => {
           {date && <span className="date">{formatDate(date)}</span>}
           {location && <span className="location">{location}</span>}
           {title && <h3>{title}</h3>}
-          {introduction && <div className="post-introduction" dangerouslySetInnerHTML={{ __html: introduction }} />}
+
+          {introduction.length > 0 && <div className="post-introduction" dangerouslySetInnerHTML={{ __html: introduction }} />}
+          {introduction.length  == 0 && <div className="post-introduction" dangerouslySetInnerHTML={{ __html: intro }} />}
         </div>
       </Link>
     </article>
