@@ -72,6 +72,67 @@ export const ConferenceThemeQuery = graphql`
               title
               introduction
               id
+              cta {
+                title
+                link {
+                  ... on DatoCmsGlobalLink {
+                    id
+                    label
+                    externalUrl
+                    content {
+                      ... on DatoCmsAreasOfWork {
+                        id
+                        model {
+                          apiKey
+                        }
+                      }
+                      ... on DatoCmsNews {
+                        id
+                        model {
+                          apiKey
+                        }
+                      }
+                      ... on DatoCmsResource {
+                        id
+                        model {
+                          apiKey
+                        }
+                      }
+                      ... on DatoCmsEvent {
+                        id
+                        model {
+                          apiKey
+                        }
+                      }
+                      ... on DatoCmsConference {
+                        id
+                        model {
+                          apiKey
+                        }
+                      }
+                      ... on DatoCmsPost {
+                        id
+                        model {
+                          apiKey
+                        }
+                      }
+                      ... on DatoCmsBasicPage {
+                        id
+                        model {
+                          apiKey
+                        }
+                      }
+                      ... on DatoCmsWork {
+                        id
+                        model {
+                          apiKey
+                        }
+                      }
+                    }
+                  }
+                }
+                style
+              }
             }
           }
           ... on DatoCmsAcordion {
