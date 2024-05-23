@@ -19,6 +19,7 @@ const WorkBlock = ({ block }) => {
           title
           slug
           introduction
+          description
           id
           model {
             apiKey
@@ -42,7 +43,6 @@ const WorkBlock = ({ block }) => {
     <CarouselActions
       onPrevSlide={() => sliderRef.current?.slickPrev()}
       onNextSlide={() => {
-        console.log('Clicking ', sliderRef.current);
         sliderRef.current?.slickNext();
       }}
     />

@@ -745,6 +745,7 @@ export const DatoCMS = graphql`
     __typename
     title
     introduction
+    description
     slug
     icon {
       width
