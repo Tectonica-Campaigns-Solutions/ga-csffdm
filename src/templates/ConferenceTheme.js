@@ -73,65 +73,54 @@ export const ConferenceThemeQuery = graphql`
               introduction
               id
               cta {
+                id: originalId
                 title
+                isButton
+                style
                 link {
-                  ... on DatoCmsGlobalLink {
-                    id
-                    label
-                    externalUrl
-                    content {
-                      ... on DatoCmsAreasOfWork {
-                        id
-                        model {
-                          apiKey
-                        }
-                      }
                       ... on DatoCmsNews {
-                        id
+                        slug
                         model {
                           apiKey
                         }
                       }
                       ... on DatoCmsResource {
-                        id
+                        slug
                         model {
                           apiKey
                         }
                       }
                       ... on DatoCmsEvent {
-                        id
+                        slug
                         model {
                           apiKey
                         }
                       }
                       ... on DatoCmsConference {
-                        id
+                        slug
                         model {
                           apiKey
                         }
                       }
                       ... on DatoCmsPost {
-                        id
+                        slug
                         model {
                           apiKey
                         }
                       }
                       ... on DatoCmsBasicPage {
-                        id
+                        slug
                         model {
                           apiKey
                         }
                       }
                       ... on DatoCmsWork {
-                        id
+                        slug
                         model {
                           apiKey
                         }
                       }
-                    }
-                  }
                 }
-                style
               }
             }
           }

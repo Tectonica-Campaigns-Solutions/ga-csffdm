@@ -121,6 +121,7 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
             {title && <h1>{title}</h1>}
             {introduction && <p dangerouslySetInnerHTML={{ __html: introduction }} />}
           </div>
+          {formType !== 'contact' && (
           <div className="col-lg-7">
             <div id="liveAlertPlaceholder"></div>
             <div className={`form-block-wrapper`}>
@@ -416,6 +417,7 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
               </div>
             </div>
           </div>
+          )}
         </div>
         {formType === 'subscribe' && (
           <div className="mt-md-5">

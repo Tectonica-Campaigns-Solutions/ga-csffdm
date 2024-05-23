@@ -129,7 +129,12 @@
     margin-bottom: 1rem;
   }
 
-  .wrapper-hero .hero-home .content .ctas {
-    width: 100%;
+  .wrapper-hero .hero-home {
+    padding-top: 100px;
+    background-size: 350%;
+    background-position: bottom;
+    .content .ctas {
+      width: 100%;
+    }
   }
 }
