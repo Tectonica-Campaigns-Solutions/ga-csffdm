@@ -36,7 +36,7 @@ const HeroDetail = ({ currentPage, title, description, link = null, image, type 
 
           { type === null && 
           <>
-            <div className="col-lg-6">
+            <div className={(image || ctas) ? `col-lg-6 `: `col-lg-10`}>
               <h1>{title}</h1>
               {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
             </div>

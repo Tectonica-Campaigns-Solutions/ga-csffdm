@@ -201,3 +201,16 @@ export const prepareQueryParam = (value) => {
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9-]/g, '');
 };
+
+export function truncateToWords(str, n) {
+  // Split the string into an array of words
+  const words = str.split(' ');
+
+  // If the number of words is less than or equal to n, return the original string
+  if (words.length <= n) {
+    return str;
+  }
+
+  // Slice the array to get the first n words and join them back into a string
+  return words.slice(0, n).join(' ');
+}

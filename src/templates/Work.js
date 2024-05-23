@@ -7,11 +7,12 @@ import StructuredTextDefault from '../components/Blocks/StructuredTextDefault/St
 import ShareButtons from '../components/Global/ShareButtons/ShareButtons';
 import Blocks from '../components/Blocks/Blocks';
 import RelatedContent from '../components/Blocks/RelatedContent/RelatedContent';
+import '../utils'
 
 import './basic.scss';
 
 const Work = ({ pageContext, data: { work, favicon, updates, resources, meetings, events, pastEvents, upcomingMeeting } }) => {
-  const { title, introduction, image, content, seo, blocks = [] } = work;
+  const { title, introduction, description, image, content, seo, blocks = [] } = work;
 
   const breadcrumb = {
     title: 'Areas of Work',
@@ -21,12 +22,19 @@ const Work = ({ pageContext, data: { work, favicon, updates, resources, meetings
   return (
     <Layout>
       <SeoDatoCMS seo={seo} favicon={favicon} />
-      <HeroDetail currentPage={title} title={title} description={introduction} image={image} breadcrumb={breadcrumb} />
+      <HeroDetail currentPage={title} title={title} description={description} image={image} breadcrumb={breadcrumb} />
 
-      <div className="container page-content">
+      <div className="container page-content pb-0">
         <ShareButtons />
+        {introduction && <p>{introduction}</p>}
         {content?.value && <StructuredTextDefault content={content} />}
       </div>
+
+      {blocks && 
+        <div className="container page-content pt-0">
+          <Blocks blocks={blocks} />
+        </div>
+      }
       
       {blocks.map((block) => {
           if (block.__typename === 'DatoCmsRelatedContent') 
@@ -51,11 +59,7 @@ const Work = ({ pageContext, data: { work, favicon, updates, resources, meetings
           }
         )}
 
-      {blocks && 
-        <div className="container">
-          <Blocks blocks={blocks} />
-        </div>
-      }
+      
 
     </Layout>
   );
@@ -74,6 +78,7 @@ export const WorkQuery = graphql`
       id
       title
       introduction
+      description
       image {
         alt
         gatsbyImageData
