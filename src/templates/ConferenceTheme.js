@@ -14,6 +14,7 @@ const ConferenceTheme = ({ pageContext, data: { parentConference, topic, prevCon
 
   const filteredPrevConferences = mappedPrevConferences.filter(event => event.eventType === parentConference.eventType);
 
+  console.log(content.value);
   return (
     <Layout>
       <SeoDatoCMS seo={seo} favicon={favicon} />
@@ -28,7 +29,7 @@ const ConferenceTheme = ({ pageContext, data: { parentConference, topic, prevCon
       <ConferenceWrapper themes={themes} slug={pageContext.fullSlug} parentSlug={slug}>
         <div>
           <h2>{title}</h2>
-          {content && <StructuredTextDefault content={content} />}
+          {content?.value && <StructuredTextDefault content={content} />}
           {blocks && (
             <div className="blocks-wrapper">
               <Blocks blocks={blocks} fixedCard={false} homePage={false} />
@@ -57,6 +58,31 @@ export const ConferenceThemeQuery = graphql`
       slug
       content {
         value
+        blocks {
+          ... on DatoCmsPdfButton {
+            id: originalId
+            label
+            file {
+              url
+            }
+          }
+          ... on DatoCmsGenericCardGrid {
+            id: originalId
+            items {
+              title
+              introduction
+              id
+            }
+          }
+          ... on DatoCmsAcordion {
+            __typename
+            id: originalId
+            items {
+              title
+              text
+            }
+          }
+        }
       }
       blocks {
         ... on DatoCmsCalendarBlock {
