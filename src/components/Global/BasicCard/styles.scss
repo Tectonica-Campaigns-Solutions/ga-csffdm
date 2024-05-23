@@ -77,3 +77,18 @@
     }
   }
 }
+
+@media screen and (max-width:575px) {
+
+  .basic-card {
+    padding: 30px 20px;
+
+    .custom-btn {
+      bottom: 1rem;
+      left: 20px;
+      right: 20px;
+      width: auto;
+    }
+  }
+
+}
