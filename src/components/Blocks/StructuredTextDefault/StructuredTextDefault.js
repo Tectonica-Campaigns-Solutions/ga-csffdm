@@ -25,6 +25,7 @@ const StructuredTextDefault = ({ content }) => {
           case 'DatoCmsAcordion':
             return <Accordion items={record.items} key={record.id} />;
           case 'DatoCmsPdfButton':
+            console.log('pdf', record);
             return <PdfButton {...record} key={record.id} />;
           case 'DatoCmsGenericCardGrid':
             return <GenericCardGrid {...record} key={record.id} />;
