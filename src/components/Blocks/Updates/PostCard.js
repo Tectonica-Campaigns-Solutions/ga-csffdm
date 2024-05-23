@@ -22,7 +22,7 @@ const PostCard = ({ post }) => {
     return words.slice(0, n).join(' ');
   }
   
-  const intro = content.value?.document.children[0].children[0].value !== undefined ? truncateToWords(content.value.document.children[0].children[0].value, 20) + '...' : '';
+  const intro = content?.value?.document.children[0].children[0].value !== undefined ? truncateToWords(content.value.document.children[0].children[0].value, 20) + '...' : '';
 
   console.log(introduction.length)
   return (
