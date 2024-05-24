@@ -126,6 +126,7 @@ export const PostQuery = graphql`
           ...BlockForm
         }
         ... on DatoCmsPdfButton {
+          __typename
           id: originalId
           label
           file {
