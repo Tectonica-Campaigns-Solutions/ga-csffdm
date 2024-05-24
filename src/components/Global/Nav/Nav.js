@@ -61,7 +61,7 @@ const DropdownItem = ({ link, label, children }) => {
         }
       }}
     >
-      <Link to={link} type="button" aria-label="Expand" aria-expanded="false" data-bs-toggle="dropdown">
+      <Link type="button" aria-label="Expand" aria-expanded="false" data-bs-toggle="dropdown">
         {label}
       </Link>
 
@@ -70,6 +70,13 @@ const DropdownItem = ({ link, label, children }) => {
         className={`dropdown-menu ${link.hasMegaMenu ? 'megamenu column-count-' + children.length : null} ${dropdownOpen ? 'open' : null}`}
         onMouseLeave={closeMegamenu}
       >
+        { !link.hasMegaMenu && (
+        <li className="dropdown-item">
+          <Link className="dropdown-link" to={link}>
+            <div className="dropdown-title">{label}</div>
+          </Link>
+        </li>
+        )}
         {
         children
           ?.sort((a, b) => a.position - b.position)
@@ -89,9 +96,10 @@ const DropdownItem = ({ link, label, children }) => {
                 <div className="dropdown-title"><Link to={`/conference/${link?.content?.slug}`}>{link?.title}</Link></div>
                     <ul className="megamenu-col">
                       {link.treeChildren.sort((a, b) => a.position - b.position).map((subLink) => (
-                        //console.log('Sublink', subLink),
+                        console.log('Sublink', link),
                         <li key={subLink.id}>
                           <Link to={`/conference/${link?.content?.slug}/${subLink?.conferenceTheme?.slug}/${subLink?.content?.slug}`}>{subLink?.title}</Link>
+                          {/*<Link to={`/conference/${subLink?.treeChildren.conferenceTheme?.slug}/${subLink?.conferenceTheme?.slug}/${subLink?.content?.slug}`}>{subLink?.title}</Link>*/}
                         </li>
                       ))}
                     </ul>

@@ -135,6 +135,9 @@ export const ConferenceThemeQuery = graphql`
         }
       }
       blocks {
+        ... on DatoCmsUpdatesBlock {
+          ...BlockUpdates
+        }
         ... on DatoCmsCalendarBlock {
           __typename
           id: originalId

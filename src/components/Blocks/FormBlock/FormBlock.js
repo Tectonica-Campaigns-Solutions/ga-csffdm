@@ -12,7 +12,7 @@ function FormBlock({ block }) {
         <div className={`form-block`}>
           <div className={`${footerForm ? "form-container-content" : ''}`} >
             <div className={`row`}>
-              {title && <h2>{title}</h2>}
+              {title && <div class="col-12"><h2>{title}</h2></div>}
               <Form formType={formType} />   
             </div>
           </div>

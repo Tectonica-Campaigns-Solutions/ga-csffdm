@@ -16,9 +16,11 @@ header {
   }
 
   .dropdown {
+    
     &-menu {
       padding: 20px;
       border-radius: 5px !important;
+      max-height: none;
 
       &.open {
         display: block;
@@ -129,6 +131,7 @@ header {
       &:not(:last-child) {
         padding-bottom: 20px;
       }
+
     }
   }
 
@@ -494,9 +497,21 @@ header {
   }
 }
 
+.navbar .site-nav ul.navbar-nav li.nav-item {
+  &:nth-child(5) {
+
+    .dropdown-menu {
+      right: 0;
+      left: unset;
+    }
+  }
+  
+}
+
 @media screen and (max-width: 991px) {
   .navbar.expanded #navNav ul li.nav-item {
     text-align: center;
+    width: 100%;
   }
 
   li.dropdown ul.dropdown-menu {
@@ -522,4 +537,79 @@ header {
       }
     }
   }
+}
+
+@media screen and (max-width: 767px) {
+
+  .navbar.sticky-nav .dropdown-menu.megamenu li .megamenu-col li a, 
+  .navbar.sticky-nav .dropdown-menu.megamenu li:hover .megamenu-col li a,
+  .navbar.sticky-nav .dropdown-menu.megamenu.open .dropdown-item .introtext a {
+    font-size: 1.25rem !important;
+  }
+
+  .navbar.navbar-expand-lg.expanded.sticky-nav {
+    position: relative !important;
+
+  }
+
+  .navbar.expanded {
+    #navNav ul {
+      min-height: 100dvh;
+      margin-top: 2rem;
+      overflow-y: auto;
+      li.nav-item {
+        text-align: left;
+        padding-left: 20px;
+        &:hover {
+          border-bottom: none;
+        }
+        .dropdown-menu {
+          height: auto;
+          min-height: auto;
+          margin-top: 0;
+          padding-left: 0;
+          padding-bottom: 0;
+          max-height:none;
+
+          li.dropdown-item .dropdown-link {
+            color: var(--black) !important;
+          }
+
+          &.megamenu {
+
+            .megamenu-col {
+              min-height: auto;
+              margin-top: 0;
+            }
+
+          }
+        }
+      }
+    }
+    .dropdown-menu {
+      box-shadow: none;
+      text-align: left;
+    } 
+  }
+
+  .navbar-expand-lg .navbar-nav .dropdown-menu.megamenu {
+    position: relative;
+    top: unset;
+    max-height: none;
+  }
+
+  .navbar .site-nav .nav-actions {
+    display: block;
+    width: 100%;
+    padding-left: 15px;
+  }
+
+  .search-engine header {
+    padding: 20px;
+
+    div img {
+      width: 85%;
+    }
+  }
+
 }
