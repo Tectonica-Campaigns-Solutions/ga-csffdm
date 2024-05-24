@@ -28,8 +28,8 @@ const Post = ({ pageContext, data: { post, favicon, updates } }) => {
     externalTitle: 'Explore all the updates',
     isButton: true,
     customVariant: 'custom-btn-secondary',
-    isCta: true
-  }
+    isCta: true,
+  };
 
   return (
     <Layout>
@@ -130,6 +130,117 @@ export const PostQuery = graphql`
           label
           file {
             url
+          }
+        }
+        ... on DatoCmsGenericCardGrid {
+          __typename
+          id: originalId
+          items {
+            ... on DatoCmsGenericCard {
+              id
+              title
+              introduction
+              cta {
+                id: originalId
+                title
+                isButton
+                style
+                link {
+                  #... on DatoCmsGlobalLink {
+                  #  label
+                  #  externalUrl
+                  #  content {
+                  ... on DatoCmsHome {
+                    model {
+                      apiKey
+                    }
+                  }
+                  ... on DatoCmsResource {
+                    slug
+                    model {
+                      apiKey
+                    }
+                  }
+                  ... on DatoCmsEvent {
+                    slug
+                    model {
+                      apiKey
+                    }
+                  }
+                  ... on DatoCmsWork {
+                    slug
+                    model {
+                      apiKey
+                    }
+                  }
+                  ... on DatoCmsEvent {
+                    slug
+                    model {
+                      apiKey
+                    }
+                  }
+                  ... on DatoCmsPost {
+                    slug
+                    model {
+                      apiKey
+                    }
+                  }
+                  ... on DatoCmsAreasOfWork {
+                    slug
+                    model {
+                      apiKey
+                    }
+                  }
+                  ... on DatoCmsBasicPage {
+                    slug
+                    model {
+                      apiKey
+                    }
+                  }
+                  ... on DatoCmsNews {
+                    slug
+                    model {
+                      apiKey
+                    }
+                  }
+                  ... on DatoCmsGovernance {
+                    slug
+                    model {
+                      apiKey
+                    }
+                  }
+                  ... on DatoCmsForm {
+                    slug
+                    model {
+                      apiKey
+                    }
+                  }
+                  ... on DatoCmsConference {
+                    slug
+                    model {
+                      apiKey
+                    }
+                  }
+                  ... on DatoCmsConferenceTheme {
+                    slug
+                    model {
+                      apiKey
+                    }
+                  }
+                  ##... on DatoCmsConferenceSubtopic {
+                  ##slug
+                  ##model {
+                  ##apiKey
+                  ##}
+                  ##}
+                }
+                model {
+                  apiKey
+                }
+                #}
+                #}
+              }
+            }
           }
         }
       }

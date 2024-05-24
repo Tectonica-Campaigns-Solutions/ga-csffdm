@@ -53,12 +53,22 @@
       padding-right: 0;
     }
 
+    .eventsSection {
+      .content { 
+        display: block;
+      }
+    }
+
     .content {
       display: flex;
       gap: 1rem;
+      column-count: 2;
+      flex-direction: column;
 
       .event-card {
-        max-width: 50%;
+        /*max-width: 50%;*/
+        display: inline-block;
+        min-height: 404px;
       }
     }
 

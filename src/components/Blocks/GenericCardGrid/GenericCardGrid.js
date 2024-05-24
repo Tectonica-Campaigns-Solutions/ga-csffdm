@@ -20,14 +20,15 @@ const GenericCardGrid = ({ items = [] }) => {
         let urlTo = '';
         const { slug, model } = item.cta.link;
 
-        //console.log('model', item);
+        //console.log('model', model, 'slug', slug);
 
-        if (model === 'conference_subtopic') {
+        if (model.apiKey === 'conference_subtopic') {
           urlTo = `/${conference}/${conferenceSlug}/${slug}`;
         } else {
-          urlTo = `/${conference}/${conferenceSlug}/${subTopic}/${slug}`;
-          //urlTo = `/${model}/${slug}`; //item.cta.link;
+          //urlTo = `/${conference}/${conferenceSlug}/${subTopic}/${slug}`;
+          urlTo = `/${model.apiKey}/${slug}`; //item.cta.link;
         }
+        
 
         return (
           <Link className="generic-card" to={urlTo}>

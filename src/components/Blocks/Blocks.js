@@ -16,6 +16,7 @@ import LinksCard from './LinksCard/LinksCard';
 import PdfButton from './PdfButton/PdfButton';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import EmbedIframe from './EmbedIframe/EmbedIframe';
+import GenericCardGrid from './GenericCardGrid/GenericCardGrid';
 
 export default function Blocks({ blocks, usePrimaryHeading = false, fixedCard = true, homePage = true}) {
   return (
@@ -54,6 +55,9 @@ export default function Blocks({ blocks, usePrimaryHeading = false, fixedCard = 
             return <PdfButton key={block.id} {...block} />;
           case 'DatoCmsEmbedForm':
             return <EmbedIframe key={block.id} content={block} />;
+          case 'DatoCmsGenericCardGrid':
+            console.log('generic card grid', block);
+            return <GenericCardGrid key={block.id} {...block} />;
           case 'DatoCmsImage':
             return (
               <div className='image-block'>
