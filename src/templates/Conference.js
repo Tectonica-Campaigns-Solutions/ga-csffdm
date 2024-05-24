@@ -88,6 +88,14 @@ export const ConferenceQuery = graphql`
                       url
                     }
                   }
+                  ... on DatoCmsImage {
+                    __typename
+                    id: originalId
+                    image {
+                      alt
+                      gatsbyImageData
+                    }
+                  }
                   ... on DatoCmsGenericCardGrid {
                     id: originalId
                     items {
