@@ -20,6 +20,7 @@
     "@gsap/react": "^2.1.0",
     "axios": "^1.6.8",
     "bootstrap": "5.2.3",
+    "datocms-structured-text-to-html-string": "^4.0.0",
     "dotenv": "^16.4.4",
     "gatsby": "^5.13.3",
     "gatsby-plugin-image": "^3.13.1",
