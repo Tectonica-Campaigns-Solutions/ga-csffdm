@@ -132,6 +132,14 @@ export const ConferenceThemeQuery = graphql`
               text
             }
           }
+          ... on DatoCmsImage {
+            __typename
+            id: originalId
+            image {
+              alt
+              gatsbyImageData
+            }
+          }
         }
       }
       blocks {

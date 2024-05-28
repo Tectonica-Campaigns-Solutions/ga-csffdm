@@ -42,7 +42,8 @@ const StructuredTextDefault = ({ content }) => {
 
   const transformedContent = transformYouTubeUrls(content);
 
-  const renderNode = (node) => {
+  
+  /*const renderNode = (node) => {
     if (node.type === 'root' || node.type === 'paragraph') {
       return React.createElement(node.type === 'root' ? 'div' : 'p', { key: node.key }, node.children.map(renderNode));
     }
@@ -73,7 +74,7 @@ const StructuredTextDefault = ({ content }) => {
     }
 
     return null;
-  };
+  };*/
   
   return (
   <div className='rendered'>
@@ -105,6 +106,8 @@ const StructuredTextDefault = ({ content }) => {
       }}
     />
   </div>);
+
+  /*
 
   const newStructuredText = transformedContent.document.map(renderNode);
 
@@ -158,7 +161,7 @@ const StructuredTextDefault = ({ content }) => {
         }
       }}
     />
-  );
+  );*/
 };
 
 export default StructuredTextDefault;
