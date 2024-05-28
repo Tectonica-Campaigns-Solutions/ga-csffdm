@@ -13,8 +13,6 @@ const ResourceCard = ({ resource, className = '' }) => {
 
   const intro = introduction.length > 0 ? introduction : title;
 
-  console.log('ResourceCard', resource);
-
   return (
     <article className={`resource-card ${className}`}>
       <Link to={resource}>

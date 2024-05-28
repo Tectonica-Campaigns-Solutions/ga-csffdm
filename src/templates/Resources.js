@@ -66,7 +66,7 @@ function Resources({ pageContext, data: { page, resources = [], favicon } }) {
               
               <div className='col-md-6'>
                 <h3>Filter by type of resource</h3>
-                <Dropdown options={filtersByType.map((f) => ({ value: f, label: f.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()) }))} onSelect={handleOnFilterPostsByType} />
+                <Dropdown title="Explore all resources" options={filtersByType.map((f) => ({ value: f, label: f.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()) }))} onSelect={handleOnFilterPostsByType} />
               </div>
               <div className='col-md-6'>
                 <h3>Filter by area of work</h3>

@@ -1,5 +1,5 @@
 .footer-container {
-  padding: 52px 0;
+  padding: 40px 0;
   background-color: var(--secondary-bg-color);
   font-family: var(--neue-font);
 
@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 78px;
+    margin-bottom: 47px;
   }
 
   .social-btn {
@@ -119,6 +119,10 @@
         text-decoration: underline;
       }
     }
+  }
+
+  .extra-links {
+    margin-bottom: 0;
   }
 
   .extra-text {

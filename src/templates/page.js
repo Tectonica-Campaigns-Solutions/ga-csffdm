@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import SeoDatoCMS from '../components/Layout/SeoDatocms';
 import Blocks from '../components/Blocks/Blocks';
-//import HeroBasic from '../components/Global/HeroBasic/HeroBasic';
+import HeroBasic from '../components/Global/HeroBasic/HeroBasic';
 import HeroDetail from '../components/Global/HeroDetail/HeroDetail';
 import ShareButtons from '../components/Global/ShareButtons/ShareButtons';
 
@@ -37,7 +37,7 @@ const Page = ({ pageContext, data: { page, favicon } }) => {
     </>
   );
 
-  console.log(blocks)
+  console.log(pageContext.slug)
 
   return (
     <Layout>
@@ -45,8 +45,8 @@ const Page = ({ pageContext, data: { page, favicon } }) => {
 
       <div className="inner-page" style={{ backgroundColor: '#FFF' }}>
 
-        {/*<HeroBasic title={title} image={heroBackgroundImage} backgroundColor={backgroundColor} overlay={false} />*/}
-        <HeroDetail currentPage={title} title={title} description={introduction} image={image} ctas={headerCtas} breadcrumb={breadcrumb} />
+        { pageContext.slug === 'about' && (<HeroBasic title={title} image={image} currentPage={title} />) }
+        { pageContext.slug !== 'about' && (<HeroDetail currentPage={title} title={title} description={introduction} image={image} ctas={headerCtas} breadcrumb={breadcrumb} />) }
         <div className="container page-content">
           <ShareButtons /> 
           {renderMainContent()}

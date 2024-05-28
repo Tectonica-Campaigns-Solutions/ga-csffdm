@@ -24,7 +24,6 @@ const PostCard = ({ post }) => {
   
   const intro = content?.value?.document.children[0].children[0].value !== undefined ? truncateToWords(content.value.document.children[0].children[0].value, 20) + '...' : '';
 
-  console.log(introduction.length)
   return (
     <article className="post-card">
       <Link to={post}>
