@@ -508,6 +508,12 @@ header {
   
 }
 
+@media screen and (max-width: 1366px) {
+  .navbar .site-nav ul li.nav-item {
+    margin-right: 1.5rem;
+  }
+}
+
 @media screen and (max-width: 991px) {
   .navbar.expanded #navNav ul li.nav-item {
     text-align: center;

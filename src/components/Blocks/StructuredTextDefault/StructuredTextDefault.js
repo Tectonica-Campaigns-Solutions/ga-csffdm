@@ -78,10 +78,10 @@ const StructuredTextDefault = ({ content }) => {
   return (
   <div className='rendered'>
     
-    {transformedContent.document.map(renderNode)}
+    {/*transformedContent.document.map(renderNode)*/}
 
     <StructuredText
-      data=""
+      data={content}
       renderBlock={({ record }) => {
         switch (record.__typename) {
           case 'DatoCmsImage':

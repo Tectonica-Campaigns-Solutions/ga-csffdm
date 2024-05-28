@@ -59,6 +59,12 @@
   }
 }
 
+@media screen and (max-width:1400px) {
+  .basic-card h3 {
+    font-size: 39px;
+  }
+}
+
 @media screen and (max-width:992px) {
   .basic-card {
     height: 447px;
