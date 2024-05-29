@@ -41,14 +41,14 @@ const ResourcesBlock = ({ block, withFixedCard = false, homePage = true }) => {
   return (
     <Section headline={headline} introduction={introduction} cta={cta} hClass="h4" extraClassNames="resources-section">
       <div className="row">
-        { withFixedCard && (
-        <div className="col-lg-3">
+        {/* withFixedCard && (
+        <div className="col-lg-4">
           <ResourceCard resource={fixedCard} className="fixedCard" />
         </div>
-        )}
+        )*/}
 
         {itemsSorted.map((item) => (
-          <div className={ itemsSorted.length > 3 ? "col-lg-6" : "col-lg-3" }  key={item.id}>
+          <div className={ itemsSorted.length > 3 ? "col-lg-6" : "col-lg-4" }  key={item.id}>
             <ResourceCard resource={item} />
           </div>
         ))}
