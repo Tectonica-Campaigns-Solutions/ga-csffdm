@@ -29,7 +29,7 @@ const ResourcesBlock = ({ block, withFixedCard = false, homePage = true }) => {
     }
   `);
 
-  const itemsSorted = homePage ? [...resourcesPosts.allDatoCmsResource.nodes] : [...items];
+  const itemsSorted = homePage ? [...items] : [...items];
   
   const fixedCard = {
     title: fixedCardTitle != undefined ? fixedCardTitle : '',
@@ -42,13 +42,13 @@ const ResourcesBlock = ({ block, withFixedCard = false, homePage = true }) => {
     <Section headline={headline} introduction={introduction} cta={cta} hClass="h4" extraClassNames="resources-section">
       <div className="row">
         { withFixedCard && (
-        <div className="col-lg-4">
+        <div className="col-lg-3">
           <ResourceCard resource={fixedCard} className="fixedCard" />
         </div>
         )}
 
         {itemsSorted.map((item) => (
-          <div className={ itemsSorted.length > 2 ? "col-lg-6" : "col-lg-4" }  key={item.id}>
+          <div className={ itemsSorted.length > 3 ? "col-lg-6" : "col-lg-3" }  key={item.id}>
             <ResourceCard resource={item} />
           </div>
         ))}
