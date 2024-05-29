@@ -7,6 +7,7 @@ import PostCard from '../components/Blocks/Updates/PostCard';
 import HeroPost from '../components/Global/HeroPost/HeroPost';
 import Dropdown from '../components/Global/Inputs/Dropdown/Dropdown';
 import ListPaginated from '../components/Global/Pagination/ListPaginated';
+import HeroBasic from '../components/Global/HeroBasic/HeroBasic';
 
 import './basic.scss';
 
@@ -42,7 +43,8 @@ function NewsDistributor({ pageContext, data: { page, news = [], favicon } }) {
   return (
     <Layout>
       <SeoDatoCMS seo={seo} favicon={favicon} />
-      {highlightedPost && <HeroPost post={highlightedPost} currentPage={title} />}
+      {/*highlightedPost && <HeroPost post={highlightedPost} currentPage={title} />*/}
+      <HeroBasic title={title} currentPage={title} />
 
       <div className="container basic-layout">
         {introduction && introduction.length > 0 && (
