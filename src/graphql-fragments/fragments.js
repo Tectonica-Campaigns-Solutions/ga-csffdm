@@ -664,6 +664,9 @@ export const DatoCMS = graphql`
         tags {
           ...Tags
         }
+        model {
+          apiKey
+        }
       }
     }
   }

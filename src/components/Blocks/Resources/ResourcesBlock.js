@@ -29,14 +29,16 @@ const ResourcesBlock = ({ block, withFixedCard = false, homePage = true }) => {
     }
   `);
 
-  const itemsSorted = homePage ? [...items] : [...items];
-  
+  //const itemsSorted = homePage ? [...items] : [...items];
+  const itemsSorted = [...items];
+  /*
   const fixedCard = {
     title: fixedCardTitle != undefined ? fixedCardTitle : '',
     slug: fixedCardLink?.content?.slug != undefined ? fixedCardLink?.content?.slug : '',
     introduction: fixedCardIntro != undefined ? fixedCardIntro : '',
     model: { apiKey: "resource" }
   };
+  */
 
   return (
     <Section headline={headline} introduction={introduction} cta={cta} hClass="h4" extraClassNames="resources-section">
