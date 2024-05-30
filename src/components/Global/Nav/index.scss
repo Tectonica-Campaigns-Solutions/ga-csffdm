@@ -210,9 +210,16 @@ header {
       width: 85%;
     }
 
-    .nav-item a {
-      font-size: 25px !important;
-      color: var(--dark) !important;
+    .nav-item {
+      
+      a {
+        font-size: 25px !important;
+        color: var(--dark) !important;
+      }
+
+      .dropdown-menu.megamenu li .megamenu-col li a {
+        font-size: 20px !important;
+      }
     }
   }
 
@@ -602,6 +609,10 @@ header {
     position: relative;
     top: unset;
     max-height: none;
+
+    li a.dropdown-link .introtext {
+      display:none
+    }
   }
 
   .navbar .site-nav .nav-actions {

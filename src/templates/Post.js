@@ -14,7 +14,7 @@ import PostCard from '../components/Blocks/Updates/PostCard';
 import Cta from '../components/Global/Cta/Cta';
 import './basic.scss';
 
-const Post = ({ pageContext, data: { post, favicon, updates } }) => {
+const Post = ({ pageContext, data: { post, favicon, updates, updatesNonRelated } }) => {
   const { title, date, tags = [], introduction, mainImage, content, seo, blocks = [] } = post;
 
   const breadcrumb = {
@@ -23,6 +23,8 @@ const Post = ({ pageContext, data: { post, favicon, updates } }) => {
   };
 
   const itemsSorted = [...updates.nodes];
+  const itemsNonRelatedSorted = [...updatesNonRelated.nodes];
+
   const updatesCta = {
     url: '/news',
     externalTitle: 'Explore all the updates',
@@ -59,11 +61,16 @@ const Post = ({ pageContext, data: { post, favicon, updates } }) => {
 
       <Section headline="Related Updates" cta={updatesCta} extraClassNames="updatesSection" hClass="h4">
         <div className="row">
-          {itemsSorted.map((item) => (
+          {itemsSorted.length > 0 && (itemsSorted.map((item) => (
             <div className="col-md-4" key={item.id}>
               <PostCard post={item} />
             </div>
-          ))}
+          )))}
+          {itemsSorted.length === 0 && (itemsNonRelatedSorted.map((item) => (
+            <div className="col-md-4" key={item.id}>
+              <PostCard post={item} />
+            </div>
+          )))}
         </div>
       </Section>
     </Layout>
@@ -132,6 +139,11 @@ export const PostQuery = graphql`
           file {
             url
           }
+        }
+        ... on DatoCmsEmbedForm {
+          __typename
+          id: originalId
+          embedCode
         }
         ... on DatoCmsGenericCardGrid {
           __typename
@@ -246,7 +258,28 @@ export const PostQuery = graphql`
         }
       }
     }
-    updates: allDatoCmsPost(filter: { tags: { elemMatch: { title: { in: $tags } } }, id: { ne: $id } }, limit: 3) {
+    updates: allDatoCmsPost(filter: { tags: { elemMatch: { title: { in: $tags } } }, id: { ne: $id } }, limit: 3, sort: {date: DESC}) {
+      nodes {
+        id
+        title
+        slug
+        date
+        introduction
+        tags {
+          title
+        }
+        mainImage {
+          width
+          height
+          alt
+          gatsbyImageData
+        }
+        model {
+          apiKey
+        }
+      }
+    }
+    updatesNonRelated: allDatoCmsPost(filter: { id: { ne: $id } }, limit: 3, sort: {date: DESC}) {
       nodes {
         id
         title

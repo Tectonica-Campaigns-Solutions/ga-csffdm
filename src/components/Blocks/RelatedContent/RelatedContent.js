@@ -12,6 +12,9 @@ export const RelatedContent = ({ block, posts, blockHeadline = '', extraClassNam
   const itemsSorted = [...posts.nodes];
   const featured = extraClassNames.includes('future');
 
+  if ( cta !== null && cta.title !== null)
+    cta.title = blockHeadline.includes('Past Events') ? cta.title.replace('upcoming', 'past') : cta.title;
+
   return (
     <Section
       headline={blockHeadline === '' ? headline : blockHeadline}

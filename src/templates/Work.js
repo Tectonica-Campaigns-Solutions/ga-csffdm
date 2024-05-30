@@ -39,21 +39,29 @@ const Work = ({ pageContext, data: { work, favicon, updates, resources, meetings
       {blocks.map((block) => {
           if (block.__typename === 'DatoCmsRelatedContent') 
               if (block.typeOfContent === 'news')
-                return <RelatedContent key={block.id} block={block} posts={updates} />;
+                return ( 
+                <>
+                  {updates.nodes.length > 0 && <RelatedContent key={block.id} block={block} posts={updates} />}
+                </>
+              );
               else if (block.typeOfContent === 'resources')
-                return <RelatedContent key={block.id} block={block} posts={resources} />;
+                return (
+                <>
+                  {resources.nodes.length > 0 && <RelatedContent key={block.id} block={block} posts={resources} />}
+                </>
+              );
               else if (block.typeOfContent === 'meetings')
                 return (
                 <>
-                  <RelatedContent key={block.id} block={block} posts={upcomingMeeting} blockHeadline="Feature UN Meeting" extraClassNames="future-meeting" />
-                  <RelatedContent key={block.id} block={block} posts={meetings} blockHeadline="Other UN Meetings" extraClassNames="past-meetings" />
+                  {upcomingMeeting.nodes.length > 0 && <RelatedContent key={block.id} block={block} posts={upcomingMeeting} blockHeadline="Feature UN Meeting" extraClassNames="future-meeting" />}
+                  {meetings.nodes.length > 0 && <RelatedContent key={block.id} block={block} posts={meetings} blockHeadline="Other UN Meetings" extraClassNames="past-meetings" />}
                 </>
                 );
               else if (block.typeOfContent === 'events')
                 return (
                 <>
-                  <RelatedContent key={block.id} block={block} posts={events} extraClassNames="future-events" />
-                  <RelatedContent key="pastEvents" block={block} posts={pastEvents} blockHeadline="Past Events" extraClassNames="past-events"/>
+                  {events.nodes.length > 0 && <RelatedContent key={block.id} block={block} posts={events} extraClassNames="future-events" />}
+                  {pastEvents.nodes.length > 0 && <RelatedContent key="pastEvents" block={block} posts={pastEvents} blockHeadline="Past Events" extraClassNames="past-events"/>}
                 </>
               )
           }
@@ -119,7 +127,7 @@ export const WorkQuery = graphql`
         }
       }
     }
-    updates: allDatoCmsPost(filter: {tags: {elemMatch: {title: {eq: $tag}}}}, limit: 3) {
+    updates: allDatoCmsPost(filter: {tags: {elemMatch: {title: {eq: $tag}}}}, limit: 3, sort: {date: DESC}) {
       nodes {
         id
         title
@@ -140,7 +148,7 @@ export const WorkQuery = graphql`
         }
       }
     }
-    resources: allDatoCmsResource(filter: {tags: {elemMatch: {title: {eq: $tag}}}}, limit: 4) {
+    resources: allDatoCmsResource(filter: {tags: {elemMatch: {title: {eq: $tag}}}}, limit: 4, sort: {date: DESC}) {
       nodes {
         title
         slug
@@ -160,7 +168,7 @@ export const WorkQuery = graphql`
         }
       }
     }
-    events: allDatoCmsEvent(filter: {tags: {elemMatch: {title: {eq: $tag}}}, date: {gte: $today}}, limit: 3) {
+    events: allDatoCmsEvent(filter: {tags: {elemMatch: {title: {eq: $tag}}}, date: {gte: $today}}, limit: 3, sort: {date: DESC}) {
       nodes {
         title
         slug
@@ -177,7 +185,7 @@ export const WorkQuery = graphql`
         }
       }
     }
-    pastEvents: allDatoCmsEvent(filter: {tags: {elemMatch: {title: {eq: $tag}}}, date: {lt: $today}}, limit: 3) {
+    pastEvents: allDatoCmsEvent(filter: {tags: {elemMatch: {title: {eq: $tag}}}, date: {lt: $today}}, limit: 3, sort: {date: DESC}) {
       nodes {
         title
         slug
@@ -214,7 +222,7 @@ export const WorkQuery = graphql`
         }
       }
     }
-    meetings: allDatoCmsUnMeeting(filter: {tags: {elemMatch: {title: {eq: $tag}}}, date: {lt: $today}}, limit: 3) {
+    meetings: allDatoCmsUnMeeting(filter: {tags: {elemMatch: {title: {eq: $tag}}}, date: {lt: $today}}, limit: 3, sort: {date: DESC}) {
       nodes {
         title
         slug

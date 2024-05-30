@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import './styles.scss';
 import CountryDropdown from './CountryDropdown';
+import addToMailchimp from 'gatsby-plugin-mailchimp';
 
 function Form({ formType }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -83,75 +84,107 @@ function Form({ formType }) {
     }
   };
 
+  const _handleSubmit = async (email) => {
+    //this.preventDefault();
+    const result = await addToMailchimp(email)
+    // I recommend setting `result` to React state
+    // but you can do whatever you want
+  }
+
   const onSubmit = (event) => {
     event.preventDefault();
     handleSubmit(event);
-  };
+  }
 
-  return (
-    <div className="form-container">
-      <div id="liveAlertPlaceholder"></div>
-      
-        <form onSubmit={onSubmit}>
+    return (
+      <div className="form-container">
+        <div id="liveAlertPlaceholder"></div>
+        <form onSubmit={_handleSubmit(email)}>
           <div className="row">
             <div className="col-md-3">
-              <input name="name" className="form-control" type="text" placeholder="Name" onChange={onChange} />
+              <input
+                type="text"
+                name="name"
+                className="text form-control"
+                id="mce-FNAME"
+                placeholder="Name"
+                value={formState.name}
+                onChange={onChange}
+              />
             </div>
             <div className="col-md-3">
-              <input name="email" className="form-control" type="email" placeholder="Email" onChange={onChange} />
+              <input
+                type="text"
+                name="lastname"
+                className="text form-control"
+                id="mce-LNAME"
+                placeholder="Last name"
+                value={formState.lastname}
+                onChange={onChange}
+              />
             </div>
             <div className="col-md-3">
-              <CountryDropdown selectedCountry={country} handleCountryChange={onChange} />
+              <input
+                type="email"
+                name="email"
+                className="required email form-control"
+                id="mce-EMAIL"
+                placeholder="Email"
+                required=""
+                value={formState.email}
+                onChange={onChange}
+              />
             </div>
             <div className="col-md-2">
-              <button className="custom-btn custom-btn-primary custom-btn-primary" type="submit">
-                Sign Up
-              </button>
-            </div>
-          </div>
-          <div className="row mt-4">
-            <div className="col-12">
-              <p>
-                I consent receiving email from CSFFD
+            {/*<button className="custom-btn custom-btn-primary custom-btn-primary w-100" type="submit">Subscribe</button>*/}
+              <input
+                type="submit"
+                name="subscribe"
+                id="mc-embedded-subscribe"
+                className="button custom-btn custom-btn-primary custom-btn-primary w-100"
+                value="Subscribe"
+              />
+              <p style={{ margin: '0px auto' }}>
+                <a
+                  href="http://eepurl.com/iQwQfQ"
+                  title="Mailchimp - email marketing made easy and fun"
+                >
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      backgroundColor: 'transparent',
+                      borderRadius: '4px',
+                    }}
+                  >
+                    <img
+                      className="refferal_badge"
+                      src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg"
+                      alt="Intuit Mailchimp"
+                      style={{
+                        width: '220px',
+                        height: '40px',
+                        display: 'flex',
+                        padding: '2px 0px',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                    />
+                  </span>
+                </a>
               </p>
             </div>
-            <div className="col">
-              <div className="form-check float-start me-3">
-                
-                <label className="form-check-label" for="flexRadioConsent2">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="consent"
-                    id="flexRadioConsent2"
-                    value="no"
-                    onChange={onChange}
-                    required
-                  />
-                  No
-                </label>
-              </div>
-              <div className="form-check float-start">
-                <label className="form-check-label" for="flexRadioConsent1">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="consent"
-                  id="flexRadioConsent1"
-                  value="yes"
-                  onChange={onChange}
-                  required
-                />
-                  Yes
-                </label>
-              </div>
+            <div id="mce-responses" className="clear foot">
+              <div className="response" id="mce-error-response" style={{ display: 'none' }}></div>
+              <div className="response" id="mce-success-response" style={{ display: 'none' }}></div>
+            </div>
+            <div aria-hidden="true" style={{ position: 'absolute', left: '-5000px' }}>
+              <input type="text" name="b_1ba8e4790b637950a94f17b25_0d1ec580c7" tabindex="-1" value="" />
             </div>
           </div>
         </form>
+      </div>
+      
+    );
+  };
 
-      {isLoading && <p>Submitting data...</p>}
-    </div>
-  );
-}
-
-export default Form;
+export default Form

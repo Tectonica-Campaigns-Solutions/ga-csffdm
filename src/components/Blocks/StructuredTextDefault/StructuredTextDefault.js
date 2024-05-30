@@ -1,5 +1,5 @@
 import React from 'react';
-import { StructuredText } from 'react-datocms';
+import { StructuredText, renderNodeRule } from 'react-datocms';
 import ImageWrapper from '../../Global/Image/ImageWrapper';
 import Accordion from '../../Blocks/Accordion/Accordion';
 import EmbedIframe from '../../Blocks/EmbedIframe/EmbedIframe';
@@ -42,47 +42,18 @@ const StructuredTextDefault = ({ content }) => {
 
   const transformedContent = transformYouTubeUrls(content);
 
-  
-  /*const renderNode = (node) => {
-    if (node.type === 'root' || node.type === 'paragraph') {
-      return React.createElement(node.type === 'root' ? 'div' : 'p', { key: node.key }, node.children.map(renderNode));
-    }
+  const renderCustomHtml = renderNodeRule(
+    (node) => node.type === 'paragraph' && /<\/?[a-z][\s\S]*>/i.test(node.children[0].value),
+    ({ node, key }) => (
+      <div key={key} dangerouslySetInnerHTML={{ __html: node.children[0].value }} />
+    )
+  );
 
-    console.log('render', node);
-
-    if ((node.type === 'text') || (node.type === 'span')) {
-
-      const youtubeEmbedRegex = /<div class="youtube-embed">[\s\S]*?<\/iframe>\s*<\/div>/g;
-      const parts = node.value.split(youtubeEmbedRegex);
-      const embeds = node.value.match(youtubeEmbedRegex) || [];
-
-      return (
-        <>
-          {parts.map((part, index) => (
-            <React.Fragment key={index}>
-              {part}
-              {embeds[index] && <div dangerouslySetInnerHTML={{ __html: embeds[index] }} />}
-            </React.Fragment>
-          ))}
-        </>
-      );
-    }
-
-    if (node.type === undefined)  {
-      console.log('node undefined', node);
-      return null;
-    }
-
-    return null;
-  };*/
-  
   return (
   <div className='rendered'>
-    
-    {/*transformedContent.document.map(renderNode)*/}
-
     <StructuredText
-      data={content}
+      data={transformedContent}
+      customRules={[renderCustomHtml]}
       renderBlock={({ record }) => {
         switch (record.__typename) {
           case 'DatoCmsImage':
@@ -96,7 +67,6 @@ const StructuredTextDefault = ({ content }) => {
           case 'DatoCmsAcordion':
             return <Accordion items={record.items} key={record.id} />;
           case 'DatoCmsPdfButton':
-            console.log('pdf', record);
             return <PdfButton {...record} key={record.id} />;
           case 'DatoCmsGenericCardGrid':
             return <GenericCardGrid {...record} key={record.id} />;

@@ -1,10 +1,12 @@
 import React from 'react';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import ImageWrapper from '../Image/ImageWrapper';
-
+import imgGlobe from '../../Icons/globe.png';
 import './index.scss';
 
+
 function HeroBasic({ title, introduction = null,  image = null, currentPage, type = null }) {
+
   return (
     <div className={`hero-basic`}>
       <div className="container">
@@ -29,6 +31,7 @@ function HeroBasic({ title, introduction = null,  image = null, currentPage, typ
       </div>
 
       {image && <img className="fixed-img" src={image?.url} />}
+      {image == null && <img className="fixed-img" src={imgGlobe} />}
     </div>
   );
 }

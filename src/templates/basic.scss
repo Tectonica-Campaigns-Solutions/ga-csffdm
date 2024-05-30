@@ -216,6 +216,14 @@ blockquote {
         }
       }
     }
+
+    .embed-iframe {
+      margin: 2rem auto;
+      
+      iframe {
+        min-height: 460px;
+      }
+    }
   }
 
   & + .app-section {
