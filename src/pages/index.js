@@ -42,7 +42,7 @@ export const HomeQuery = graphql`
       heroTitle
       subtitle
       heroImage {
-        gatsbyImageData(width: 1920, height: 1080)
+        gatsbyImageData
       }
       ctas {
         ...BlockCta

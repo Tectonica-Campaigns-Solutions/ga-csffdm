@@ -106,6 +106,11 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
     handleSubmit(event);
   };
 
+  const breadcrumb = {
+    title: 'About Us',
+    url: '/about'
+  }
+
   return (
     <Layout extraClassNames={`form-page ${backgroundColor}`}>
       <SeoDatoCMS seo={seo} favicon={favicon} />
@@ -113,7 +118,7 @@ const Form = ({ pageContext, data: { form, favicon } }) => {
       <div className="container page-content">
         <div className="row">
           <div className="col-12">
-            <Breadcrumb currentPage={title} />
+            <Breadcrumb breadcrumb={breadcrumb} currentPage={title} />
           </div>
         </div>
         <div className="row">
