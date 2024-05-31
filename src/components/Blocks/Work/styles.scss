@@ -89,10 +89,12 @@
 }
 
 @media screen and (max-width:1400px) {
-  .work-card .content {
-    gap: 30px;
-    .workIcon {
-      bottom: 25px;
+  .work-card {
+    .content {
+      gap: 30px;
+      .workIcon {
+        bottom: 25px;
+      }
     }
   }
 }
@@ -112,6 +114,7 @@
 
   .work-card {
     padding: 40px 31px;
+    min-height: 420px;
 
     .content {
       gap: 20px;
