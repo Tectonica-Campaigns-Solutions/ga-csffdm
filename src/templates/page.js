@@ -37,8 +37,6 @@ const Page = ({ pageContext, data: { page, favicon } }) => {
     </>
   );
 
-  console.log(pageContext.slug)
-
   return (
     <Layout>
       <SeoDatoCMS seo={seo} favicon={favicon} />

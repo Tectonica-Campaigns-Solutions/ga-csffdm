@@ -70,13 +70,7 @@ const DropdownItem = ({ link, label, children }) => {
         className={`dropdown-menu ${link.hasMegaMenu ? 'megamenu column-count-' + children.length : null} ${dropdownOpen ? 'open' : null}`}
         onMouseLeave={closeMegamenu}
       >
-        { !link.hasMegaMenu && (
-        <li className="dropdown-item">
-          <Link className="dropdown-link" to={link}>
-            <div className="dropdown-title">{label}</div>
-          </Link>
-        </li>
-        )}
+        
         {
         children
           ?.sort((a, b) => a.position - b.position)
