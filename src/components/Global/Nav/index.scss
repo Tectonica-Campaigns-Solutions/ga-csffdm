@@ -1,5 +1,6 @@
 header {
   height: 120px;
+  position: relative;
 }
 
 .navbar {
@@ -393,7 +394,7 @@ header {
 
     a.navbar-brand {
       height: 100%;
-      /*max-width: 60%;*/
+      max-width: 60%;
 
       img {
         padding-left: 15px;
@@ -484,7 +485,7 @@ header {
       border-radius: 0;
       width: 100%;
       position: fixed;
-      top: 117px;
+      top: 177px;
       max-height: none;
 
       li.dropdown-item {
