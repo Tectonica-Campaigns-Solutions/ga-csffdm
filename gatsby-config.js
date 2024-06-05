@@ -31,12 +31,18 @@ module.exports = {
             timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
         },
     },
-    /*{
+    {
       resolve: 'gatsby-plugin-netlify',
       options: {
-        functionsSrc: `${__dirname}/src/api`,
-        functionsOutput: `${__dirname}/functions`,
+        redirects: [
+          {
+            fromPath: '^/([0-9]{4})/([0-9]{2})/([0-9]{2})/(.+)$',
+            toPath: '/post/$4',
+            statusCode: 301,
+            force: true,
+          },
+        ],
       },
-    },*/
+    },
   ],
 };

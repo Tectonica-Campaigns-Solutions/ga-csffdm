@@ -90,12 +90,20 @@ const DropdownItem = ({ link, label, children }) => {
                 <div className="dropdown-title"><Link to={`/conference/${link?.content?.slug}`}>{link?.title}</Link></div>
                     <ul className="megamenu-col">
                       {link.treeChildren.sort((a, b) => a.position - b.position).map((subLink) => (
-                        //console.log('Sublink', link),
+                        console.log('Sublink', link),
                         <li key={subLink.id}>
+                          { subLink.conferenceTheme !== null && (
                           <Link to={`/conference/${link?.content?.slug}/${subLink?.conferenceTheme?.slug}/${subLink?.content?.slug}`}>{subLink?.title}</Link>
+                          )}
+                          { subLink.conferenceTheme == null && (
+                          <Link to={`/conference/${subLink.content?.slug}`}>{subLink?.title}</Link>
+                          )}
                           {/*<Link to={`/conference/${subLink?.treeChildren.conferenceTheme?.slug}/${subLink?.conferenceTheme?.slug}/${subLink?.content?.slug}`}>{subLink?.title}</Link>*/}
                         </li>
                       ))}
+                      {/*<li>
+                        <Link to={`/conference/past-forums/`}>FFD Past Forums</Link>
+                    </li>*/}
                     </ul>
               </div>
               )}
