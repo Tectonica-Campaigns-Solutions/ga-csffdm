@@ -60,33 +60,46 @@ function Form({ formType }) {
 
     appendAlert('Submitting data...', 'primary');
 
-    // Send data to server
     try {
-      const zapierHook =
-      formType === 'subscribe'
-          ? 'https://hooks.zapier.com/hooks/catch/6569013/3n6mcm9/'
-          : 'https://hooks.zapier.com/hooks/catch/6569013/3nty9te/';
-      const sendToZapier = await fetch(zapierHook, {
-        method: 'POST',
-        body: JSON.stringify(data),
-      });
-
-      const responseZapier = await sendToZapier.json();
-      if (responseZapier.status === 'success') {
-        setIsLoading(false);
-        removeAlerts();
-        appendAlert('Your data has been sent. Thank you!', 'success');
-      }
-    } catch (error) {
-      setIsLoading(false);
+      const result = await addToMailchimp(email);
       removeAlerts();
-      appendAlert('Your data could not be sent. Please, try again.', 'danger');
+      console.log(result);
+      appendAlert(result.msg, 'success');
+    } catch (error) {
+       setIsLoading(false);
+       removeAlerts();
+       appendAlert('Your data could not be sent. Please, try again.', 'danger');
+       console.log(error);
     }
+
+    // Send data to server
+    // try {
+    //   const zapierHook =
+    //   formType === 'subscribe'
+    //       ? 'https://hooks.zapier.com/hooks/catch/6569013/3n6mcm9/'
+    //       : 'https://hooks.zapier.com/hooks/catch/6569013/3nty9te/';
+    //   const sendToZapier = await fetch(zapierHook, {
+    //     method: 'POST',
+    //     body: JSON.stringify(data),
+    //   });
+
+    //   const responseZapier = await sendToZapier.json();
+    //   if (responseZapier.status === 'success') {
+    //     setIsLoading(false);
+    //     removeAlerts();
+    //     appendAlert('Your data has been sent. Thank you!', 'success');
+    //   }
+    // } catch (error) {
+    //   setIsLoading(false);
+    //   removeAlerts();
+    //   appendAlert('Your data could not be sent. Please, try again.', 'danger');
+    // }
   };
 
-  const _handleSubmit = async (email) => {
-    //this.preventDefault();
-    const result = await addToMailchimp(email)
+  const _handleSubmit = async (e) => {
+    e.preventDefault();
+    // const result = await addToMailchimp(email)
+    console.log(email);
     // I recommend setting `result` to React state
     // but you can do whatever you want
   }
@@ -99,7 +112,7 @@ function Form({ formType }) {
     return (
       <div className="form-container">
         <div id="liveAlertPlaceholder"></div>
-        <form onSubmit={_handleSubmit(email)}>
+        <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-md-3">
               <input

@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\fermd\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add datocms-structured-text-to-html react-datocms
+  C:\Program Files\nodejs\node.exe C:\Users\fermd\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add gatsby-plugin-create-redirects
 
 PATH: 
-  D:\Ruby32-x64\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\GitHub CLI\;C:\Program Files (x86)\OpenSSH\bin;C:\Program Files\PuTTY\;D:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Users\fermd\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\nodejs\;C:\Users\fermd\AppData\Local\Microsoft\WindowsApps;C:\Users\fermd\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\fermd\AppData\Local\GitHubDesktop\bin;C:\Users\fermd\AppData\Roaming\Composer\vendor\bin;C:\Users\fermd\AppData\Roaming\nvm;C:\Users\fermd\AppData\Roaming\npm;C:\Program Files (x86)\BrowserStackLocal\
+  D:\Ruby32-x64\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\GitHub CLI\;C:\Program Files (x86)\OpenSSH\bin;C:\Program Files\PuTTY\;D:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Users\fermd\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\nodejs\;D:\Python\Scripts\;D:\Python\;C:\Users\fermd\AppData\Local\Microsoft\WindowsApps;C:\Users\fermd\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\fermd\AppData\Local\GitHubDesktop\bin;C:\Users\fermd\AppData\Roaming\Composer\vendor\bin;C:\Users\fermd\AppData\Roaming\nvm;C:\Users\fermd\AppData\Roaming\npm;C:\Program Files (x86)\BrowserStackLocal\
 
 Yarn version: 
   1.22.19
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/datocms-structured-text-to-html: Not found
+  Error: https://registry.yarnpkg.com/gatsby-plugin-create-redirects: Not found
       at params.callback [as _callback] (C:\Users\fermd\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66145:18)
       at self.callback (C:\Users\fermd\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140890:22)
       at Request.emit (node:events:514:28)
@@ -49,6 +49,7 @@ npm manifest:
       "@gsap/react": "^2.1.0",
       "axios": "^1.6.8",
       "bootstrap": "5.2.3",
+      "datocms-structured-text-to-html-string": "^4.0.0",
       "dotenv": "^16.4.4",
       "gatsby": "^5.13.3",
       "gatsby-plugin-image": "^3.13.1",
@@ -4408,6 +4409,22 @@ Lockfile:
     dependencies:
       datocms-structured-text-utils "^2.1.12"
   
+  datocms-structured-text-generic-html-renderer@^4.0.0:
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/datocms-structured-text-generic-html-renderer/-/datocms-structured-text-generic-html-renderer-4.0.0.tgz#a052f8d66dfa8a18d37a58d762300172ec45d07a"
+    integrity sha512-BXntWbdxwuGjWgAIRt0dAJUOKu57NGbD5zpKEpb/ecisIgoPo+67+9/fjrlQrShfhwNhz8pZoonIjKrsfHwWHQ==
+    dependencies:
+      datocms-structured-text-utils "^4.0.0"
+  
+  datocms-structured-text-to-html-string@^4.0.0:
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/datocms-structured-text-to-html-string/-/datocms-structured-text-to-html-string-4.0.0.tgz#980177578fff2769ad2d2b6c9415a2d66a508914"
+    integrity sha512-a9X0ucXBsscpf0yDjJolczCHkxynebPU14UqVGEv8ePcCHkqgx+Cr1aHFSdR5GB0pov/hRmDeOaMCL0Xlf6f2A==
+    dependencies:
+      datocms-structured-text-generic-html-renderer "^4.0.0"
+      datocms-structured-text-utils "^4.0.0"
+      vhtml "^2.2.0"
+  
   datocms-structured-text-to-plain-text@^2.0.1:
     version "2.1.12"
     resolved "https://registry.yarnpkg.com/datocms-structured-text-to-plain-text/-/datocms-structured-text-to-plain-text-2.1.12.tgz#8b5e8dbda44704d7cd0a5c701223f209f41de28d"
@@ -4427,6 +4444,13 @@ Lockfile:
     version "2.1.12"
     resolved "https://registry.yarnpkg.com/datocms-structured-text-utils/-/datocms-structured-text-utils-2.1.12.tgz#8950a2fdbebcddf1981b526cf013758a737d88fb"
     integrity sha512-tZtiPN/sEjl+4Z6igojPdap6Miy0Z6VO6Afor3vcyY/8PIwKVGbTsdd5trD+skWPCPRZVNzKpfYoAVziXWTL8Q==
+    dependencies:
+      array-flatten "^3.0.0"
+  
+  datocms-structured-text-utils@^4.0.0:
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/datocms-structured-text-utils/-/datocms-structured-text-utils-4.0.0.tgz#c4d98ab0c499d705d3e14ecebef173765e1488ec"
+    integrity sha512-czKk2unabAjtL1MLc2o73yX1MWRv/8fUnHGpNJxXUdZ88r6cV6JQFbfXLnc7Cs+7lom/kOs3Ira+rlsBQ3egXA==
     dependencies:
       array-flatten "^3.0.0"
   
@@ -11245,6 +11269,11 @@ Lockfile:
       assert-plus "^1.0.0"
       core-util-is "1.0.2"
       extsprintf "^1.2.0"
+  
+  vhtml@^2.2.0:
+    version "2.2.0"
+    resolved "https://registry.yarnpkg.com/vhtml/-/vhtml-2.2.0.tgz#369e6823ed6c32cbb9f6e33395bae7c65faa014c"
+    integrity sha512-TPXrXrxBOslRUVnlVkiAqhoXneiertIg86bdvzionrUYhEuiROvyPZNiiP6GIIJ2Q7oPNVyEtIx8gMAZZE9lCQ==
   
   watchpack@^2.4.0:
     version "2.4.0"

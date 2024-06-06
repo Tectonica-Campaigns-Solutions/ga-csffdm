@@ -7,8 +7,6 @@ import './index.scss';
 function HomeHero({ title, subtitle, image, mobileImage = null, ctas = [] }) {
   const bgImageUrl = image?.gatsbyImageData?.images?.fallback?.src;
 
-  console.log('bgImageUrl', image?.gatsbyImageData);
-
   const css = `
     @media (max-width: 767px) {
       .hero-home {
