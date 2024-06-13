@@ -96,19 +96,6 @@ function Form({ formType }) {
     // }
   };
 
-  const _handleSubmit = async (e) => {
-    e.preventDefault();
-    // const result = await addToMailchimp(email)
-    console.log(email);
-    // I recommend setting `result` to React state
-    // but you can do whatever you want
-  }
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    handleSubmit(event);
-  }
-
     return (
       <div className="form-container">
         <div id="liveAlertPlaceholder"></div>
