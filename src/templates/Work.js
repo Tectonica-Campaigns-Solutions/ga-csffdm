@@ -41,27 +41,27 @@ const Work = ({ pageContext, data: { work, favicon, updates, resources, meetings
               if (block.typeOfContent === 'news')
                 return ( 
                 <>
-                  {updates.nodes.length > 0 && <RelatedContent key={block.id} block={block} posts={updates} />}
+                  <RelatedContent key={block.id} block={block} posts={updates} />
                 </>
               );
               else if (block.typeOfContent === 'resources')
                 return (
                 <>
-                  {resources.nodes.length > 0 && <RelatedContent key={block.id} block={block} posts={resources} />}
+                  <RelatedContent key={block.id} block={block} posts={resources} />
                 </>
               );
               else if (block.typeOfContent === 'meetings')
                 return (
                 <>
-                  {upcomingMeeting.nodes.length > 0 && <RelatedContent key={block.id} block={block} posts={upcomingMeeting} blockHeadline="Feature UN Meeting" extraClassNames="future-meeting" />}
-                  {meetings.nodes.length > 0 && <RelatedContent key={block.id} block={block} posts={meetings} blockHeadline="Other UN Meetings" extraClassNames="past-meetings" />}
+                  <RelatedContent key={block.id} block={block} posts={upcomingMeeting} blockHeadline="Feature UN Meeting" extraClassNames="future-meeting" />
+                  <RelatedContent key={block.id} block={block} posts={meetings} blockHeadline="Other UN Meetings" extraClassNames="past-meetings" />
                 </>
                 );
               else if (block.typeOfContent === 'events')
                 return (
                 <>
-                  {events.nodes.length > 0 && <RelatedContent key={block.id} block={block} posts={events} extraClassNames="future-events" />}
-                  {pastEvents.nodes.length > 0 && <RelatedContent key="pastEvents" block={block} posts={pastEvents} blockHeadline="Past Events" extraClassNames="past-events"/>}
+                  <RelatedContent key={block.id} block={block} posts={events} extraClassNames="future-events" />
+                  <RelatedContent key="pastEvents" block={block} posts={pastEvents} blockHeadline="Past Events" extraClassNames="past-events"/>
                 </>
               )
           }
@@ -148,7 +148,7 @@ export const WorkQuery = graphql`
         }
       }
     }
-    resources: allDatoCmsResource(filter: {tags: {elemMatch: {title: {eq: $tag}}}}, limit: 4, sort: {date: DESC}) {
+    resources: allDatoCmsResource(filter: {tags: {elemMatch: {title: {eq: $tag}}}}, limit: 3, sort: {date: DESC}) {
       nodes {
         title
         slug

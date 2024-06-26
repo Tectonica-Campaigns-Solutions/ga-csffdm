@@ -10,6 +10,7 @@ import GenericCardGrid from '../GenericCardGrid/GenericCardGrid';
 
 const transformYouTubeUrls = (content) => {
   const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/g;
+  const uploadsRegex = /(?:https?:\/\/)?(?:www\.)?(?:csoforffd\.org\/wp-content\/uploads\/)([0-9]{4})\/([0-9]{2})\/([a-zA-Z0-9_-]+)/g;
 
   const traverseAndTransform = (node) => {
     if ( (node.type === 'paragraph' || node.type === 'list') && node.children) {
@@ -25,6 +26,14 @@ const transformYouTubeUrls = (content) => {
           // remove extra line breaks for li from Wordpress
           const newText = child.children[0].children[0].value.replace(/\n/g, '')
           return { ...child.children[0].children[0], value: newText };
+        } else if (child.type === 'link') {
+          //  replace uploads urls with datocms urls - DISABLED AS DATO ADS A RANDOM NUMBER AT THE BEGINNING OF THE FILE
+          // Ex 1717589009
+          // Ex 1717146204
+          // let newText = child?.url.replace(uploadsRegex, (match, year, month, file) => {
+          //   return `https://www.datocms-assets.com/120585/${file}`;
+          // });
+          // return { ...child, url: newText };
         }
         return child;
       });
@@ -103,61 +112,6 @@ const StructuredTextDefault = ({ content }) => {
     />
   </div>);
 
-  /*
-
-  const newStructuredText = transformedContent.document.map(renderNode);
-
-  const renderNodeRules = {
-    youtubeEmbed: ({ node }) => (
-      <div className="youtube-embed">
-        <iframe
-          width="560"
-          height="315"
-          src={`https://www.youtube.com/embed/${node.videoId}`}
-          frameBorder="0"
-          allowFullScreen
-        ></iframe>
-      </div>
-    ),
-    paragraph: ({ children }) => <p>{children}</p>,
-    text: ({ node }) => <>{renderNode(node)}</>,
-    span: ({ node }) => { 
-      return (
-        <>
-        { renderNode(node) }
-        </>
-      )
-    },
-    undefined: ({ node }) => <span style={{ color: 'red' }}>Undefined node type</span>, // Handle undefined nodes
-  };
-
-  return (
-    <StructuredText
-      data={newStructuredText}
-      customNodeRules={renderNodeRules}
-      renderBlock={({ record }) => {
-        switch (record.__typename) {
-          case 'DatoCmsImage':
-            return <ImageWrapper image={record.image} key={record.id} />;
-          case 'DatoCmsEmbedIframe':
-            return <EmbedIframe content={record} key={record.id} />;
-          case 'DatoCmsTableBlock':
-            return <Table content={record} key={record.id} />;
-          case 'DatoCmsVideoBlock':
-            return <Video content={record} key={record.id} />;
-          case 'DatoCmsAcordion':
-            return <Accordion items={record.items} key={record.id} />;
-          case 'DatoCmsPdfButton':
-            console.log('pdf', record);
-            return <PdfButton {...record} key={record.id} />;
-          case 'DatoCmsGenericCardGrid':
-            return <GenericCardGrid {...record} key={record.id} />;
-          default:
-            return null;
-        }
-      }}
-    />
-  );*/
 };
 
 export default StructuredTextDefault;

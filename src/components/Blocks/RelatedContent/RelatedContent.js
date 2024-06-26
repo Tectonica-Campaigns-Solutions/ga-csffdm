@@ -45,6 +45,7 @@ export const RelatedContent = ({ block, posts, blockHeadline = '', extraClassNam
             )}
           </>
         ))}
+        {itemsSorted.length === 0 && <p>No content available.</p>}
       </div>
     </Section>
   );

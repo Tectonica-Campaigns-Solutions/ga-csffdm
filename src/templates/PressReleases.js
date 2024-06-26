@@ -10,15 +10,18 @@ import HeroBasic from '../components/Global/HeroBasic/HeroBasic';
 
 import './basic.scss';
 
-function NewsDistributor({ pageContext, data: { page, news = [], favicon } }) {
+function NewsDistributor({ pageContext, data: { page, news = [], tags, favicon } }) {
   const { seo, title, blocks = [], introduction } = page;
 
   const rawPosts = news.edges.map((e) => e.node);
   rawPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   const [filteredPosts, setFilteredPosts] = useState(rawPosts);
+  // const [filters, setFilters] = useState(() =>
+  //   Array.from(new Set(news.edges.flatMap((e) => e.node.tags.map((t) => t.title))))
+  // );
   const [filters, setFilters] = useState(() =>
-    Array.from(new Set(news.edges.flatMap((e) => e.node.tags.map((t) => t.title))))
+    Array.from(new Set(tags.edges.flatMap((e) => e.node.title)))
   );
 
   const handleOnFilterPosts = (currentTag) => {
@@ -74,6 +77,12 @@ function NewsDistributor({ pageContext, data: { page, news = [], favicon } }) {
               </div>
 
           </div>
+
+          { filteredPosts.length === 0 && (
+            <div className="col-12">
+              <h4>There are no records matching the filter criteria. Please select another option and try again.</h4>
+            </div>
+          )}
 
           <ListPaginated
             list={filteredPosts}
@@ -131,6 +140,14 @@ export const NewsDistributorQuery = graphql`
           model {
             apiKey
           }
+        }
+      }
+    }
+    tags: allDatoCmsTag {
+      edges {
+        node {
+          title
+          id
         }
       }
     }

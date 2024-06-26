@@ -25,28 +25,48 @@ function Resources({ pageContext, data: { page, resources = [], favicon } }) {
   );
 
   const [innerTitle, setInnerTitle] = useState('');
-  const [innerTitleArea, setInnerTitleArea] = useState('');
+  // const [innerTitleArea, setInnerTitleArea] = useState('');
+
+  // State for selected filters
+  const [selectedTag, setSelectedTag] = useState('');
+  const [selectedType, setSelectedType] = useState('');
+
+  // Filter function
+  const filterItems = (tag, type) => {
+    let filtered = rawPosts;
+
+    if (tag) {
+      filtered = filtered.filter((post) => post.tags.some((t) => t.title === tag));
+    }
+
+    if (type) {
+      filtered = filtered.filter((post) => post.typeOfResource === type);
+    }
+
+    setFilteredPosts(filtered);
+  };
 
   const handleOnFilterPosts = (currentTag) => {
+
+    filterItems(currentTag, selectedType);
     if (currentTag) {
-      document.getElementsByClassName('dropdown-toggle')[0].innerText = 'All';
-      const newPosts = rawPosts.filter((post) => post.tags.some((t) => t.title === currentTag));
-      setFilteredPosts(newPosts);
-      setInnerTitle(currentTag.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()))
+      setSelectedTag(currentTag);
     } else {
-      setFilteredPosts(rawPosts);
+      setInnerTitle('');
     }
+
   };
 
   const handleOnFilterPostsByType = (currentType) => {
+    
+    filterItems(selectedTag, currentType);
     if (currentType) {
-      document.getElementsByClassName('dropdown-toggle')[1].innerText = 'All';
-      const newPosts = rawPosts.filter((post) => post.typeOfResource === currentType);
-      setFilteredPosts(newPosts);
+      setSelectedType(currentType);
       setInnerTitle(currentType.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()));
     } else {
-      setFilteredPosts(rawPosts);
+      setInnerTitle('');
     }
+
   };
 
   return (
@@ -70,7 +90,7 @@ function Resources({ pageContext, data: { page, resources = [], favicon } }) {
               </div>
               <div className='col-md-6'>
                 <h3>Filter by area of work</h3>
-                <Dropdown options={filters.map((f) => ({ value: f, label: f }))} onSelect={handleOnFilterPosts} />
+                <Dropdown title="All" options={filters.map((f) => ({ value: f, label: f }))} onSelect={handleOnFilterPosts} />
               </div>
           </div>
 

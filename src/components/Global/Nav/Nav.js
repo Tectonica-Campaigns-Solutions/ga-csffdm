@@ -137,7 +137,7 @@ export default function Nav({ navData, location, hideLinks = false, setSearchEng
     setExpanded(!expanded);
     let banner = document.getElementsByClassName('banner');
     if (expanded) {
-      const bannerVisible = banner[0] !== undefined ? banner[0].style.display = 'block' : '';
+      // const bannerVisible = banner[0] !== undefined ? banner[0].style.display = 'block' : '';
     } else {
       const bannerVisible = banner[0] !== undefined ? banner[0].style.display = 'none': '';
     } 
