@@ -23,6 +23,7 @@ exports.createPages = ({ graphql, actions }) => {
       pressReleases: path.resolve('./src/templates/PressReleases.js'),
       eventsDistributor: path.resolve('./src/templates/EventsDistributor.js'),
       event: path.resolve('./src/templates/Event.js'),
+      ffdChronicleDistributor: path.resolve('./src/templates/ChronicleDistributor.js'),
     };
 
     resolve(
@@ -177,6 +178,11 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
+          }
+          ffdChronicleDistributor: datoCmsFfdChronicle {
+            id
+            title
+            slug
           }
 
         }
@@ -398,6 +404,17 @@ exports.createPages = ({ graphql, actions }) => {
               slug: event.node.slug,
               id: event.node.id,
               tags: tags,
+            },
+          });
+        }
+
+        const ffdChronicleDistributor = result.data.ffdChronicleDistributor;
+        if (ffdChronicleDistributor) {
+          createPage({
+            path: ffdChronicleDistributor.slug,
+            component: templates.ffdChronicleDistributor,
+            context: {
+              slug: ffdChronicleDistributor.slug,
             },
           });
         }

@@ -10,19 +10,30 @@ import ListPaginated from '../components/Global/Pagination/ListPaginated';
 
 import './basic.scss';
 
-function Resources({ pageContext, data: { page, resources = [], favicon } }) {
+function Resources({ pageContext, data: { page, resources = [], tags, favicon } }) {
   const { seo, title, introduction, backgroundImage, blocks = [] } = page;
 
   const rawPosts = resources.edges.map((e) => e.node);
 
   const [filteredPosts, setFilteredPosts] = useState(rawPosts);
+  // const [filters, setFilters] = useState(() =>
+  //   Array.from(new Set(resources.edges.flatMap((e) => e.node.tags.map((t) => t.title))))
+  // );
   const [filters, setFilters] = useState(() =>
-    Array.from(new Set(resources.edges.flatMap((e) => e.node.tags.map((t) => t.title))))
+    Array.from(new Set(tags.edges.flatMap((e) => e.node.title)))
   );
 
-  const [filtersByType, setFiltersByType] = useState(() =>
-    Array.from(new Set(resources.edges.map((e) => e.node.typeOfResource)))
-  );
+  // const [filtersByType, setFiltersByType] = useState(() =>
+  //   Array.from(new Set(resources.edges.map((e) => e.node.typeOfResource)))
+  // );
+  const [filtersByType, setFiltersByType] = useState([
+      'the_ffd_chronicle',
+      'member_states_tracker',
+      'cs_ffd_mechanism_statements_and_inputs',
+      'policy_briefs_and_papers',
+      'campaign_resources_and_tools',
+      'introduction_toolkit',
+      'statements_and_interventions']);
 
   const [innerTitle, setInnerTitle] = useState('');
   // const [innerTitleArea, setInnerTitleArea] = useState('');
@@ -164,6 +175,14 @@ export const ResourcesQuery = graphql`
           model {
             apiKey
           }
+        }
+      }
+    }
+    tags: allDatoCmsTag {
+      edges {
+        node {
+          title
+          id
         }
       }
     }

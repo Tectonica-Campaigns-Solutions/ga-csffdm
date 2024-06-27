@@ -93,6 +93,12 @@ export const DatoCMS = graphql`
           apiKey
         }
       }
+      ... on DatoCmsFfdChronicle {
+        slug
+        model {
+          apiKey
+        }
+      }
       ... on DatoCmsGlobalLink {
         id
         content {
