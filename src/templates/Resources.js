@@ -59,24 +59,29 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
 
   const handleOnFilterPosts = (currentTag) => {
 
-    filterItems(currentTag, selectedType);
     if (currentTag) {
       setSelectedTag(currentTag);
     } else {
       setInnerTitle('');
+      setSelectedTag('');
     }
+
+    filterItems(currentTag, selectedType);
 
   };
 
   const handleOnFilterPostsByType = (currentType) => {
     
-    filterItems(selectedTag, currentType);
+    
     if (currentType) {
       setSelectedType(currentType);
       setInnerTitle(currentType.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()));
     } else {
       setInnerTitle('');
+      setSelectedType('');
     }
+
+    filterItems(selectedTag, currentType);
 
   };
 
