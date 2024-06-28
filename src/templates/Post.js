@@ -15,11 +15,29 @@ import Cta from '../components/Global/Cta/Cta';
 import './basic.scss';
 
 const Post = ({ pageContext, data: { post, favicon, updates, updatesNonRelated } }) => {
-  const { title, date, tags = [], introduction, mainImage, content, seo, blocks = [] } = post;
+  const { title, date, typeOfPost, tags = [], introduction, mainImage, content, seo, blocks = [] } = post;
+
+  let breadcrumbUrl = '';
+  let breadcrumbTitle = '';
+
+  switch (typeOfPost) { 
+    case 'news':
+      breadcrumbTitle = 'News & Events';
+      breadcrumbUrl = '/news';
+      break;
+    case 'ffd_chronicle':
+      breadcrumbTitle = 'The FfD Chronicle';
+      breadcrumbUrl = '/the-ffd-chronicle';
+      break;
+    case 'press_release':
+      breadcrumbTitle = 'Press Releases';
+      breadcrumbUrl = '/press-releases';
+      break;
+  }
 
   const breadcrumb = {
-    title: 'News & Events',
-    url: '/news',
+    title: breadcrumbTitle,
+    url: breadcrumbUrl,
   };
 
   const itemsSorted = [...updates.nodes];
@@ -90,6 +108,7 @@ export const PostQuery = graphql`
       id
       title
       date
+      typeOfPost
       tags {
         ...Tags
       }
