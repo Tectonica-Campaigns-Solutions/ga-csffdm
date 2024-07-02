@@ -128,6 +128,14 @@ export const ResourceQuery = graphql`
         ... on DatoCmsCta {
           ...BlockCta
         }
+        ... on DatoCmsPdfButton {
+          __typename
+          id: originalId
+          label
+          file {
+            url
+          }
+        }
       }
     }
     resources: allDatoCmsResource(filter: { typeOfResource: { eq: $type }, id: { ne: $id } }, limit: 3) {
