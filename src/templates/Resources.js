@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
+import { useLocation } from "@reach/router"
 import Layout from '../components/Layout/Layout';
 import SeoDatoCMS from '../components/Layout/SeoDatocms';
 import HeroBasic from '../components/Global/HeroBasic/HeroBasic';
@@ -13,9 +14,19 @@ import './basic.scss';
 function Resources({ pageContext, data: { page, resources = [], tags, favicon } }) {
   const { seo, title, introduction, backgroundImage, blocks = [] } = page;
 
-  const rawPosts = resources.edges.map((e) => e.node);
+  const location = useLocation()
+  const params = new URLSearchParams(location.search)
 
-  const [filteredPosts, setFilteredPosts] = useState(rawPosts);
+  const rawPosts = resources.edges.map((e) => e.node);
+  
+  const [filteredPosts, setFilteredPosts] = useState(() => {
+      if (params.get('type')) {
+        return resources.edges.filter((e) => e.node.typeOfResource === params.get('type')).map((e) => e.node);
+      } else {
+        return rawPosts;
+      }
+  });
+
   // const [filters, setFilters] = useState(() =>
   //   Array.from(new Set(resources.edges.flatMap((e) => e.node.tags.map((t) => t.title))))
   // );
@@ -40,7 +51,7 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
 
   // State for selected filters
   const [selectedTag, setSelectedTag] = useState('');
-  const [selectedType, setSelectedType] = useState('');
+  const [selectedType, setSelectedType] = useState(params.get('type') ? params.get('type').replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()) : 'Explore all resources');
 
   // Filter function
   const filterItems = (tag, type) => {
@@ -102,7 +113,7 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
               
               <div className='col-md-6'>
                 <h3>Filter by type of resource</h3>
-                <Dropdown title="Explore all resources" options={filtersByType.map((f) => ({ value: f, label: f.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()) }))} onSelect={handleOnFilterPostsByType} />
+                <Dropdown title={selectedType} options={filtersByType.map((f) => ({ value: f, label: f.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()) }))} onSelect={handleOnFilterPostsByType} />
               </div>
               <div className='col-md-6'>
                 <h3>Filter by area of work</h3>

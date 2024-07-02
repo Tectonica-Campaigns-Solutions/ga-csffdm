@@ -101,6 +101,7 @@ export const DatoCMS = graphql`
       }
       ... on DatoCmsGlobalLink {
         id
+        filter
         content {
           ... on DatoCmsBasicPage {
             id
@@ -133,6 +134,10 @@ export const DatoCMS = graphql`
             model {
               apiKey
             }
+          }
+          ... on DatoCmsResourcesModel {
+            id
+            title
           }
         }
       }
@@ -249,8 +254,15 @@ export const DatoCMS = graphql`
               apiKey
             }
           }
+          ... on DatoCmsResourcesModel {
+            slug
+            model {
+              apiKey
+            }
+          }
           ... on DatoCmsGlobalLink {
             id
+            filter
             content {
               ... on DatoCmsBasicPage {
                 id
@@ -279,6 +291,12 @@ export const DatoCMS = graphql`
                 }
               }
               ... on DatoCmsConferenceSubtopic {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsResourcesModel {
                 slug
                 model {
                   apiKey

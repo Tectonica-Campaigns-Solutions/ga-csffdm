@@ -3,8 +3,6 @@ import { Link as GatsbyLink } from 'gatsby';
 import { getCtaUrl } from '../../../utils';
 
 const Link = ({ to, children, ...rest }) => {
-  
- // console.log('Link', to);
 
   if (typeof to === 'string') {
     return (
@@ -42,7 +40,11 @@ const Link = ({ to, children, ...rest }) => {
       );
     }
   } else {
-    return <a {...rest}>{children}</a>;
+    if (to?.content !== undefined) {
+      return <a href={`/${to?.content?.content.slug}/?type=${to?.content?.filter}`}>{children}</a>;
+    } else {
+      return <a {...rest}>{children}</a>;
+    }
   }
 };
 

@@ -43,7 +43,7 @@ const DropdownItem = ({ link, label, children }) => {
     document.getElementById('megamenu').classList.remove('open');
   };
 
-  //console.log(children);
+  //console.log(link);
   return (
     <li
       className="dropdown nav-item"

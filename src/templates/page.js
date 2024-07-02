@@ -41,7 +41,7 @@ const Page = ({ pageContext, data: { page, favicon } }) => {
     <Layout>
       <SeoDatoCMS seo={seo} favicon={favicon} />
 
-      <div className="inner-page" style={{ backgroundColor: '#FFF' }}>
+      <div className={`inner-page ${pageContext.slug}`} style={{ backgroundColor: '#FFF' }}>
 
         { pageContext.slug === 'about' && (<HeroBasic title={title} image={image} currentPage={title} />) }
         { pageContext.slug !== 'about' && (<HeroDetail currentPage={title} title={title} description={introduction} image={image} ctas={headerCtas} breadcrumb={breadcrumb} />) }
