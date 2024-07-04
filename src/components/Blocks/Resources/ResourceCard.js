@@ -11,7 +11,7 @@ const ResourceCard = ({ resource, className = '' }) => {
   const { title, date, introduction, externalUrl, tags = [] } = resource;
 
   const intro = introduction.length > 0 ? introduction : title;
-  const link = externalUrl.length > 0 ? externalUrl : resource;
+  const link = (externalUrl !== null && externalUrl.length > 0) ? externalUrl : resource;
 
   console.log('resource', resource);
   return (
