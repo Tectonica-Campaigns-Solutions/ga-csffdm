@@ -1,6 +1,5 @@
 import React from 'react';
-import ImageWrapper from '../../Global/Image/ImageWrapper';
-import { formatDate, isArray, truncateText } from '../../../utils';
+import { formatDate, isArray } from '../../../utils';
 import TagList from '../../Global/Tag/TagList';
 import Link from '../../Global/Link/Link';
 import { ReactSVG } from 'react-svg';
@@ -9,13 +8,15 @@ import arrowIcon from '../../Icons/resource-arrow.svg';
 import './styles.scss';
 
 const ResourceCard = ({ resource, className = '' }) => {
-  const { title, slug, date, introduction, tags = [] } = resource;
+  const { title, date, introduction, externalUrl, tags = [] } = resource;
 
   const intro = introduction.length > 0 ? introduction : title;
+  const link = externalUrl.length > 0 ? externalUrl : resource;
 
+  console.log('resource', resource);
   return (
     <article className={`resource-card ${className}`}>
-      <Link to={resource}>
+      <Link to={link}>
         {isArray(tags) ? <TagList tags={tags} /> : <div className="tags-list" />}
         {date && <span className="date">{formatDate(date)}</span>}
         <div className="basic-information">

@@ -185,6 +185,7 @@ export const ResourcesQuery = graphql`
           date
           slug
           typeOfResource
+          externalUrl
           tags {
             title
           }

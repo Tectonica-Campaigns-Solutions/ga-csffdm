@@ -13,7 +13,7 @@ export default function Cta({
 }) {
   const isCtaPrimaryButton = cta?.isButton || isButton;
 
-  console.log('CTA', cta);
+  //console.log('CTA', cta);
 
   if (off) {
     return (

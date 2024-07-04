@@ -157,6 +157,7 @@ export const WorkQuery = graphql`
         slug
         date
         introduction
+        externalUrl
         mainImage {
           width
           height
