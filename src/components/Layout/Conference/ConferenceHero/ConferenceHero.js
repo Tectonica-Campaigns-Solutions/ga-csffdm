@@ -14,12 +14,14 @@ const ConferenceHero = ({ title, description, image, previousConferences = [], i
   return (
     <>
       <div className="previous-conferences-wrapper">
+        { eventType !== 'other' && (
         <Dropdown
           title={dropdownLabel}
           onSelect={handleOnSelectPrevConference}
           options={previousConferences.map((c) => ({ value: c.slug, label: c.title }))}
           showAllOption={false}
         />
+        )}
       </div>
 
       <div className={`conference-hero ${isInnerPage ? 'inner-page' : ''}`}>
