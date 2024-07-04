@@ -17,6 +17,7 @@ import PdfButton from './PdfButton/PdfButton';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import EmbedIframe from './EmbedIframe/EmbedIframe';
 import GenericCardGrid from './GenericCardGrid/GenericCardGrid';
+import Cta from '../Global/Cta/Cta';
 
 export default function Blocks({ blocks, usePrimaryHeading = false, fixedCard = true, homePage = true}) {
   return (
@@ -29,6 +30,8 @@ export default function Blocks({ blocks, usePrimaryHeading = false, fixedCard = 
             return <CalendarBlock key={block.id} block={block} />;
           case 'DatoCmsResourcesBlock':
             return <ResourcesBlock key={block.id} block={block} withFixedCard={fixedCard} homePage={homePage} />;
+          case 'DatoCmsCta':
+            return <Cta key={block.id} cta={block} />;
           case 'DatoCmsUpdatesBlock':
             return <UpdatesBlock key={block.id} block={block} />;
           case 'DatoCmsFormBlock':
@@ -56,7 +59,6 @@ export default function Blocks({ blocks, usePrimaryHeading = false, fixedCard = 
           case 'DatoCmsEmbedForm':
             return <EmbedIframe key={block.id} content={block} />;
           case 'DatoCmsGenericCardGrid':
-            console.log('generic card grid', block);
             return <GenericCardGrid key={block.id} {...block} />;
           case 'DatoCmsImage':
             return (

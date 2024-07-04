@@ -922,6 +922,7 @@ export const DatoCMS = graphql`
       url
       thumbnailUrl
     }
+    localVideoUrl
   }
 
   fragment BlockImage on DatoCmsImage {

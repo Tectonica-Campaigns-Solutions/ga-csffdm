@@ -13,7 +13,7 @@ export default function Cta({
 }) {
   const isCtaPrimaryButton = cta?.isButton || isButton;
 
-  //console.log('CTA', cta);
+  console.log('CTA', cta);
 
   if (off) {
     return (
@@ -27,7 +27,7 @@ export default function Cta({
     );
   }
 
-  if (cta.isCta) {
+  if (cta?.isCta) {
     return (
       <Link className={`custom-btn ${cta.customVariant}`} to={cta.url}>{cta.externalTitle}</Link>
     );

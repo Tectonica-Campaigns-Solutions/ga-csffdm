@@ -11,8 +11,10 @@ function VideoPlayer({ video }) {
   const handleOnCloseVideo = () => setIsFullScreen(false);
 
   const getYoutubeVideoSrc = () => {
-    const url = video?.url ?? video.source.url;
-    const videoId = url?.match(/[?&]v=([^&]+)/)[1];
+    // const url = video?.url ?? video.source.url;
+    // const videoId = url?.match(/[?&]v=([^&]+)/)[1];
+    const url = video?.source ? video.source.url : video?.url;
+    const videoId = url?.match(/[?&]v=([^&]+)/)[1];    
     return `https://www.youtube.com/embed/${videoId}?autoplay=1`;
   };
 
