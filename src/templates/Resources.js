@@ -38,13 +38,35 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
   //   Array.from(new Set(resources.edges.map((e) => e.node.typeOfResource)))
   // );
   const [filtersByType, setFiltersByType] = useState([
-      'the_ffd_chronicle',
-      'member_states_tracker',
-      'cs_ffd_mechanism_statements_and_inputs',
-      'policy_briefs_and_papers',
-      'campaign_resources_and_tools',
-      'introduction_toolkit',
-      'statements_and_interventions']);
+      {
+        value: 'the_ffd_chronicle',
+        label: 'The FFD Chronicle'
+      },
+      {
+        value: 'member_states_tracker',
+        label: 'Member States Tracker'
+      },
+      {
+        value: 'cs_ffd_mechanism_statements_and_inputs',
+        label: 'CS FFD Mechanism Statements and Inputs'
+      },
+      {
+        value: 'policy_briefs_and_papers',
+        label: 'Policy Briefs and Papers'
+      },
+      {
+        value: 'campaign_resources_and_tools',
+        label: 'Campaign Resources and Tools'
+      },
+      {
+        value: 'introduction_toolkit',
+        label: 'Introduction Toolkit'
+      },
+      {
+        value: 'statements_and_interventions',
+        label: 'Statements and Interventions'
+      }
+  ]);
 
   const [innerTitle, setInnerTitle] = useState('');
   // const [innerTitleArea, setInnerTitleArea] = useState('');
@@ -83,10 +105,11 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
 
   const handleOnFilterPostsByType = (currentType) => {
     
-    
     if (currentType) {
       setSelectedType(currentType);
-      setInnerTitle(currentType.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()));
+      setInnerTitle(
+        filtersByType.find((f) => f.value === currentType).label
+      );
     } else {
       setInnerTitle('');
       setSelectedType('');
@@ -113,7 +136,7 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
               
               <div className='col-md-6'>
                 <h3>Filter by type of resource</h3>
-                <Dropdown title={selectedType} options={filtersByType.map((f) => ({ value: f, label: f.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()) }))} onSelect={handleOnFilterPostsByType} />
+                <Dropdown title={selectedType} options={filtersByType.map((f) => ({ value: f.value, label: f.label }))} onSelect={handleOnFilterPostsByType} />
               </div>
               <div className='col-md-6'>
                 <h3>Filter by area of work</h3>
