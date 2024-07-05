@@ -18,6 +18,7 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
   const params = new URLSearchParams(location.search)
 
   const rawPosts = resources.edges.map((e) => e.node);
+  rawPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
   
   const [filteredPosts, setFilteredPosts] = useState(() => {
       if (params.get('type')) {
