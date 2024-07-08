@@ -7,7 +7,15 @@ import Link from '../../Global/Link/Link';
 import './styles.scss';
 
 const EventCard = ({ event, type = 'event', future = false }) => {
-  const { title, introduction, mainImage, image, date, tags = [] } = event;
+  const { title, introduction, mainImage, image, date, tags = [], externalUrl } = event;
+
+  let link = '';
+  externalUrl != null ?
+    link = externalUrl.length > 0 ? externalUrl : event
+  :
+    link = event;  
+
+  console.log('externalUrl', externalUrl);
 
   const renderContent = () => (
     <>
@@ -55,9 +63,18 @@ const EventCard = ({ event, type = 'event', future = false }) => {
   );
 
   return (
-    <Link to={event} className={`event-card ${type}`}>
-      {renderContent()}
-    </Link>
+    <>
+    { externalUrl && (
+      <a href={externalUrl} className={`event-card ${type}`} target='blank'>
+        {renderContent()}
+      </a>
+    )}
+    { !externalUrl && (
+      <Link to={event} className={`event-card ${type}`}>
+        {renderContent()}
+      </Link>
+    )}
+    </>
   );
 };
 
