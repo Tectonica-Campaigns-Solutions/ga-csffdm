@@ -9,14 +9,6 @@ import './styles.scss';
 const EventCard = ({ event, type = 'event', future = false }) => {
   const { title, introduction, mainImage, image, date, tags = [], externalUrl } = event;
 
-  let link = '';
-  externalUrl != null ?
-    link = externalUrl.length > 0 ? externalUrl : event
-  :
-    link = event;  
-
-  console.log('externalUrl', externalUrl);
-
   const renderContent = () => (
     <>
       {type === 'meeting' && future && (image?.gatsbyImageData || image?.url) && (

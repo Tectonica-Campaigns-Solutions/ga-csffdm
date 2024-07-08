@@ -137,6 +137,7 @@ export const WorkQuery = graphql`
         slug
         date
         introduction
+        externalUrl
         tags {
           title
         }
@@ -214,6 +215,7 @@ export const WorkQuery = graphql`
         slug
         date
         introduction
+        externalUrl
         image {
           width
           height
@@ -234,6 +236,7 @@ export const WorkQuery = graphql`
         slug
         date
         introduction
+        externalUrl
         image {
           width
           height

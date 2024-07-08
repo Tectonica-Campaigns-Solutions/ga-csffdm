@@ -7,7 +7,7 @@ import Link from '../../Global/Link/Link';
 import './styles.scss';
 
 const PostCard = ({ post }) => {
-  const { title, introduction, content, date, tags = [], mainImage, logo, location } = post;
+  const { title, introduction, content, date, tags = [], mainImage, logo, location, externalUrl } = post;
 
   function truncateToWords(str, n) {
     // Split the string into an array of words
@@ -21,12 +21,18 @@ const PostCard = ({ post }) => {
     // Slice the array to get the first n words and join them back into a string
     return words.slice(0, n).join(' ');
   }
-  
+
+  let link = '';
+  externalUrl != null ?
+    link = externalUrl.length > 0 ? externalUrl : post
+  :
+    link = post;  
+
   const intro = content?.value?.document.children[0].children[0].value !== undefined ? truncateToWords(content.value.document.children[0].children[0].value, 20) + '...' : '';
 
   return (
     <article className="post-card">
-      <Link to={post}>
+      <Link to={link}>
         {mainImage && (
           <div className="image">
             <ImageWrapper image={mainImage} />
