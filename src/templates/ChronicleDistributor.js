@@ -123,7 +123,7 @@ export const NewsDistributorQuery = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
     }
-    news: allDatoCmsPost(filter: {typeOfPost: {eq: "ffd_chronicle"}}) {
+    news: allDatoCmsResource(filter: {typeOfResource: {eq: "the_ffd_chronicle"}}) {
       edges {
         node {
           id
@@ -137,10 +137,10 @@ export const NewsDistributorQuery = graphql`
           tags {
             ...Tags
           }
-          mainImage {
-            alt
-            gatsbyImageData
-          }
+          # mainImage {
+          #   alt
+          #   gatsbyImageData
+          # }
           model {
             apiKey
           }

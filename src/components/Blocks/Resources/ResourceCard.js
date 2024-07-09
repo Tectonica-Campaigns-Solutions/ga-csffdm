@@ -10,7 +10,8 @@ import './styles.scss';
 const ResourceCard = ({ resource, className = '' }) => {
   const { title, date, introduction, externalUrl, tags = [] } = resource;
 
-  const intro = introduction.length > 0 ? introduction : title;
+  //const intro = introduction.length > 0 ? introduction : title;
+  const intro = introduction.length > 0 ? introduction.substring(0, 40) + '...' : title;
 
   let link = '';
   externalUrl != null ?

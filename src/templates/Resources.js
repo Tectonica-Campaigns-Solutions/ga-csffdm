@@ -22,7 +22,7 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
   
   const [filteredPosts, setFilteredPosts] = useState(() => {
       if (params.get('type')) {
-        return resources.edges.filter((e) => e.node.typeOfResource === params.get('type')).map((e) => e.node);
+        return resources.edges.filter((e) => e.node.typeOfResource === params.get('type')).map((e) => e.node).sort((a, b) => new Date(b.date) - new Date(a.date));
       } else {
         return rawPosts;
       }
