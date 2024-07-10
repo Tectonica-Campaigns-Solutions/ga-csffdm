@@ -36,7 +36,7 @@ const Dropdown = ({ title, options, onSelect, showAllOption = true }) => {
       </button>
 
       <ul className="dropdown-menu">
-        { showAllOption && (<li onClick={() => handleOptionClick()}>All</li>)}
+        { showAllOption && (<li onClick={() => handleOptionClick('')}>All</li>)}
         {options.map((option) => (
           <li key={option.value} onClick={() => handleOptionClick(option.value)}>
             {option.label}

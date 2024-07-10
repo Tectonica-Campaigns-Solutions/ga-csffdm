@@ -28,16 +28,10 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
       }
   });
 
-  // const [filters, setFilters] = useState(() =>
-  //   Array.from(new Set(resources.edges.flatMap((e) => e.node.tags.map((t) => t.title))))
-  // );
   const [filters, setFilters] = useState(() =>
     Array.from(new Set(tags.edges.flatMap((e) => e.node.title)))
   );
 
-  // const [filtersByType, setFiltersByType] = useState(() =>
-  //   Array.from(new Set(resources.edges.map((e) => e.node.typeOfResource)))
-  // );
   const [filtersByType, setFiltersByType] = useState([
       {
         value: 'the_ffd_chronicle',
@@ -74,7 +68,8 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
 
   // State for selected filters
   const [selectedTag, setSelectedTag] = useState('');
-  const [selectedType, setSelectedType] = useState(params.get('type') ? filtersByType.find((f) => f.value === params.get('type')).label : 'Explore all resources');
+  const [selectedType, setSelectedType] = useState(params.get('type') ? filtersByType.find((f) => f.value === params.get('type')).value : 'Explore all resources');
+  const selectedTypeLabel = params.get('type') ? filtersByType.find((f) => f.value === params.get('type')).label : 'Explore all resources';
 
   // Filter function
   const filterItems = (tag, type) => {
@@ -89,6 +84,7 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
     }
 
     setFilteredPosts(filtered);
+
   };
 
   const handleOnFilterPosts = (currentTag) => {
@@ -137,7 +133,7 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
               
               <div className='col-md-6'>
                 <h3>Filter by type of resource</h3>
-                <Dropdown title={selectedType} options={filtersByType.map((f) => ({ value: f.value, label: f.label }))} onSelect={handleOnFilterPostsByType} />
+                <Dropdown title={selectedTypeLabel} options={filtersByType.map((f) => ({ value: f.value, label: f.label }))} onSelect={handleOnFilterPostsByType} />
               </div>
               <div className='col-md-6'>
                 <h3>Filter by area of work</h3>
