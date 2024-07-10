@@ -424,7 +424,7 @@ exports.createPages = ({ graphql, actions }) => {
   });
 };
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
   actions.setWebpackConfig({
     plugins: [
       new FilterWarningsPlugin({

@@ -47,10 +47,10 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
         value: 'member_states_tracker',
         label: 'Member States Tracker'
       },
-      {
-        value: 'cs_ffd_mechanism_statements_and_inputs',
-        label: 'CS FFD Mechanism Statements and Inputs'
-      },
+      // {
+      //   value: 'cs_ffd_mechanism_statements_and_inputs',
+      //   label: 'CS FFD Mechanism Statements and Inputs'
+      // },
       {
         value: 'policy_briefs_and_papers',
         label: 'Policy Briefs and Papers'
@@ -65,7 +65,7 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
       },
       {
         value: 'statements_and_interventions',
-        label: 'Statements and Interventions'
+        label: 'CS FFD Mechanism Statements and Inputs'
       }
   ]);
 
@@ -74,7 +74,7 @@ function Resources({ pageContext, data: { page, resources = [], tags, favicon } 
 
   // State for selected filters
   const [selectedTag, setSelectedTag] = useState('');
-  const [selectedType, setSelectedType] = useState(params.get('type') ? params.get('type').replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()) : 'Explore all resources');
+  const [selectedType, setSelectedType] = useState(params.get('type') ? filtersByType.find((f) => f.value === params.get('type')).label : 'Explore all resources');
 
   // Filter function
   const filterItems = (tag, type) => {
