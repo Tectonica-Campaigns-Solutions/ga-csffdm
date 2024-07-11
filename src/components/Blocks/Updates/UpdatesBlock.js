@@ -7,12 +7,12 @@ import Cta from '../../Global/Cta/Cta';
 import './styles.scss';
 
 const UpdatesBlock = ({ block }) => {
-  const { headline, introduction, cta = [], backgroundImage = null } = block;
+  const { headline, introduction, cta = [], backgroundImage = null, items = [] } = block;
   const bgImageUrl = backgroundImage?.gatsbyImageData?.images?.fallback?.src;
 
   const updatesPosts = useStaticQuery(graphql`
     query allUpdatesPosts {
-      allDatoCmsPost(limit: 3) {
+      allDatoCmsPost(limit: 3, sort: {date: DESC}) {
         nodes {
           id
           title
@@ -37,6 +37,8 @@ const UpdatesBlock = ({ block }) => {
   `);
 
   const itemsSorted = [...updatesPosts.allDatoCmsPost.nodes];
+  // const itemsLatest = [...updatesPosts.allDatoCmsPost.nodes];
+  // const itemsSorted = items.length > 0 ? [...items] : itemsLatest;
 
   return (
     <Section

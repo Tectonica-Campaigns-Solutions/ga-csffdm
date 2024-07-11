@@ -11,6 +11,7 @@ import GenericCardGrid from '../GenericCardGrid/GenericCardGrid';
 const transformYouTubeUrls = (content) => {
   const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/g;
   const uploadsRegex = /(?:https?:\/\/)?(?:www\.)?(?:csoforffd\.org\/wp-content\/uploads\/)([0-9]{4})\/([0-9]{2})\/([a-zA-Z0-9_-]+)/g;
+  const wordpressUrlRegex = /\/\d{4}\/\d{2}\/\d{2}\//;
 
   const traverseAndTransform = (node) => {
     if ( (node.type === 'paragraph' || node.type === 'list') && node.children) {
@@ -30,10 +31,20 @@ const transformYouTubeUrls = (content) => {
           //  replace uploads urls with datocms urls - DISABLED AS DATO ADS A RANDOM NUMBER AT THE BEGINNING OF THE FILE
           // Ex 1717589009
           // Ex 1717146204
-          // let newText = child?.url.replace(uploadsRegex, (match, year, month, file) => {
-          //   return `https://www.datocms-assets.com/120585/${file}`;
-          // });
-          // return { ...child, url: newText };
+          let newUrl = ''
+          if (child.url.includes('/uploads')) {
+            newUrl = child?.url.replace(uploadsRegex, (match, year, month, file) => {
+              // return `https://www.datocms-assets.com/120585/${file}`;
+              return `https://csoforffd.wordpress.com/wp-content/uploads/${year}/${month}/${file}`;
+            });
+          } else {
+            newUrl = child?.url.replace(wordpressUrlRegex, (match, year, month, day) => {
+              return `/post/`;
+            });
+          }
+          
+          // let newText2 = child?.url.replace('csoforffd.org', 'csoforffd.wordpress.com');
+          return { ...child, url: newUrl };
         }
         return child;
       });
@@ -57,7 +68,7 @@ const StructuredTextDefault = ({ content }) => {
 
   const transformedContent = transformYouTubeUrls(content);
 
-  console.log('transformedContent', transformedContent);
+  // console.log('transformedContent', transformedContent);
   
   const renderCustomHtml = renderNodeRule(
     (node) => node.type === 'paragraph' && /<\/?[a-z][\s\S]*>/i.test(node.children[0].value),
