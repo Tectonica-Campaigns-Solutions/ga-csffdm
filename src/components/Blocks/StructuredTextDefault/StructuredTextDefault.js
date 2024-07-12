@@ -10,7 +10,7 @@ import GenericCardGrid from '../GenericCardGrid/GenericCardGrid';
 import { buildClient } from '@datocms/cma-client-browser';
 
 const getFiles = async() => {
-  const client = buildClient({ apiToken: process.env.DATO_API_TOKEN });
+  const client = buildClient({ apiToken: process.env.DATO_API_TOKEN_CONTENT });
 
   let files = [];
     

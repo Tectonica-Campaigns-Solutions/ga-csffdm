@@ -10,7 +10,7 @@ import ShareButtons from '../components/Global/ShareButtons/ShareButtons';
 const Page = ({ pageContext, data: { page, favicon } }) => {
   const { seo, title, introduction, image, blocks = [], headerCtas } = page;
 
-  console.log(pageContext);
+  // console.log(pageContext);
 
   let breadcrumb = {};
 
