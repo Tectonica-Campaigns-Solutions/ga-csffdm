@@ -24,7 +24,6 @@ const Breadcrumb = ({ breadcrumb = null, currentPage }) => {
           <Link to="/">Home</Link>
           {renderSeparator()}
         </li>
-
         {breadcrumb && (
           <>
             <li>
@@ -33,8 +32,7 @@ const Breadcrumb = ({ breadcrumb = null, currentPage }) => {
             {renderSeparator()}
           </>
         )}
-
-        <li className="active">{currentPage}</li>
+        <li className="active">{currentPage.substring(0, 50) + '...'}</li>
       </ul>
     </div>
   );

@@ -7,12 +7,41 @@ import Video from '../Video/Video';
 import Table from '../Table/Table';
 import PdfButton from '../PdfButton/PdfButton';
 import GenericCardGrid from '../GenericCardGrid/GenericCardGrid';
+import { buildClient } from '@datocms/cma-client-browser';
 
-const transformYouTubeUrls = (content) => {
+const getFiles = async() => {
+  const client = buildClient({ apiToken: process.env.DATO_API_TOKEN_READ_ONLY });
+
+  let files = [];
+    
+  for await (const upload of client.uploads.listPagedIterator({
+      filter: {
+        fields: {
+          format: {
+            eq: "pdf",
+          },
+        },
+        _createdAt: {
+          lte: "2024-06-06T14:30:00+00:00"
+        },
+      },
+  })) {
+      files.push({
+        id: upload.id,
+        basename: upload.basename,
+        url: upload.url,
+      })
+  }
+  return files;
+}
+
+const files = await getFiles();
+
+const transformYouTubeUrls = (content, pdfs) => {
   const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/g;
   const uploadsRegex = /(?:https?:\/\/)?(?:www\.)?(?:csoforffd\.org\/wp-content\/uploads\/)([0-9]{4})\/([0-9]{2})\/([a-zA-Z0-9_-]+)/g;
   const wordpressUrlRegex = /\/\d{4}\/\d{2}\/\d{2}\//;
-
+  
   const traverseAndTransform = (node) => {
     if ( (node.type === 'paragraph' || node.type === 'list') && node.children) {
       node.children = node.children.map((child) => {
@@ -28,17 +57,16 @@ const transformYouTubeUrls = (content) => {
           const newText = child.children[0].children[0].value.replace(/\n/g, '')
           return { ...child.children[0].children[0], value: newText };
         } else if (child.type === 'link') {
-          //  replace uploads urls with datocms urls - DISABLED AS DATO ADS A RANDOM NUMBER AT THE BEGINNING OF THE FILE
-          // Ex 1717589009
-          // Ex 1717146204
           let newUrl = ''
           if (child.url.includes('/uploads')) {
             newUrl = child?.url.replace(uploadsRegex, (match, year, month, file) => {
-              // return `https://www.datocms-assets.com/120585/${file}`;
-              return `https://csoforffd.wordpress.com/wp-content/uploads/${year}/${month}/${file}`;
+              // return `https://www.datocms-assets.com/120585/${file}`; // replace uploads urls with datocms urls - DISABLED AS DATO ADS A RANDOM NUMBER AT THE BEGINNING OF THE FILE
+              const fileObj = pdfs.find(f => f.basename === file);
+              return fileObj !== undefined ? fileObj.url.replace('.pdf', '') : `https://csoforffd.wordpress.com/wp-content/uploads/${year}/${month}/${file}`;
+              // return `https://csoforffd.wordpress.com/wp-content/uploads/${year}/${month}/${file}`;
             });
           } else {
-            newUrl = child?.url.replace(wordpressUrlRegex, (match, year, month, day) => {
+            newUrl = child?.url.replace(wordpressUrlRegex, (match) => {
               return `/post/`;
             });
           }
@@ -66,7 +94,7 @@ const transformYouTubeUrls = (content) => {
 
 const StructuredTextDefault = ({ content }) => {
 
-  const transformedContent = transformYouTubeUrls(content);
+  const transformedContent = transformYouTubeUrls(content, files);
 
   // console.log('transformedContent', transformedContent);
   

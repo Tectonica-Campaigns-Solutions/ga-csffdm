@@ -41,11 +41,11 @@ module.exports = {
             statusCode: 301,
             force: true,
           },
-          {
-            fromPath: '^/wp-content/uploads/([0-9]{4})/([0-9]{2})/(.+)$',
-            toPath: 'https://www.datocms-assets.com/120585/$3',
-            statusCode: 301,
-          },
+          // {
+          //   fromPath: '^/wp-content/uploads/([0-9]{4})/([0-9]{2})/(.+)$',
+          //   toPath: 'https://www.datocms-assets.com/120585/$3',
+          //   statusCode: 301,
+          // },
         ],
       },
     },
