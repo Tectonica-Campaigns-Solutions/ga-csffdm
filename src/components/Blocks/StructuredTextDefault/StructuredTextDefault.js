@@ -13,32 +13,26 @@ const getFiles = async() => {
   const client = buildClient({ apiToken: process.env.DATO_API_TOKEN_READ_ONLY });
 
   let files = [];
-  
-  try {
-    for await (const upload of client.uploads.listPagedIterator({
-        filter: {
-          fields: {
-            format: {
-              eq: "pdf",
-            },
-          },
-          _createdAt: {
-            lte: "2024-06-06T14:30:00+00:00"
+    
+  for await (const upload of client.uploads.listPagedIterator({
+      filter: {
+        fields: {
+          format: {
+            eq: "pdf",
           },
         },
-    })) {
-        files.push({
-          id: upload.id,
-          basename: upload.basename,
-          url: upload.url,
-        })
-    }
-    return files;
-  } catch (error) {
-    console.log('error', error);
-    return [];
+        _createdAt: {
+          lte: "2024-06-06T14:30:00+00:00"
+        },
+      },
+  })) {
+      files.push({
+        id: upload.id,
+        basename: upload.basename,
+        url: upload.url,
+      })
   }
-  
+  return files;
 }
 
 const files = await getFiles();
