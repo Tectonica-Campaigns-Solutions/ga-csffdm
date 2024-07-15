@@ -20,9 +20,9 @@ const getFiles = async() => {
           format: {
             eq: "pdf",
           },
-        },
-        _createdAt: {
-          lte: "2024-06-06T14:30:00+00:00"
+          _createdAt: {
+            lte: "2024-06-06T14:30:00+00:00"
+          },
         },
       },
   })) {
