@@ -18,7 +18,7 @@ const Work = ({ pageContext, data: { work, favicon, updates, resources, meetings
     title: 'Areas of Work',
     url: '/areas-of-work'
   }
-  console.log('blocks', blocks);
+  // console.log('blocks', blocks);
   return (
     <Layout>
       <SeoDatoCMS seo={seo} favicon={favicon} />
